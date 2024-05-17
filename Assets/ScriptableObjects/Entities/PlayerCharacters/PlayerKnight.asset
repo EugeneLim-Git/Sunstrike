@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e48cfcfa42f776445b2f98714e4f0c1b, type: 3}
   m_Name: PlayerKnight
   m_EditorClassIdentifier: 
-  character_Name: Guy Gardener
-  character_Desc: 
-  character_BaseSprite: {fileID: 1102908554, guid: d7bc25e339b065f428176cab354b2bc0, type: 3}
-  character_Animator: {fileID: 0}
-  character_AnimController: {fileID: 0}
-  entity_Health: 100
-  entity_PhysicalStrength: 50
-  entity_PhysicalDefense: 50
-  entity_MagicalStrength: 25
-  entity_MagicalDefense: 500
-  entity_Speed: 50
+  characterName: 
+  characterDesc: 
+  characterBaseSprite: {fileID: 0}
+  characterAnimator: {fileID: 0}
+  characterAnimController: {fileID: 0}
+  entityHealth: 0
+  entityPhysicalStrength: 0
+  entityPhysicalDefense: 0
+  entityMagicalStrength: 0
+  entityMagicalDefense: 0
+  entitySpeed: 0
+  skillList:
+  - {fileID: 0}
