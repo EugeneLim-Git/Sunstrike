@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29c65eae53d6a14fb5dc0653c4b63d4, type: 3}
-  m_Name: Slash
+  m_Script: {fileID: 11500000, guid: 9441930a7de0ba5479f969335b4a2468, type: 3}
+  m_Name: Slash Skill
   m_EditorClassIdentifier: 
-  skillName: 
-  skillValue: 0
+  skillName: Slash
+  skillValue: 10
   typeOfSkill: 0
   skillScalerType: 0
-  skillTargets: 0
+  skillTargets: 1
   skillRange: 0
-  numOfTargets: 0
+  numOfTargets: 1
   skillAnimator: {fileID: 0}
   skillSprite: {fileID: 0}
-  skillSelectImage: {fileID: 0}
+  skillUIImage: {fileID: 0}

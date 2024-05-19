@@ -15,13 +15,12 @@ public class BaseCharacter : ScriptableObject
     //born to dilly dally forced to lock in. . .
 
     [Header("Combat Data")]
-    [SerializeField] protected float entityHealth;
-    [SerializeField] protected float entityPhysicalStrength;
-    [SerializeField] protected float entityPhysicalDefense;
-    [SerializeField] protected float entityMagicalStrength;
-    [SerializeField] protected float entityMagicalDefense;
-    [SerializeField] protected float entitySpeed;
-    [SerializeField] protected List<BaseSkill> skillList; //stores all known skills in a list
+    [SerializeField] protected float baseHealth;
+    [SerializeField] protected float basePhysicalStrength;
+    [SerializeField] protected float basePhysicalDefense;
+    [SerializeField] protected float baseMagicalStrength;
+    [SerializeField] protected float baseMagicalDefense;
+    [SerializeField] protected float baseSpeed;
     //Physical and Magical stat-types dictate damage they take and receive from their respective types.
     //the intended gameplay manager/creator for entities will call upon these stats to insert them into characters/enemies
     //the statistical values will be used as part of an equation, rather than be directly modified for the sake of 
@@ -32,27 +31,47 @@ public class BaseCharacter : ScriptableObject
     
     public float GetBaseHealth()
     {
-        return entityHealth;
+        return baseHealth;
     }
 
     public float GetBasePhysicalStrength()
     {
-        return entityPhysicalStrength;
+        return basePhysicalStrength;
     }
     public float GetBasePhysicalDefense()
     {
-        return entityPhysicalDefense;
+        return basePhysicalDefense;
     }
     public float GetBaseMagicalStrength()
     {
-        return entityMagicalStrength;
+        return baseMagicalStrength;
     }
     public float GetBaseMagicalDefense()
     {
-        return entityMagicalDefense;
+        return baseMagicalDefense;
     }
     public float GetBaseSpeed()
     {
-        return entitySpeed;
+        return baseSpeed;
     }
+
+    public float UseSkill(BaseSkill skillToUse, BattleEntity skillUser, BattleEntity targetOfSkill, float classMultiplier, float generalMultiplier)
+    {
+        if (skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
+        {
+            return skillToUse.GetAttackDamage(skillUser, targetOfSkill, classMultiplier, generalMultiplier);
+        }
+        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
+        {
+            return skillToUse.GetHealAmount(skillUser, targetOfSkill, classMultiplier, generalMultiplier);
+        }   
+        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Buff)
+        {
+            return skillToUse.GetBuffAmount(skillUser, targetOfSkill, classMultiplier, generalMultiplier);
+        }
+        else
+        {
+            return 0;
+        }
+    }    
 }
