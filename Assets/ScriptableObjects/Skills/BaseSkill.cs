@@ -39,6 +39,7 @@ public class BaseSkill : ScriptableObject
 
     [Header("Skill Data")]
     [SerializeField] protected string skillName; //Name of the skill
+    [SerializeField] protected string skillDesc; // determines the description of the skill when selected in the UI.
     [SerializeField] protected float skillValue; // determines the numerical value of the skill. Varies between skill types.
     [SerializeField] protected SkillType typeOfSkill; //determines the type of skill.to be used by the skill manager to then feed other values into it.
     [SerializeField] protected SkillScaler skillScalerType; //determines what stat the skill scales off of. e.g. most attacks use the Physical/Magical strength stats. Buffs can use any.
@@ -49,10 +50,15 @@ public class BaseSkill : ScriptableObject
     [Header("Skill Visuals")]
     [SerializeField] protected Animator skillAnimator; //determines animations used
     [SerializeField] protected Sprite skillSprite; // determines the sprite used in battle.
-    [SerializeField] protected Sprite skillUIImage; //determines the sprite used in the game UI.
+    [SerializeField] public Sprite skillUIImage; //determines the sprite used in the game UI.
     
 
     //the following functions can be called to retrieve protected values
+    public string GetSkillName()
+    {
+        return skillName;
+    }
+
     public SkillType GetSkillType()
     {
         return typeOfSkill;
@@ -83,7 +89,7 @@ public class BaseSkill : ScriptableObject
         return skillSprite;
     }
 
-    public Sprite GetUISPrite()
+    public Sprite GetSkillUIImage()
     {
         return skillUIImage;
     }

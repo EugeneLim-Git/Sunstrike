@@ -6,7 +6,7 @@ public abstract class BattleEntity : MonoBehaviour
 {
     [Header("Character Information")]
     protected BaseCharacter baseCharacterSO;
-    protected List<BaseSkill> skillList; //stores all known skills in a list
+    public List<BaseSkill> skillList; //stores all known skills in a list
 
     [Header("Combat Data")]
     protected float characterMaxHealth;

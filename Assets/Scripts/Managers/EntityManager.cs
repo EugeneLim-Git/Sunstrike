@@ -19,6 +19,7 @@ public class EntityManager : MonoBehaviour
     public void Initialise()
     {
         int iteration = 0;
+        Debug.Log(characterList[0]);
         foreach (var character in characterList) 
         {
             Debug.Log(characterList[iteration]); //for debugging purposes to see who is in the list
@@ -33,7 +34,7 @@ public class EntityManager : MonoBehaviour
             enemyList[iteration].transform.localScale = enemyPositions[iteration].transform.localScale;
             iteration++;
         }
-
+        Debug.Log(characterList[0]);
         selectedCharacter = characterList[0];
     }
 

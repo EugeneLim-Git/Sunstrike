@@ -6,6 +6,8 @@ public class BloodSisterCharacter : BattleEntity
 {
     [Header("Character Information")]
     [SerializeField] protected BloodSister bloodSisterSO;
+    
+
 
     // Start is called before the first frame update
     void Start()
