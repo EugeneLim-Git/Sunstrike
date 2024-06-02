@@ -21,6 +21,7 @@ public class BaseCharacter : ScriptableObject
     [SerializeField] protected float baseMagicalStrength;
     [SerializeField] protected float baseMagicalDefense;
     [SerializeField] protected float baseSpeed;
+    
     //Physical and Magical stat-types dictate damage they take and receive from their respective types.
     //the intended gameplay manager/creator for entities will call upon these stats to insert them into characters/enemies
     //the statistical values will be used as part of an equation, rather than be directly modified for the sake of 

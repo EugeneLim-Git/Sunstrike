@@ -30,7 +30,7 @@ public class SystemManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
 
@@ -68,6 +68,12 @@ public class SystemManager : MonoBehaviour
     public void ChangeSelectedPlayerCharacter(BattleEntity selectedPlayer)
     {
         uiManager.ChangeSelectedCharacter(selectedPlayer);
+        entityManager.selectedCharacter = selectedPlayer;
+    }
+
+    public BattleEntity GetCurrentSelectedCharacter()
+    {
+        return entityManager.selectedCharacter;
     }
 
 }

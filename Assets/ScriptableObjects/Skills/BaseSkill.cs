@@ -10,7 +10,6 @@ public class BaseSkill : ScriptableObject
 {
     public enum SkillType{
         Damage,
-        SelfBuff,
         Buff,
         Debuff,
         Heal

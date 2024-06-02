@@ -216,7 +216,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -833,7 +833,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2591,6 +2591,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4590f4031b5e38b44a1c2973d4eb06c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityList:
+  - {fileID: 1036192553}
+  - {fileID: 26261693}
+  - {fileID: 1760277562}
+  - {fileID: 292253671}
+  - {fileID: 197358362}
 --- !u!1 &852845398
 GameObject:
   m_ObjectHideFlags: 0
@@ -3508,7 +3514,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3719,8 +3725,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -183, y: 88.87805}
-  m_SizeDelta: {x: 317.67, y: 63.9044}
+  m_AnchoredPosition: {x: -160.06949, y: 88.22288}
+  m_SizeDelta: {x: 363.531, y: 65.2148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1186959485
 MonoBehaviour:
@@ -5496,7 +5502,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
