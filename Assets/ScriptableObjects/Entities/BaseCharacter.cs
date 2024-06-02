@@ -29,6 +29,11 @@ public class BaseCharacter : ScriptableObject
     //as some characters or enemies are stronger or weaker on certain sides, and the game can be balanced to create
     //dynamic uses of these stats, such as boosting them or giving an enemy an abnormally high stat that players have to deal with
     
+    public string GetCharacterName()
+    {
+        return characterName;
+    }
+
     public float GetBaseHealth()
     {
         return baseHealth;

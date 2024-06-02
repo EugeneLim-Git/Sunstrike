@@ -10,31 +10,48 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Elements")]
     public List<SkillBattleIcon> skillBattleIconList;
-    public TextMeshProUGUI selectedSkillName; 
+    public TextMeshProUGUI selectedSkillUIText;
 
     [Header("Selected Character Data")]
-    public BattleEntity selectedCharacter;
-    public string selectedCharacterName;
+    public BattleEntity selectedPlayerCharacter;
+    public BattleEntity selectedEnemy;
+    public TextMeshProUGUI selectedPlayerCharacterName;
+    public TextMeshProUGUI selectedEnemyName;
     private BaseSkill selectedSkill;
 
     // Start is called before the first frame update
     void Start()
     {
-        selectedCharacter = entityManager.characterList[0];
+        ChangeSelectedCharacter(entityManager.characterList[0]);
+    }
+
+    
+
+    public void ChangeSelectedCharacter(BattleEntity characterToSelect)
+    {
+        selectedPlayerCharacter = characterToSelect;
+        SetActiveSkills();
+        selectedPlayerCharacterName.text = characterToSelect.name;
+
+
+    }
+
+    public void SetActiveSkills()
+    {
         int i = 0;
         foreach (var icon in skillBattleIconList)
         {
-            skillBattleIconList[i].currentSkill = selectedCharacter.skillList[i];
+            skillBattleIconList[i].currentSkill = selectedPlayerCharacter.skillList[i];
             skillBattleIconList[i].SetSkillDetails();
             Debug.Log(skillBattleIconList[i].name);
             i++;
-            
         }
+        SetCurrentSkillText(selectedPlayerCharacter.skillList[0]);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetCurrentSkillText(BaseSkill currentSkill)
     {
-        
+        selectedSkillUIText.text = currentSkill.GetSkillName();
+
     }
 }

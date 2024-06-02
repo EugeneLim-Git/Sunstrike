@@ -11,11 +11,6 @@ public class EntityManager : MonoBehaviour
     public List<Transform> enemyPositions;
     public BattleEntity selectedCharacter;
 
-    public void Start()
-    {
-        Initialise();
-    }
-
     public void Initialise()
     {
         int iteration = 0;
@@ -34,7 +29,6 @@ public class EntityManager : MonoBehaviour
             enemyList[iteration].transform.localScale = enemyPositions[iteration].transform.localScale;
             iteration++;
         }
-        Debug.Log(characterList[0]);
         selectedCharacter = characterList[0];
     }
 

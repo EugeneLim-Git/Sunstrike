@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SkillBattleIcon : MonoBehaviour
@@ -12,9 +13,13 @@ public class SkillBattleIcon : MonoBehaviour
     private string skillDesc;
     public Image uiImage;
 
+    private SystemManager systemManager;
+
     private void Start()
     {
         uiImage= GetComponent<Image>();
+
+        systemManager = FindObjectOfType<SystemManager>();
     }
 
     public void SetSkillDetails()
@@ -31,4 +36,13 @@ public class SkillBattleIcon : MonoBehaviour
     { return skillName; }
     public string GetSkillDescription()
     { return skillDesc; }
+
+    public void OnBeingClicked()
+    {
+        Debug.Log(this.name + " is being clicked!");
+        if (systemManager.currentGameState == SystemManager.GameState.ACTIONSELECTION)
+        {
+            systemManager.SetSkillToUse(currentSkill);
+        }
+    }
 }
