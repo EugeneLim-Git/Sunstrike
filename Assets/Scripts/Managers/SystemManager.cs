@@ -19,14 +19,17 @@ public class SystemManager : MonoBehaviour
     [SerializeField] private UIManager uiManager;
     [SerializeField] private BattleManager battleManager;
     [SerializeField] private EntityManager entityManager;
+    private int currentPlayerOrder;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        
         entityManager.Initialise();
         battleManager.Initialise();
-
+        currentPlayerOrder = 0;
+        
     }
 
     // Update is called once per frame
@@ -40,11 +43,13 @@ public class SystemManager : MonoBehaviour
         }
         else if (currentGameState == GameState.BATTLING) // disallows all other input as the decisions of the turn are playing
         {
-
+            
+            StartCoroutine(battleManager.RunCombat());
         }
         else if (currentGameState == GameState.ENEMYDECISIONMAKING) // disallows players from making any inputs
         {
-
+            //for debug and demo, enemies will not do anything right now
+            SetGameState(GameState.BATTLING);
         }
         else if (currentGameState == GameState.ACTIONSELECTION) // takes priority over targetting for obvious reasons
         {
@@ -65,10 +70,47 @@ public class SystemManager : MonoBehaviour
         uiManager.SetCurrentSkillText(skillToSetTo);
     }
 
+    public void NextPlayerCharacter()
+    {
+        currentPlayerOrder++;
+        if (currentPlayerOrder >= entityManager.characterList.Count)
+        {
+            Debug.Log("Running Enemy AI!");
+            SetGameState(GameState.ENEMYDECISIONMAKING);
+        }
+        else if (entityManager.characterList[currentPlayerOrder].isEntityDead() == true && currentPlayerOrder < entityManager.characterList.Count - 1) // current entity is dead, go to next
+        {
+            NextPlayerCharacter();
+        }
+        
+        else if (entityManager.characterList[currentPlayerOrder].isEntityDead() == false) // current entity is not dead and the 
+        {
+            ChangeSelectedPlayerCharacter(entityManager.characterList[currentPlayerOrder]);
+            SetGameState(GameState.ACTIONSELECTION);
+        }
+
+    }
+
+    public void SetGameState(GameState gameState)
+    {
+        currentGameState = gameState;
+    }
+
+    public void ResetSelectedPlayer()
+    {
+        currentPlayerOrder = 0;
+        ChangeSelectedPlayerCharacter(entityManager.characterList[0]);
+    }
+
     public void ChangeSelectedPlayerCharacter(BattleEntity selectedPlayer)
     {
         uiManager.ChangeSelectedCharacter(selectedPlayer);
         entityManager.selectedCharacter = selectedPlayer;
+    }
+
+    public BaseSkill GetCurrentSelectedSkill()
+    {
+        return uiManager.GetCurrentSkill();
     }
 
     public BattleEntity GetCurrentSelectedCharacter()

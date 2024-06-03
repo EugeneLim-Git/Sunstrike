@@ -16,6 +16,8 @@ public abstract class BattleEntity : MonoBehaviour
     protected float characterMagicalStrength;
     protected float characterMagicalDefense;
     protected float characterSpeed;
+    protected bool isDead = false;
+    protected float characterClassMultiplier;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,27 @@ public abstract class BattleEntity : MonoBehaviour
         characterMagicalStrength = baseCharacterSO.GetBaseMagicalStrength();
         characterMagicalDefense = baseCharacterSO.GetBaseMagicalDefense();
         characterSpeed = baseCharacterSO.GetBaseSpeed();
+        characterClassMultiplier = baseCharacterSO.GetClassMultiplier();
+    }
+
+    public bool isEntityDead()
+    {
+        return isDead;
+    }
+
+    public void setEntityDeathStatus(bool booleanToSetTo)
+    {
+        isDead = booleanToSetTo;
+    }
+
+    public void ExecuteCommand(BaseSkill skillToUse, BattleEntity targetOfSkill)
+    {
+        baseCharacterSO.UseSkill(skillToUse, this, targetOfSkill, 1);
+    }
+
+    public virtual void OnUseSkill()
+    {
+        return;
     }
 
     public float GetMaxHealth()
@@ -42,6 +65,20 @@ public abstract class BattleEntity : MonoBehaviour
     public float GetCurrentHealth()
     {
         return characterCurrentHealth;
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        characterCurrentHealth -= damageAmount;
+    }
+
+    public void RestoreHealth(float healAmount)
+    {
+        characterCurrentHealth += healAmount;
+        if (characterCurrentHealth > characterMaxHealth)
+        {
+            characterCurrentHealth = characterMaxHealth;
+        }
     }
 
     public float GetPhysicalStrength()
@@ -66,4 +103,8 @@ public abstract class BattleEntity : MonoBehaviour
         return characterSpeed;
     }
 
+    public float GetClassMultiplier()
+    {
+        return characterClassMultiplier;
+    }
 }

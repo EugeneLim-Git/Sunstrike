@@ -11,30 +11,27 @@ public class BattleManager : MonoBehaviour
 
     [Header("Battle Data")]
     public List<BattleEntity> entityList;
-    bool isEntityListEmpty = false;
+    bool isActionListEmpty;
     public IEnumerator battleCoroutine;
+    public List<BattleAction> actionList;
+    
 
     public void Initialise()
     {
         systemManager = FindObjectOfType<SystemManager>();
         entityList = new List<BattleEntity>();
+        actionList = new List<BattleAction>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && entityList.Count > 0)
-        {
-            battleCoroutine = RunTurn();
-            StartCoroutine(battleCoroutine);
-        }
+        
     }
 
     public void SetSkillToTargetWith(BaseSkill skillToUse)
     {
         currentSkill = skillToUse;
-    }
-
-    
+    }    
 
     public void SelectTargetInput() // to be called in System Manager when an input is required for 
     {
@@ -46,20 +43,15 @@ public class BattleManager : MonoBehaviour
 
             if (systemManager.currentGameState == SystemManager.GameState.TARGETTING)
             {
-                if (cubeHit.collider.gameObject.CompareTag("Enemy") && currentSkill.GetSkillType() == BaseSkill.SkillType.Damage)
+                if (cubeHit.collider.gameObject.CompareTag("Enemy") && currentSkill.GetSkillType() == BaseSkill.SkillType.Damage && cubeHit.collider.GetComponent<BattleEntity>().isEntityDead() == false) // this is done so we don't heal enemies
                 {
-                    Debug.Log("We hit " + cubeHit.collider.name!);
+                    
+                    AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
+                    systemManager.NextPlayerCharacter();
                 }
-                else if (cubeHit.collider.gameObject.CompareTag("Enemy") && currentSkill.GetSkillType() == BaseSkill.SkillType.Heal)
+                else if (cubeHit.collider.gameObject.CompareTag("Player") && currentSkill.GetSkillType() == BaseSkill.SkillType.Heal) // this is done because we don't want player targetting friends with damaging attacks
                 {
-                    if (currentSkill.ReturnTargetRange() == BaseSkill.SkillTargetRange.Multiple)
-                    {
-                        systemManager.GetCurrentSelectedCharacter();
-                    }
-                    else // there should only be multiple or single heals
-                    {
-
-                    }
+                    AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
                 }
             }
         }
@@ -75,8 +67,8 @@ public class BattleManager : MonoBehaviour
             
             if (cubeHit.collider.gameObject.CompareTag("Player"))
             {
-                Debug.Log(cubeHit.collider.name);
-                systemManager.ChangeSelectedPlayerCharacter(cubeHit.collider.GetComponent<BattleEntity>());
+                Debug.Log(cubeHit.collider.GetComponent<BattleEntity>().GetCurrentHealth());
+                //systemManager.ChangeSelectedPlayerCharacter(cubeHit.collider.GetComponent<BattleEntity>());
             }
             
         }
@@ -87,28 +79,78 @@ public class BattleManager : MonoBehaviour
     // after all actions are selected, sort by the speed values of the characters
     // and then run them all again until the entity list is empty
 
-    public void AddToEntityList()
+    public void AddToActionList(BattleEntity characterToAdd, BattleEntity targetOfSkill, BaseSkill skillToAdd)
     {
+        BattleAction battleActionToAdd = new BattleAction
+        {
+            character = characterToAdd,
+            skillTarget = targetOfSkill,
+            skillToUse = skillToAdd,
+            characterSpeed = characterToAdd.GetSpeed()
+        };
 
+        actionList.Add(battleActionToAdd);
     }
 
-    public void ClearEntityList()
+    public void RunAction(BattleAction action)
+    {
+        action.character.OnUseSkill();
+        if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
+        {
+            if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
+            {
+                float damageDealt = action.skillToUse.GetAttackDamage(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+                action.skillTarget.TakeDamage(damageDealt);
+                Debug.Log(action.skillTarget + " was hit for " + damageDealt + " damage!");
+                // need to implement damage calc for AoE attacks
+            }
+            else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
+            {
+                float healAmount = action.skillToUse.GetHealAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+                action.skillTarget.RestoreHealth(healAmount);
+            }
+            else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Buff)
+            {
+                float buffTotal = action.skillToUse.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+                //implement different buff targets later
+            }
+            
+        }
+
+        if (action.skillTarget.GetCurrentHealth() <= 0)
+        {
+            action.skillTarget.setEntityDeathStatus(true);
+            action.skillTarget.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            //action.skillTarget.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+
+    public IEnumerator RunCombat()
     {
         
-    }
-
-
-
-    public IEnumerator RunTurn()
-    {      
-        while (!isEntityListEmpty)
+        while (actionList.Count > 0)
         {
-            foreach (var entity in entityList.OrderByDescending(entity => entity.GetSpeed()))
+            yield return new WaitForSeconds(1f);
+            if (actionList.Count <= 0)
             {
-                entityList.Remove(entityList[0]);
-                yield return new WaitForSeconds(1);
+                
+                
             }
+            else if (actionList[0].character.isEntityDead() == false)
+            {
+                RunAction(actionList[0]);
+                Destroy(actionList[0]);
+                actionList.Remove(actionList[0]);
+                Debug.Log(actionList.Count);
+                
+            }
+            
+            
         }
-        yield return null;
+        systemManager.SetGameState(SystemManager.GameState.ACTIONSELECTION);
+        systemManager.ResetSelectedPlayer();
+        yield break;
+
     }
 }

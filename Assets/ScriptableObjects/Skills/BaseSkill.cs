@@ -100,12 +100,13 @@ public class BaseSkill : ScriptableObject
 
         if (skillScalerType == SkillScaler.Physical)
         {
-            finalDamage = skillPower * (attacker.GetPhysicalStrength() / defender.GetMagicalDefense());
+            finalDamage = skillPower * (attacker.GetPhysicalStrength() / defender.GetPhysicalDefense());
+            //Debug.Log(skillPower, attacker.GetPhysicalStrength(), defender.GetPhysicalDefense());
             return finalDamage;
         }
         else
         {
-            finalDamage = skillPower * (attacker.GetMagicalStrength() / defender.GetPhysicalDefense());
+            finalDamage = skillPower * (attacker.GetMagicalStrength() / defender.GetMagicalDefense());
             return finalDamage;
         }
         //uses a simple system that scales skill power off of the remainder of strength divided by defense

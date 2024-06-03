@@ -7,10 +7,9 @@ using UnityEngine;
 public class BloodSister : BaseCharacter
 {
     [Header("Special Stats")]
-    public float sacrificeHealthPercentage = 10f;
     public float sacrificeMultiplier = 1.2f;
 
-    public float UseSkill(BaseSkill skillToUse, BattleEntity skillUser, BattleEntity targetOfSkill, float generalMultiplier)
+    public override float UseSkill(BaseSkill skillToUse, BattleEntity skillUser, BattleEntity targetOfSkill, float generalMultiplier)
     {
         if (skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
         {

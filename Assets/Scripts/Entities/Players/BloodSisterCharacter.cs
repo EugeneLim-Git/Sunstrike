@@ -19,10 +19,25 @@ public class BloodSisterCharacter : BattleEntity
         characterMagicalStrength = bloodSisterSO.GetBaseMagicalStrength();
         characterMagicalDefense = bloodSisterSO.GetBaseMagicalDefense();
         characterSpeed = bloodSisterSO.GetBaseSpeed();
+        characterClassMultiplier = bloodSisterSO.sacrificeMultiplier;
     }
 
-    public void ExecuteCommand(BaseSkill skillToUse, BattleEntity targetOfSkill)
+    //public void ExecuteCommand(BaseSkill skillToUse, BattleEntity targetOfSkill)
+    //{
+    //    bloodSisterSO.UseSkill(skillToUse, this, targetOfSkill, 1);
+    //}
+
+    public override void OnUseSkill()
     {
-        bloodSisterSO.UseSkill(skillToUse, this, targetOfSkill, 1);
+        if (characterCurrentHealth > characterMaxHealth / 10)
+        {
+            characterCurrentHealth -= characterMaxHealth / 10;
+        }
+        else
+        {
+            characterCurrentHealth = 1;
+        }
+
+
     }
 }

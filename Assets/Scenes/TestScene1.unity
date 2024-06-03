@@ -476,9 +476,10 @@ GameObject:
   m_Component:
   - component: {fileID: 197358361}
   - component: {fileID: 197358362}
+  - component: {fileID: 197358363}
   m_Layer: 0
   m_Name: Blood Siter eneby
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,8 +512,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f5e359a706829459d3ceaed5489edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillList: []
+  skillList:
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   bloodSisterSO: {fileID: 11400000, guid: 8318b4f96b209754797aa7471c896e50, type: 2}
+--- !u!61 &197358363
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197358360}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &211218613
 GameObject:
   m_ObjectHideFlags: 0
@@ -523,9 +551,10 @@ GameObject:
   m_Component:
   - component: {fileID: 211218614}
   - component: {fileID: 211218615}
+  - component: {fileID: 211218616}
   m_Layer: 0
   m_Name: Blood Siter eneby (3)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -558,8 +587,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f5e359a706829459d3ceaed5489edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillList: []
+  skillList:
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   bloodSisterSO: {fileID: 11400000, guid: 8318b4f96b209754797aa7471c896e50, type: 2}
+--- !u!61 &211218616
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211218613}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &212034783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2597,6 +2653,7 @@ MonoBehaviour:
   - {fileID: 1760277562}
   - {fileID: 292253671}
   - {fileID: 197358362}
+  actionList: []
 --- !u!1 &852845398
 GameObject:
   m_ObjectHideFlags: 0
@@ -2834,9 +2891,10 @@ GameObject:
   m_Component:
   - component: {fileID: 892455088}
   - component: {fileID: 892455089}
+  - component: {fileID: 892455090}
   m_Layer: 0
   m_Name: Blood Siter eneby (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2869,8 +2927,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f5e359a706829459d3ceaed5489edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillList: []
+  skillList:
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   bloodSisterSO: {fileID: 11400000, guid: 8318b4f96b209754797aa7471c896e50, type: 2}
+--- !u!61 &892455090
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892455087}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &922761879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3209,9 +3294,10 @@ GameObject:
   m_Component:
   - component: {fileID: 956023708}
   - component: {fileID: 956023709}
+  - component: {fileID: 956023710}
   m_Layer: 0
   m_Name: Blood Siter eneby (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3244,8 +3330,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f5e359a706829459d3ceaed5489edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillList: []
+  skillList:
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   bloodSisterSO: {fileID: 11400000, guid: 8318b4f96b209754797aa7471c896e50, type: 2}
+--- !u!61 &956023710
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956023707}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &982454987
 GameObject:
   m_ObjectHideFlags: 0

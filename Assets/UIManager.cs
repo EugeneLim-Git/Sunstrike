@@ -17,10 +17,12 @@ public class UIManager : MonoBehaviour
     public BattleEntity selectedEnemy;
     public TextMeshProUGUI selectedPlayerCharacterName;
     public TextMeshProUGUI selectedEnemyName;
+    public TextMeshProUGUI selectedPlayerCharacterHealth;
+    public TextMeshProUGUI selectedEnemyHealth;
     private BaseSkill selectedSkill;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         ChangeSelectedCharacter(entityManager.characterList[0]);
     }
@@ -53,5 +55,10 @@ public class UIManager : MonoBehaviour
     {
         selectedSkillUIText.text = currentSkill.GetSkillName();
 
+    }
+
+    public BaseSkill GetCurrentSkill()
+    {
+        return selectedSkill;
     }
 }

@@ -17,11 +17,11 @@ MonoBehaviour:
   characterBaseSprite: {fileID: -1697742350, guid: 06d1b62e79ea4844d95a2ee17e601f36, type: 3}
   characterAnimator: {fileID: 0}
   characterAnimController: {fileID: 0}
-  entityHealth: 30
-  entityPhysicalStrength: 1
-  entityPhysicalDefense: 5
-  entityMagicalStrength: 5
-  entityMagicalDefense: 5
-  entitySpeed: 3
-  skillList:
-  - {fileID: 11400000, guid: 8cca211ee22e3304ab57d597723068e9, type: 2}
+  baseHealth: 50
+  basePhysicalStrength: 1
+  basePhysicalDefense: 1
+  baseMagicalStrength: 5
+  baseMagicalDefense: 1
+  baseSpeed: 5
+  classMultiplier: 1
+  sacrificeMultiplier: 1.2

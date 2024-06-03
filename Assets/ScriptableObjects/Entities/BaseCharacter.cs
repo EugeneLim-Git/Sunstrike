@@ -21,6 +21,7 @@ public class BaseCharacter : ScriptableObject
     [SerializeField] protected float baseMagicalStrength;
     [SerializeField] protected float baseMagicalDefense;
     [SerializeField] protected float baseSpeed;
+    [SerializeField] protected float classMultiplier = 1;
     
     //Physical and Magical stat-types dictate damage they take and receive from their respective types.
     //the intended gameplay manager/creator for entities will call upon these stats to insert them into characters/enemies
@@ -60,9 +61,14 @@ public class BaseCharacter : ScriptableObject
     {
         return baseSpeed;
     }
-
-    public float UseSkill(BaseSkill skillToUse, BattleEntity skillUser, BattleEntity targetOfSkill, float classMultiplier, float generalMultiplier)
+    public float GetClassMultiplier()
     {
+        return classMultiplier;
+    }
+
+    public virtual float UseSkill(BaseSkill skillToUse, BattleEntity skillUser, BattleEntity targetOfSkill, float generalMultiplier)
+    {
+        
         if (skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
         {
             return skillToUse.GetAttackDamage(skillUser, targetOfSkill, classMultiplier, generalMultiplier);

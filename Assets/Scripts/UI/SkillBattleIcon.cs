@@ -43,6 +43,7 @@ public class SkillBattleIcon : MonoBehaviour
         if (systemManager.currentGameState == SystemManager.GameState.ACTIONSELECTION)
         {
             systemManager.SetSkillToUse(currentSkill);
+            systemManager.SetGameState(SystemManager.GameState.TARGETTING);
         }
     }
 }
