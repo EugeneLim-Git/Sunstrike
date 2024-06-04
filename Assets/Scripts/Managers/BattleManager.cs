@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class BattleManager : MonoBehaviour
 {
@@ -128,7 +129,8 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator RunCombat()
     {
-        
+        actionList = actionList.OrderByDescending(action => action.characterSpeed).ToList();
+
         while (actionList.Count > 0)
         {
             yield return new WaitForSeconds(1f);

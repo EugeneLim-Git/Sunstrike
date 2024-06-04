@@ -19,9 +19,9 @@ MonoBehaviour:
   characterAnimController: {fileID: 0}
   baseHealth: 50
   basePhysicalStrength: 1
-  basePhysicalDefense: 1
+  basePhysicalDefense: 10
   baseMagicalStrength: 5
-  baseMagicalDefense: 1
+  baseMagicalDefense: 20
   baseSpeed: 5
   classMultiplier: 1
   sacrificeMultiplier: 1.2

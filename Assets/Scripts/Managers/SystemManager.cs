@@ -20,6 +20,7 @@ public class SystemManager : MonoBehaviour
     [SerializeField] private BattleManager battleManager;
     [SerializeField] private EntityManager entityManager;
     private int currentPlayerOrder;
+    private bool runningCombat = false;
 
 
     // Start is called before the first frame update
@@ -43,8 +44,11 @@ public class SystemManager : MonoBehaviour
         }
         else if (currentGameState == GameState.BATTLING) // disallows all other input as the decisions of the turn are playing
         {
-            
-            StartCoroutine(battleManager.RunCombat());
+            if (runningCombat == false)
+            {
+                StartCoroutine(battleManager.RunCombat());
+                runningCombat = true;
+            }
         }
         else if (currentGameState == GameState.ENEMYDECISIONMAKING) // disallows players from making any inputs
         {
@@ -94,6 +98,7 @@ public class SystemManager : MonoBehaviour
     public void SetGameState(GameState gameState)
     {
         currentGameState = gameState;
+        runningCombat = false;
     }
 
     public void ResetSelectedPlayer()
