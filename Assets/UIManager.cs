@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [Header("Selected Character Data")]
     public BattleEntity selectedPlayerCharacter;
     public BattleEntity selectedEnemy;
+
+    [Header("UI Text Elements")]
     public TextMeshProUGUI selectedPlayerCharacterName;
     public TextMeshProUGUI selectedEnemyName;
     public TextMeshProUGUI selectedPlayerCharacterHealth;
@@ -25,6 +27,7 @@ public class UIManager : MonoBehaviour
     public void Start()
     {
         ChangeSelectedCharacter(entityManager.characterList[0]);
+        SetEnemyUIText(entityManager.enemyList[0]);
     }
 
     
@@ -34,7 +37,8 @@ public class UIManager : MonoBehaviour
         selectedPlayerCharacter = characterToSelect;
         SetActiveSkills();
         selectedPlayerCharacterName.text = characterToSelect.name;
-
+        string characterHealthText = (characterToSelect.GetCurrentHealth() + "/" + characterToSelect.GetMaxHealth()) ;
+        selectedPlayerCharacterHealth.text = characterHealthText;
 
     }
 
@@ -55,6 +59,13 @@ public class UIManager : MonoBehaviour
     {
         selectedSkillUIText.text = currentSkill.GetSkillName();
 
+    }
+
+    public void SetEnemyUIText(BattleEntity enemyHighlighted)
+    {
+        selectedEnemyName.text = enemyHighlighted.GetEntityName();
+        string enemyHealthText = (enemyHighlighted.GetCurrentHealth() + "/" + enemyHighlighted.GetMaxHealth());
+        selectedEnemyHealth.text = enemyHealthText;
     }
 
     public BaseSkill GetCurrentSkill()

@@ -11,7 +11,7 @@ public class DamageSkill : BaseSkill
 
     public override float GetAttackDamage(BattleEntity attacker, BattleEntity defender, float classMultiplier, float genericMultiplier)
     {
-        float skillPower = skillValue;
+        float skillPower = skillValue * classMultiplier * genericMultiplier;
         float finalDamage;
 
         if (skillScalerType == SkillScaler.Physical)

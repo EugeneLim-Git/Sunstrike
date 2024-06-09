@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/BaseCharacter", order = 1)]
@@ -11,7 +10,6 @@ public class BaseCharacter : ScriptableObject
     [SerializeField] protected string characterDesc;
     [SerializeField] protected Sprite characterBaseSprite;
     [SerializeField] protected Animator characterAnimator;
-    [SerializeField] AnimatorController characterAnimController;
     //born to dilly dally forced to lock in. . .
 
     [Header("Combat Data")]

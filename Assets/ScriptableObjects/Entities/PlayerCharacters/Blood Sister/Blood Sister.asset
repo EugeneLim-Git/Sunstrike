@@ -22,6 +22,6 @@ MonoBehaviour:
   basePhysicalDefense: 10
   baseMagicalStrength: 5
   baseMagicalDefense: 20
-  baseSpeed: 5
+  baseSpeed: 10
   classMultiplier: 1
   sacrificeMultiplier: 1.2

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
@@ -95,7 +94,7 @@ public class BaseSkill : ScriptableObject
 
     public virtual float GetAttackDamage(BattleEntity attacker, BattleEntity defender, float classMultiplier, float genericMultiplier)
     {
-        float skillPower = skillValue;
+        float skillPower = skillValue * classMultiplier;
         float finalDamage;
 
         if (skillScalerType == SkillScaler.Physical)

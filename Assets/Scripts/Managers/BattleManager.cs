@@ -66,10 +66,10 @@ public class BattleManager : MonoBehaviour
             RaycastHit2D cubeHit = Physics2D.Raycast(cubeRay, Vector2.zero);
 
             
-            if (cubeHit.collider.gameObject.CompareTag("Player"))
+            if (cubeHit.collider.gameObject.CompareTag("Enemy"))
             {
                 Debug.Log(cubeHit.collider.GetComponent<BattleEntity>().GetCurrentHealth());
-                //systemManager.ChangeSelectedPlayerCharacter(cubeHit.collider.GetComponent<BattleEntity>());
+                systemManager.SetHighlightedEnemy(cubeHit.collider.GetComponent<BattleEntity>());
             }
             
         }
@@ -79,6 +79,14 @@ public class BattleManager : MonoBehaviour
     // every action, add to the entity list variable
     // after all actions are selected, sort by the speed values of the characters
     // and then run them all again until the entity list is empty
+
+    public void RunAI(List<BattleEntity> enemyList)
+    {
+        foreach (var enemy in enemyList)
+        {
+            // go through each enemy and run through their AI processes
+        }
+    }
 
     public void AddToActionList(BattleEntity characterToAdd, BattleEntity targetOfSkill, BaseSkill skillToAdd)
     {
@@ -136,8 +144,8 @@ public class BattleManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             if (actionList.Count <= 0)
             {
-                
-                
+
+
             }
             else if (actionList[0].character.isEntityDead() == false)
             {
@@ -145,10 +153,15 @@ public class BattleManager : MonoBehaviour
                 Destroy(actionList[0]);
                 actionList.Remove(actionList[0]);
                 Debug.Log(actionList.Count);
-                
+
             }
-            
-            
+            else
+            {
+                Destroy(actionList[0]);
+                actionList.Remove(actionList[0]);
+                Debug.Log(actionList.Count);
+            }
+
         }
         systemManager.SetGameState(SystemManager.GameState.ACTIONSELECTION);
         systemManager.ResetSelectedPlayer();

@@ -7,6 +7,7 @@ public abstract class BattleEntity : MonoBehaviour
     [Header("Character Information")]
     protected BaseCharacter baseCharacterSO;
     public List<BaseSkill> skillList; //stores all known skills in a list
+    protected string characterName;
 
     [Header("Combat Data")]
     protected float characterMaxHealth;
@@ -27,6 +28,7 @@ public abstract class BattleEntity : MonoBehaviour
 
     public virtual void Initialise()
     {
+        characterName = baseCharacterSO.GetCharacterName();
         characterMaxHealth = baseCharacterSO.GetBaseHealth();
         characterCurrentHealth = characterMaxHealth;
         characterPhysicalStrength = baseCharacterSO.GetBasePhysicalStrength();
@@ -35,6 +37,11 @@ public abstract class BattleEntity : MonoBehaviour
         characterMagicalDefense = baseCharacterSO.GetBaseMagicalDefense();
         characterSpeed = baseCharacterSO.GetBaseSpeed();
         characterClassMultiplier = baseCharacterSO.GetClassMultiplier();
+    }
+
+    public string GetEntityName()
+    {
+        return characterName;
     }
 
     public bool isEntityDead()

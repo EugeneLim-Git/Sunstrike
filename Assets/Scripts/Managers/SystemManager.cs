@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SystemManager : MonoBehaviour
 {
+    public TextMeshProUGUI gameText;
+
     public enum GameState
     {
         PAUSED,
@@ -58,7 +61,6 @@ public class SystemManager : MonoBehaviour
         else if (currentGameState == GameState.ACTIONSELECTION) // takes priority over targetting for obvious reasons
         {
             battleManager.HighlightTargetInput();
-
         }
         else if (currentGameState == GameState.TARGETTING) // for targetting enemies or allies with a skill. lowest priority
         {
@@ -99,6 +101,34 @@ public class SystemManager : MonoBehaviour
     {
         currentGameState = gameState;
         runningCombat = false;
+        
+        if (gameState == GameState.ACTIONSELECTION)
+        {
+            int i = 0;
+            int deadAmount = 0;
+            foreach (var enemy in entityManager.enemyList)
+            {
+                Debug.Log(entityManager.enemyList[i].isEntityDead());
+                if (entityManager.enemyList[i].isEntityDead() == true)
+                {
+                    deadAmount++;
+                }
+                i++;
+            }
+            Debug.Log("entityManager.enemyList.Count");
+            if (deadAmount >= entityManager.enemyList.Count)
+            {
+                // players have won
+                Debug.Log("Player has won!");
+                string winningText = "Player won!";
+                gameText.text = winningText;
+            }
+        }
+    }
+
+    public void SetHighlightedEnemy(BattleEntity enemyToHighlight)
+    {
+        uiManager.SetEnemyUIText(enemyToHighlight);
     }
 
     public void ResetSelectedPlayer()
