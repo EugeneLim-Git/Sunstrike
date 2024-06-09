@@ -47,6 +47,7 @@ public class SystemManager : MonoBehaviour
         }
         else if (currentGameState == GameState.BATTLING) // disallows all other input as the decisions of the turn are playing
         {
+            battleManager.HighlightTargetInput();
             if (runningCombat == false)
             {
                 StartCoroutine(battleManager.RunCombat());
