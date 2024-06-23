@@ -26,11 +26,6 @@ public class BattleManager : MonoBehaviour
         actionList = new List<BattleAction>();
     }
 
-    private void Update()
-    {
-        
-    }
-
     public void SetSkillToTargetWith(BaseSkill skillToUse)
     {
         currentSkill = skillToUse;
@@ -86,8 +81,11 @@ public class BattleManager : MonoBehaviour
     {
         foreach (var enemy in enemyList)
         {
-            AIModule ai = enemy.GetAIModule();
-            actionList.Add(ai.RunDecisionMaking(entityList, enemyList, enemy.skillList, enemy));
+            if (enemy.isEntityDead() != true)
+            {
+                AIModule ai = enemy.GetAIModule();
+                actionList.Add(ai.RunDecisionMaking(entityList, enemyList, enemy.skillList, enemy));
+            }
         }
     }
 

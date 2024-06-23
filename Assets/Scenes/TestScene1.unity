@@ -541,6 +541,7 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   battleEntitySO: {fileID: 11400000, guid: e7e006e331caf7744b0d0610870b1d0c, type: 2}
+  aiModule: {fileID: 11400000, guid: bddd45fd055253e49bab58d08be72953, type: 2}
 --- !u!1 &211218613
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +617,7 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   battleEntitySO: {fileID: 11400000, guid: e7e006e331caf7744b0d0610870b1d0c, type: 2}
+  aiModule: {fileID: 0}
 --- !u!1 &212034783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2687,6 +2689,7 @@ MonoBehaviour:
   - {fileID: 26261693}
   - {fileID: 1760277562}
   - {fileID: 292253671}
+  hostileEntityList: []
   actionList: []
 --- !u!1 &852845398
 GameObject:
@@ -2990,6 +2993,7 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   battleEntitySO: {fileID: 11400000, guid: e7e006e331caf7744b0d0610870b1d0c, type: 2}
+  aiModule: {fileID: 0}
 --- !u!1 &922761879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3393,6 +3397,7 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   battleEntitySO: {fileID: 11400000, guid: e7e006e331caf7744b0d0610870b1d0c, type: 2}
+  aiModule: {fileID: 0}
 --- !u!1 &982454987
 GameObject:
   m_ObjectHideFlags: 0
