@@ -6,7 +6,6 @@ public class BasicEnemyBattleEntity : BattleEntity
 {
     [Header("Character Information")]
     [SerializeField] protected BaseCharacter battleEntitySO;
-    [SerializeField] protected AIModule aiModule;
 
 
     // Start is called before the first frame update
