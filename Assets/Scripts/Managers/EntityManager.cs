@@ -32,4 +32,14 @@ public class EntityManager : MonoBehaviour
         selectedCharacter = characterList[0];
     }
 
+    public void GetEnemyList(List<BattleEntity> enemyListToSet)
+    {
+        int i = 0;   
+        foreach(var enemy in enemyList)
+        {
+            enemyListToSet[i] = enemy;
+            i++;
+        }
+    }
+
 }

@@ -12,6 +12,7 @@ public class BattleManager : MonoBehaviour
 
     [Header("Battle Data")]
     public List<BattleEntity> entityList;
+    public List<BattleEntity> hostileEntityList;
     bool isActionListEmpty;
     public IEnumerator battleCoroutine;
     public List<BattleAction> actionList;
@@ -21,6 +22,7 @@ public class BattleManager : MonoBehaviour
     {
         systemManager = FindObjectOfType<SystemManager>();
         entityList = new List<BattleEntity>();
+        hostileEntityList = new List<BattleEntity>();
         actionList = new List<BattleAction>();
     }
 
@@ -84,7 +86,8 @@ public class BattleManager : MonoBehaviour
     {
         foreach (var enemy in enemyList)
         {
-            // go through each enemy and run through their AI processes
+            AIModule ai = enemy.GetAIModule();
+            actionList.Add(ai.RunDecisionMaking(entityList, enemyList, enemy.skillList, enemy));
         }
     }
 
@@ -149,9 +152,11 @@ public class BattleManager : MonoBehaviour
             }
             else if (actionList[0].character.isEntityDead() == false)
             {
+                systemManager.SetHighlightedEnemy(actionList[0].skillTarget);
                 RunAction(actionList[0]);
                 Destroy(actionList[0]);
                 actionList.Remove(actionList[0]);
+                
                 Debug.Log(actionList.Count);
 
             }
@@ -161,7 +166,7 @@ public class BattleManager : MonoBehaviour
                 actionList.Remove(actionList[0]);
                 Debug.Log(actionList.Count);
             }
-
+            
         }
         systemManager.SetGameState(SystemManager.GameState.ACTIONSELECTION);
         systemManager.ResetSelectedPlayer();

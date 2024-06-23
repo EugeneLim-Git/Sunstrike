@@ -8,6 +8,7 @@ public abstract class BattleEntity : MonoBehaviour
     protected BaseCharacter baseCharacterSO;
     public List<BaseSkill> skillList; //stores all known skills in a list
     protected string characterName;
+    protected AIModule aiModule;
 
     [Header("Combat Data")]
     protected float characterMaxHealth;
@@ -38,6 +39,12 @@ public abstract class BattleEntity : MonoBehaviour
         characterSpeed = baseCharacterSO.GetBaseSpeed();
         characterClassMultiplier = baseCharacterSO.GetClassMultiplier();
     }
+
+    public AIModule GetAIModule()
+    {
+        return aiModule;
+    }
+
 
     public string GetEntityName()
     {

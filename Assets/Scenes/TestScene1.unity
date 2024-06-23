@@ -1124,6 +1124,17 @@ Transform:
   m_Father: {fileID: 1954191681}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &407329446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2592004106789813399, guid: a362dc510541d284da85ecc94105700b, type: 3}
+  m_PrefabInstance: {fileID: 2592004107150211293}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &439509127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,6 +1258,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 91671796}
     m_Modifications:
+    - target: {fileID: 2592004106789813393, guid: a362dc510541d284da85ecc94105700b, type: 3}
+      propertyPath: uiImage
+      value: 
+      objectReference: {fileID: 1367496093}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1446,6 +1461,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 91671796}
     m_Modifications:
+    - target: {fileID: 2592004106789813393, guid: a362dc510541d284da85ecc94105700b, type: 3}
+      propertyPath: uiImage
+      value: 
+      objectReference: {fileID: 1593673888}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2065,6 +2084,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 91671796}
     m_Modifications:
+    - target: {fileID: 2592004106789813393, guid: a362dc510541d284da85ecc94105700b, type: 3}
+      propertyPath: uiImage
+      value: 
+      objectReference: {fileID: 733047822}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2340,6 +2363,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &733047822 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2592004106789813399, guid: a362dc510541d284da85ecc94105700b, type: 3}
+  m_PrefabInstance: {fileID: 683342465}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &733356604
 GameObject:
   m_ObjectHideFlags: 0
@@ -4589,6 +4623,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367496093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2592004106789813399, guid: a362dc510541d284da85ecc94105700b, type: 3}
+  m_PrefabInstance: {fileID: 463451124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1385553598
 GameObject:
   m_ObjectHideFlags: 0
@@ -5075,6 +5120,17 @@ MonoBehaviour:
   selectedEnemyName: {fileID: 1698595493}
   selectedPlayerCharacterHealth: {fileID: 1267452193}
   selectedEnemyHealth: {fileID: 2117021696}
+--- !u!114 &1593673888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2592004106789813399, guid: a362dc510541d284da85ecc94105700b, type: 3}
+  m_PrefabInstance: {fileID: 546016433}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1651463938
 GameObject:
   m_ObjectHideFlags: 0
@@ -7081,6 +7137,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 91671796}
     m_Modifications:
+    - target: {fileID: 2592004106789813393, guid: a362dc510541d284da85ecc94105700b, type: 3}
+      propertyPath: uiImage
+      value: 
+      objectReference: {fileID: 407329446}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

@@ -32,8 +32,9 @@ public class SystemManager : MonoBehaviour
         
         entityManager.Initialise();
         battleManager.Initialise();
+
         currentPlayerOrder = 0;
-        
+        uiManager.Initialise();
     }
 
     // Update is called once per frame
@@ -57,7 +58,8 @@ public class SystemManager : MonoBehaviour
         else if (currentGameState == GameState.ENEMYDECISIONMAKING) // disallows players from making any inputs
         {
             //for debug and demo, enemies will not do anything right now
-            SetGameState(GameState.BATTLING);
+            battleManager.RunAI(entityManager.enemyList);
+            //SetGameState(GameState.BATTLING);
         }
         else if (currentGameState == GameState.ACTIONSELECTION) // takes priority over targetting for obvious reasons
         {

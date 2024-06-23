@@ -24,10 +24,15 @@ public class UIManager : MonoBehaviour
     private BaseSkill selectedSkill;
 
     // Start is called before the first frame update
-    public void Start()
+    public void Initialise()
     {
         ChangeSelectedCharacter(entityManager.characterList[0]);
         SetEnemyUIText(entityManager.enemyList[0]);
+
+        foreach (var entity in skillBattleIconList)
+        {
+            entity.GetComponent<SkillBattleIcon>().Initialise();
+        }
     }
 
     

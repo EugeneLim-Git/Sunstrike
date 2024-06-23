@@ -15,9 +15,9 @@ public class SkillBattleIcon : MonoBehaviour
 
     private SystemManager systemManager;
 
-    private void Start()
+    public void Initialise()
     {
-        uiImage= GetComponent<Image>();
+        //uiImage = this.gameObject.GetComponent<Image>();
 
         systemManager = FindObjectOfType<SystemManager>();
     }
