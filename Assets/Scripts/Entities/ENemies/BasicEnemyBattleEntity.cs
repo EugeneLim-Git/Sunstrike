@@ -9,7 +9,7 @@ public class BasicEnemyBattleEntity : BattleEntity
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void Initialise()
     {
         characterName = battleEntitySO.GetCharacterName();
         characterMaxHealth = battleEntitySO.GetBaseHealth();

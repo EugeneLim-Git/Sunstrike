@@ -35,9 +35,11 @@ public class AIModule : ScriptableObject
 
         if (enemyRole == EnemyRole.Fighter)
         {
-            selectedSkill = skillList[Random.Range(0, skillList.Count - 1)];
+            selectedSkill = skillList[Random.Range(0, skillList.Count)];
+            Debug.Log(entityList.Count);
             aliveTargetList = GetPossibleTargets(entityList);
-            target = aliveTargetList[Random.Range(0, aliveTargetList.Count - 1)];
+
+            target = aliveTargetList[Random.Range(0, aliveTargetList.Count)];
 
             return CreateBattleAction(currentEnemy, target, selectedSkill, currentEnemy.GetSpeed());
         }
@@ -125,13 +127,15 @@ public class AIModule : ScriptableObject
     public List<BattleEntity> GetPossibleTargets(List<BattleEntity> targetList)
     {
         List<BattleEntity> possibleTargets = new List<BattleEntity>();
-        foreach (BattleEntity entity in targetList)
+        foreach (var entity in targetList)
         {
+            Debug.Log(entity.isEntityDead());
             if (entity.isEntityDead() == false)
             {
                 possibleTargets.Add(entity);
             }
         }
+        Debug.Log(possibleTargets.Count);
 
         return possibleTargets;
     }

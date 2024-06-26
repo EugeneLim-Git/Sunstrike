@@ -21,7 +21,6 @@ public class BattleManager : MonoBehaviour
     public void Initialise()
     {
         systemManager = FindObjectOfType<SystemManager>();
-        entityList = new List<BattleEntity>();
         hostileEntityList = new List<BattleEntity>();
         actionList = new List<BattleAction>();
     }
@@ -79,11 +78,12 @@ public class BattleManager : MonoBehaviour
 
     public void RunAI(List<BattleEntity> enemyList)
     {
-        foreach (var enemy in enemyList)
+        foreach (BattleEntity enemy in enemyList)
         {
             if (enemy.isEntityDead() != true)
             {
                 AIModule ai = enemy.GetAIModule();
+                Debug.Log(entityList.Count);
                 actionList.Add(ai.RunDecisionMaking(entityList, enemyList, enemy.skillList, enemy));
             }
         }

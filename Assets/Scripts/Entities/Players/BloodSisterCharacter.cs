@@ -10,8 +10,9 @@ public class BloodSisterCharacter : BattleEntity
 
 
     // Start is called before the first frame update
-    void Start()
+    public override void  Initialise()
     {
+        characterName = bloodSisterSO.GetCharacterName();
         characterMaxHealth = bloodSisterSO.GetBaseHealth();
         characterCurrentHealth = characterMaxHealth;
         characterPhysicalStrength = bloodSisterSO.GetBasePhysicalStrength();

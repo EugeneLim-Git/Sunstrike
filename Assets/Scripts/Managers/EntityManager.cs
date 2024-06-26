@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class EntityManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class EntityManager : MonoBehaviour
         {
             Debug.Log(characterList[iteration]); //for debugging purposes to see who is in the list
             characterList[iteration].transform.position = playerPositions[iteration].transform.position;
+            character.Initialise();
             iteration++;
         }
         iteration = 0;
@@ -27,6 +29,7 @@ public class EntityManager : MonoBehaviour
             Debug.Log(enemyList[iteration]); //for debugging purposes to see who is in the list
             enemyList[iteration].transform.position = enemyPositions[iteration].transform.position;
             enemyList[iteration].transform.localScale = enemyPositions[iteration].transform.localScale;
+            enemy.Initialise();
             iteration++;
         }
         selectedCharacter = characterList[0];

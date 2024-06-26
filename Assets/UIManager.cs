@@ -26,7 +26,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     public void Initialise()
     {
+        Debug.Log(entityManager.characterList[1].GetCurrentHealth());   
         ChangeSelectedCharacter(entityManager.characterList[0]);
+
         SetEnemyUIText(entityManager.enemyList[0]);
 
         foreach (var entity in skillBattleIconList)
@@ -41,8 +43,9 @@ public class UIManager : MonoBehaviour
     {
         selectedPlayerCharacter = characterToSelect;
         SetActiveSkills();
-        selectedPlayerCharacterName.text = characterToSelect.name;
-        string characterHealthText = (characterToSelect.GetCurrentHealth() + "/" + characterToSelect.GetMaxHealth()) ;
+        selectedPlayerCharacterName.text = characterToSelect.GetEntityName();
+        string characterHealthText = (characterToSelect.GetCurrentHealth() + "/" + characterToSelect.GetMaxHealth());
+        Debug.Log(characterToSelect.GetCurrentHealth() + "/" + characterToSelect.GetMaxHealth());
         selectedPlayerCharacterHealth.text = characterHealthText;
 
     }
@@ -68,9 +71,11 @@ public class UIManager : MonoBehaviour
 
     public void SetEnemyUIText(BattleEntity enemyHighlighted)
     {
+        //Debug.Log(enemyHighlighted.GetEntityName());
         selectedEnemyName.text = enemyHighlighted.GetEntityName();
         string enemyHealthText = (enemyHighlighted.GetCurrentHealth() + "/" + enemyHighlighted.GetMaxHealth());
         selectedEnemyHealth.text = enemyHealthText;
+        
     }
 
     public BaseSkill GetCurrentSkill()

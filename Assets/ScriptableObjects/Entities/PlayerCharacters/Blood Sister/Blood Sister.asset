@@ -16,7 +16,6 @@ MonoBehaviour:
   characterDesc: A cleric of the Sisterhood of blood.
   characterBaseSprite: {fileID: -1697742350, guid: 06d1b62e79ea4844d95a2ee17e601f36, type: 3}
   characterAnimator: {fileID: 0}
-  characterAnimController: {fileID: 0}
   baseHealth: 50
   basePhysicalStrength: 1
   basePhysicalDefense: 10
