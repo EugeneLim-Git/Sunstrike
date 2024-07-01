@@ -8,9 +8,10 @@ public class UIManager : MonoBehaviour
     [Header("Managers")]
     public EntityManager entityManager;
 
-    [Header("UI Elements")]
+    [Header("UI Control Elements")]
     public List<SkillBattleIcon> skillBattleIconList;
     public TextMeshProUGUI selectedSkillUIText;
+    public TextMeshProUGUI selectedSkillDescText;
 
     [Header("Selected Character Data")]
     public BattleEntity selectedPlayerCharacter;
@@ -18,10 +19,10 @@ public class UIManager : MonoBehaviour
 
     [Header("UI Text Elements")]
     public TextMeshProUGUI selectedPlayerCharacterName;
-    public TextMeshProUGUI selectedEnemyName;
+    public TextMeshProUGUI selectedEntityName;
     public TextMeshProUGUI selectedPlayerCharacterHealth;
-    public TextMeshProUGUI selectedEnemyHealth;
-    private BaseSkill selectedSkill;
+    public TextMeshProUGUI selectedEntityHealth;
+    public TextMeshProUGUI selectedEntityStats;
 
     // Start is called before the first frame update
     public void Initialise()
@@ -29,15 +30,15 @@ public class UIManager : MonoBehaviour
         Debug.Log(entityManager.characterList[1].GetCurrentHealth());   
         ChangeSelectedCharacter(entityManager.characterList[0]);
 
-        SetEnemyUIText(entityManager.enemyList[0]);
+        SetEntityUIText(entityManager.enemyList[0]);
 
         foreach (var entity in skillBattleIconList)
         {
             entity.GetComponent<SkillBattleIcon>().Initialise();
         }
-    }
 
-    
+        selectedSkillDescText.gameObject.SetActive(false);
+    }    
 
     public void ChangeSelectedCharacter(BattleEntity characterToSelect)
     {
@@ -60,26 +61,30 @@ public class UIManager : MonoBehaviour
             Debug.Log(skillBattleIconList[i].name);
             i++;
         }
-        SetCurrentSkillText(selectedPlayerCharacter.skillList[0]);
+        selectedSkillUIText.text = "Select a skill";
+        selectedSkillDescText.gameObject.SetActive(false);
     }
 
     public void SetCurrentSkillText(BaseSkill currentSkill)
     {
         selectedSkillUIText.text = currentSkill.GetSkillName();
-
+        selectedSkillDescText.gameObject.SetActive(true);
+        selectedSkillDescText.text = currentSkill.GetSkillDescription();
     }
 
-    public void SetEnemyUIText(BattleEntity enemyHighlighted)
+    public void SetEntityUIText(BattleEntity entityHighlighted)
     {
         //Debug.Log(enemyHighlighted.GetEntityName());
-        selectedEnemyName.text = enemyHighlighted.GetEntityName();
-        string enemyHealthText = (enemyHighlighted.GetCurrentHealth() + "/" + enemyHighlighted.GetMaxHealth());
-        selectedEnemyHealth.text = enemyHealthText;
-        
-    }
+        selectedEntityName.text = entityHighlighted.GetEntityName();
+        string entityHealthText = (entityHighlighted.GetCurrentHealth() + "/" + entityHighlighted.GetMaxHealth());
+        selectedEntityHealth.text = entityHealthText;
 
-    public BaseSkill GetCurrentSkill()
-    {
-        return selectedSkill;
+        selectedEntityStats.text = (
+            "Physical Strength: " + entityHighlighted.GetBasePhysicalStrength() + " + " + entityHighlighted.GetPhysicalStrengthMod() + "\n"
+            + "Physical Defense: " + entityHighlighted.GetBasePhysicalDefense() + " + " + entityHighlighted.GetPhysicalDefenseMod() + "\n"
+            + "Magical Strength: " + entityHighlighted.GetBaseMagicalStrength() + " + " + entityHighlighted.GetMagicalStrengthMod() + "\n"
+            + "Magical Defense: " + entityHighlighted.GetBaseMagicalDefense() + " + " + entityHighlighted.GetMagicalDefenseMod() + "\n"
+            + "Speed: " + entityHighlighted.GetBaseSpeed() + " + " + entityHighlighted.GetSpeedMod()
+            );
     }
 }

@@ -42,7 +42,7 @@ public class BaseSkill : ScriptableObject
     [SerializeField] protected SkillType typeOfSkill; //determines the type of skill.to be used by the skill manager to then feed other values into it.
     [SerializeField] protected SkillScaler skillScalerType; //determines what stat the skill scales off of. e.g. most attacks use the Physical/Magical strength stats. Buffs can use any.
     [SerializeField] protected SkillTarget skillTargets; // determines what the skill can actually target. e.g. if it only targets allies, enemies, either/any, or all entities on the field.
-    [SerializeField] protected SkillTargetRange skillRange; // determines the 'range' of what it can hit. If it hits only one thing, multiple, or all entities on the field.
+    [SerializeField] protected SkillTargetRange skillTargetRange; // determines the 'range' of what it can hit. If it hits only one thing, multiple, or all entities on the field.
     [SerializeField] protected int numOfTargets; // determines how MANY targets a skill would have specifically. applies only to 'Multiple' targets.
 
     [Header("Skill Visuals")]
@@ -65,9 +65,14 @@ public class BaseSkill : ScriptableObject
     {
         return skillValue;
     }
-    public SkillTargetRange ReturnTargetRange()
+
+    public string GetSkillDescription()
     {
-        return skillRange;
+        return skillDesc;
+    }
+    public SkillTargetRange GetTargetRange()
+    {
+        return skillTargetRange;
     }
     public SkillTarget ReturnSkillTargets()
     {
@@ -94,20 +99,29 @@ public class BaseSkill : ScriptableObject
 
     public virtual float GetAttackDamage(BattleEntity attacker, BattleEntity defender, float classMultiplier, float genericMultiplier)
     {
-        float skillPower = skillValue * classMultiplier;
+        float skillPower = skillValue * classMultiplier * genericMultiplier;
         float finalDamage;
 
         if (skillScalerType == SkillScaler.Physical)
         {
             finalDamage = skillPower * (attacker.GetPhysicalStrength() / defender.GetPhysicalDefense());
             //Debug.Log(skillPower, attacker.GetPhysicalStrength(), defender.GetPhysicalDefense());
-            return finalDamage;
         }
         else
         {
             finalDamage = skillPower * (attacker.GetMagicalStrength() / defender.GetMagicalDefense());
-            return finalDamage;
+           
         }
+
+        if (finalDamage < 0)
+        {
+            finalDamage = 0.1f;
+        }
+
+        finalDamage = Mathf.Round(finalDamage * 100.0f) * 0.1f;
+
+        return finalDamage;
+
         //uses a simple system that scales skill power off of the remainder of strength divided by defense
         //usually results in very simple or slight power increases or decreases. eg. if skill power is 20, strength is 12 and defense is 10, results in a damage multiplier of 1.2
         //final damage is equal to 20 * 1.2, which is 24
@@ -119,7 +133,7 @@ public class BaseSkill : ScriptableObject
         float baseHealAmount = skillValue;
         float finalHealAmount;
 
-        finalHealAmount = (baseHealAmount * genericMultiplier) * classMultiplier;
+        finalHealAmount = Mathf.Round(((baseHealAmount * genericMultiplier) * classMultiplier) * 100.0f) * 0.1f;
         return finalHealAmount;
 
     }
@@ -129,7 +143,9 @@ public class BaseSkill : ScriptableObject
         float multiplierValue = skillValue;
         float finalMultiplierValue;
 
-        finalMultiplierValue = (skillValue * classMultiplier) * genericMultiplier;
+        finalMultiplierValue = (((skillValue * classMultiplier) * genericMultiplier) * 100.0f) * 0.1f;
+
+
         return finalMultiplierValue;
     }
 

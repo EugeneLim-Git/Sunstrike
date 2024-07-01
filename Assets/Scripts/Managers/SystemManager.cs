@@ -59,7 +59,7 @@ public class SystemManager : MonoBehaviour
         {
             //for debug and demo, enemies will not do anything right now
             Debug.Log(entityManager.enemyList);
-            battleManager.RunAI(entityManager.enemyList);
+            battleManager.RunAI(entityManager.enemyList, entityManager.characterList);
             SetGameState(GameState.BATTLING);
         }
         else if (currentGameState == GameState.ACTIONSELECTION) // takes priority over targetting for obvious reasons
@@ -133,7 +133,8 @@ public class SystemManager : MonoBehaviour
     public void SetHighlightedEnemy(BattleEntity enemyToHighlight)
     {
         //Debug.Log(enemyToHighlight.GetEntityName());
-        uiManager.SetEnemyUIText(enemyToHighlight);
+        uiManager.SetEntityUIText(enemyToHighlight);
+
     }
 
     public void ResetSelectedPlayer()
@@ -148,9 +149,9 @@ public class SystemManager : MonoBehaviour
         entityManager.selectedCharacter = selectedPlayer;
     }
 
-    public BaseSkill GetCurrentSelectedSkill()
+    public List<BattleEntity> GetEnemyList()
     {
-        return uiManager.GetCurrentSkill();
+        return entityManager.enemyList;
     }
 
     public BattleEntity GetCurrentSelectedCharacter()

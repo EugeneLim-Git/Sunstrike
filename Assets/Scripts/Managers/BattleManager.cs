@@ -21,7 +21,7 @@ public class BattleManager : MonoBehaviour
     public void Initialise()
     {
         systemManager = FindObjectOfType<SystemManager>();
-        hostileEntityList = new List<BattleEntity>();
+        hostileEntityList = systemManager.GetEnemyList();
         actionList = new List<BattleAction>();
     }
 
@@ -50,6 +50,10 @@ public class BattleManager : MonoBehaviour
                 {
                     AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
                 }
+                else
+                {
+                    // nothing happens, no error return
+                }
             }
         }
     }
@@ -62,7 +66,7 @@ public class BattleManager : MonoBehaviour
             RaycastHit2D cubeHit = Physics2D.Raycast(cubeRay, Vector2.zero);
 
             
-            if (cubeHit.collider.gameObject.CompareTag("Enemy"))
+            if (cubeHit.collider.GetComponent<BattleEntity>() == true)
             {
                 Debug.Log(cubeHit.collider.GetComponent<BattleEntity>().GetCurrentHealth());
                 systemManager.SetHighlightedEnemy(cubeHit.collider.GetComponent<BattleEntity>());
@@ -76,7 +80,7 @@ public class BattleManager : MonoBehaviour
     // after all actions are selected, sort by the speed values of the characters
     // and then run them all again until the entity list is empty
 
-    public void RunAI(List<BattleEntity> enemyList)
+    public void RunAI(List<BattleEntity> enemyList, List<BattleEntity> playerList)
     {
         foreach (BattleEntity enemy in enemyList)
         {
@@ -84,7 +88,7 @@ public class BattleManager : MonoBehaviour
             {
                 AIModule ai = enemy.GetAIModule();
                 Debug.Log(entityList.Count);
-                actionList.Add(ai.RunDecisionMaking(entityList, enemyList, enemy.skillList, enemy));
+                actionList.Add(ai.RunDecisionMaking(playerList, enemyList, enemy.skillList, enemy));
             }
         }
     }
@@ -110,20 +114,64 @@ public class BattleManager : MonoBehaviour
             if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
             {
                 float damageDealt = action.skillToUse.GetAttackDamage(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
-                action.skillTarget.TakeDamage(damageDealt);
-                Debug.Log(action.skillTarget + " was hit for " + damageDealt + " damage!");
-                // need to implement damage calc for AoE attacks
+
+                if (action.skillToUse.GetTargetRange() == BaseSkill.SkillTargetRange.All)
+                {
+                    if (action.character.gameObject.tag == "Player")
+                    {
+                        foreach (var enemy in systemManager.GetEnemyList())
+                        {
+                            enemy.TakeDamage(damageDealt);
+                        }
+                    }
+                    else if (action.character.gameObject.tag == "Enemy")
+                    {
+                        foreach (var player in entityList)
+                        {
+                            player.TakeDamage(damageDealt);
+                        }
+                    }
+                }
+                else //means it's single target
+                {
+                    action.skillTarget.TakeDamage(damageDealt);
+                    Debug.Log(action.skillTarget + " was hit for " + damageDealt + " damage!");
+                }
+               
             }
             else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
             {
                 float healAmount = action.skillToUse.GetHealAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
                 action.skillTarget.RestoreHealth(healAmount);
             }
-            else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Buff)
+            else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Buff || action.skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
             {
                 float buffTotal = action.skillToUse.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
-                //implement different buff targets later
+                BaseSkill.SkillScaler statToMod = action.skillToUse.GetSkillScalerType();
+
+                if (statToMod == BaseSkill.SkillScaler.Physical)
+                {
+                    action.skillTarget.AddToPhysicalStrengthMod(buffTotal);
+                }
+                else if (statToMod == BaseSkill.SkillScaler.Magical)
+                {
+                    action.skillTarget.AddToMagicalStrengthMod(buffTotal);
+                }
+                else if (statToMod == BaseSkill.SkillScaler.MagicalDefense)
+                {
+                    action.skillTarget.AddToMagicalDefenseMod(buffTotal);
+                }
+                else if (statToMod == BaseSkill.SkillScaler.PhysicalDefense)
+                {
+                    action.skillTarget.AddToPhysicalDefenseMod(buffTotal);
+                }
+                else //means the skill scales the speed mod stat
+                {
+                    action.skillTarget.AddToSpeedMod(buffTotal);
+                }
+
             }
+            
             
         }
 

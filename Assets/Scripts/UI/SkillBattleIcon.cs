@@ -40,7 +40,7 @@ public class SkillBattleIcon : MonoBehaviour
     public void OnBeingClicked()
     {
         Debug.Log(this.name + " is being clicked!");
-        if (systemManager.currentGameState == SystemManager.GameState.ACTIONSELECTION)
+        if (systemManager.currentGameState == SystemManager.GameState.ACTIONSELECTION || systemManager.currentGameState == SystemManager.GameState.TARGETTING)
         {
             systemManager.SetSkillToUse(currentSkill);
             systemManager.SetGameState(SystemManager.GameState.TARGETTING);

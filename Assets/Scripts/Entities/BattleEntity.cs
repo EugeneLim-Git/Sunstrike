@@ -21,6 +21,13 @@ public abstract class BattleEntity : MonoBehaviour
     protected bool isDead = false;
     protected float characterClassMultiplier;
 
+    [Header("Stat Modifiers")]
+    [SerializeField] protected float physicalStrengthMod;
+    [SerializeField] protected float physicalDefenseMod;
+    [SerializeField] protected float magicalStrengthMod;
+    [SerializeField] protected float magicalDefenseMod;
+    [SerializeField] protected float speedMod;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +45,12 @@ public abstract class BattleEntity : MonoBehaviour
         characterMagicalDefense = baseCharacterSO.GetBaseMagicalDefense();
         characterSpeed = baseCharacterSO.GetBaseSpeed();
         characterClassMultiplier = baseCharacterSO.GetClassMultiplier();
+
+        physicalStrengthMod = 0;
+        physicalDefenseMod = 0;
+        magicalStrengthMod = 0;
+        magicalDefenseMod = 0;
+        speedMod = 0;
     }
 
     public AIModule GetAIModule()
@@ -96,28 +109,118 @@ public abstract class BattleEntity : MonoBehaviour
     }
     public float GetPhysicalStrength()
     {
-        return characterMagicalStrength;
+        return characterPhysicalStrength + physicalStrengthMod;
     }
 
     public float GetPhysicalDefense()
     {
-        return characterPhysicalDefense;
+        float valueToReturn = characterPhysicalDefense + physicalDefenseMod;
+
+        if (valueToReturn <= 0)
+        {
+            valueToReturn = 0.1f;
+        }
+        return valueToReturn;
     }
     public float GetMagicalStrength()
     {
-        return characterMagicalStrength;
+        return characterMagicalStrength + magicalStrengthMod;
     }
     public float GetMagicalDefense()
     {
-        return characterMagicalDefense;
+        float valueToReturn = characterMagicalDefense + magicalDefenseMod;
+
+        if (valueToReturn <= 0)
+        {
+            valueToReturn = 0.1f;
+        }
+        return valueToReturn;
     }
     public float GetSpeed()
     {
-        return characterSpeed;
+        return characterSpeed + speedMod;
+    }
+    public float GetBasePhysicalStrength()
+    {
+        return characterPhysicalStrength;
     }
 
+    public float GetBasePhysicalDefense()
+    {
+        float valueToReturn = characterPhysicalDefense;
+        return valueToReturn;
+    }
+    public float GetBaseMagicalStrength()
+    {
+        return characterMagicalStrength + magicalStrengthMod;
+    }
+    public float GetBaseMagicalDefense()
+    {
+        float valueToReturn = characterMagicalDefense;
+        return valueToReturn;
+    }
+    public float GetBaseSpeed()
+    {
+        return characterSpeed;
+    }
     public float GetClassMultiplier()
     {
         return characterClassMultiplier;
     }
+    public float GetPhysicalStrengthMod()
+    {
+        return physicalStrengthMod;
+    }
+    public float GetPhysicalDefenseMod()
+    {
+        return physicalDefenseMod;
+    }
+    public float GetMagicalStrengthMod()
+    {
+        return magicalStrengthMod;
+    }
+
+    public float GetMagicalDefenseMod()
+    {
+        return magicalDefenseMod;
+    }
+    public float GetSpeedMod()
+    {
+        return speedMod;
+    }
+
+    public void AddToPhysicalStrengthMod(float valueToAdd)
+    {
+        float newModValue = physicalStrengthMod + valueToAdd;
+
+        physicalStrengthMod = newModValue;
+    }
+
+    public void AddToPhysicalDefenseMod(float valueToAdd)
+    {
+        float newModValue = physicalDefenseMod + valueToAdd;
+
+        physicalDefenseMod = newModValue;
+    }
+
+    public void AddToMagicalStrengthMod(float valueToAdd)
+    {
+        float newModValue = physicalStrengthMod + valueToAdd;
+
+        physicalStrengthMod = newModValue; ;
+    }
+
+    public void AddToMagicalDefenseMod(float valueToAdd)
+    {
+        float newModValue = magicalDefenseMod + valueToAdd;
+
+        magicalDefenseMod = newModValue;
+    }
+    public void AddToSpeedMod(float valueToAdd)
+    {
+        float newModValue = magicalDefenseMod + valueToAdd;
+
+        magicalDefenseMod = newModValue;
+    }
+
 }
