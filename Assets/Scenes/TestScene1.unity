@@ -346,7 +346,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 260.92, y: 99}
+  m_AnchoredPosition: {x: 229, y: 27.01}
   m_SizeDelta: {x: 478.4523, y: 179.0945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &135344033
@@ -1376,17 +1376,6 @@ Transform:
   m_Father: {fileID: 1954191681}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &407329446 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2592004106789813399, guid: a362dc510541d284da85ecc94105700b, type: 3}
-  m_PrefabInstance: {fileID: 2592004107150211293}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &439509127
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,7 +1569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 170
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1842,7 +1831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2465,7 +2454,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -70
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3840,7 +3829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 755.9308, y: -27.158016}
+  m_AnchoredPosition: {x: 766, y: 50.77}
   m_SizeDelta: {x: 317.6725, y: 149.57635}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1012745896
@@ -4139,7 +4128,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -160.06949, y: 88.22288}
+  m_AnchoredPosition: {x: -160.07, y: 88.222}
   m_SizeDelta: {x: 363.531, y: 65.2148}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1186959485
@@ -4640,7 +4629,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SUNSTRIKE DEMO - V.0.1 - INCOMPLETE GAMEPLAY
+  m_text: SUNSTRIKE DEMO - V.0.2 - INCOMPLETE GAMEPLAY
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1ac3772640916994f9c4742e7b6aefe8, type: 2}
   m_sharedMaterial: {fileID: -4820672489964418738, guid: 1ac3772640916994f9c4742e7b6aefe8, type: 2}
@@ -4753,7 +4742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -571, y: -68.847}
+  m_AnchoredPosition: {x: -584.51, y: 9.0004}
   m_SizeDelta: {x: -1227.9233, y: -71.04491}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1323171429 stripped
@@ -6794,8 +6783,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -183, y: 10}
-  m_SizeDelta: {x: 317.6725, y: 77.493}
+  m_AnchoredPosition: {x: -201.9354, y: 13.434}
+  m_SizeDelta: {x: 279.8018, y: 84.362}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1939141540
 MonoBehaviour:
@@ -7189,7 +7178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -390, y: 21}
+  m_AnchoredPosition: {x: -393, y: -37.408}
   m_SizeDelta: {x: 363.531, y: 224.3913}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1971858505
@@ -7473,7 +7462,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Description:
 
-    Blood rains down upon all enemy targets. (Magic)'
+    Born to mine forced to craft.. (THIS ISN''T WORKING)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1ac3772640916994f9c4742e7b6aefe8, type: 2}
   m_sharedMaterial: {fileID: -4820672489964418738, guid: 1ac3772640916994f9c4742e7b6aefe8, type: 2}
@@ -7693,10 +7682,6 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 91671796}
     m_Modifications:
-    - target: {fileID: 2592004106789813393, guid: a362dc510541d284da85ecc94105700b, type: 3}
-      propertyPath: uiImage
-      value: 
-      objectReference: {fileID: 407329446}
     - target: {fileID: 2592004106789813396, guid: a362dc510541d284da85ecc94105700b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
