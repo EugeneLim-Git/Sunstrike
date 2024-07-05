@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class BattleEntity : MonoBehaviour
@@ -94,9 +95,17 @@ public abstract class BattleEntity : MonoBehaviour
         return characterCurrentHealth;
     }
 
-    public void TakeDamage(float damageAmount)
+    public void TakeDamage(float damageAmount, GameObject damageNumberPrefab)
     {
         characterCurrentHealth -= damageAmount;
+        
+        DamageNumber damagePrefab = Instantiate(damageNumberPrefab, this.gameObject.transform).GetComponent<DamageNumber>();
+       if (damagePrefab.gameObject.transform.localScale.x < 1)
+        {
+            damagePrefab.gameObject.transform.localScale = new Vector3(damagePrefab.gameObject.transform.localScale.x,
+                1f, damagePrefab.gameObject.transform.localScale.z);
+        }
+        damagePrefab.Initialise(damageAmount);
     }
 
     public void RestoreHealth(float healAmount)

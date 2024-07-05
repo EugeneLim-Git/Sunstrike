@@ -16,7 +16,7 @@ public class BattleManager : MonoBehaviour
     bool isActionListEmpty;
     public IEnumerator battleCoroutine;
     public List<BattleAction> actionList;
-    
+    public GameObject damageNumberPrefab;
 
     public void Initialise()
     {
@@ -40,19 +40,22 @@ public class BattleManager : MonoBehaviour
 
             if (systemManager.currentGameState == SystemManager.GameState.TARGETTING)
             {
-                if (cubeHit.collider.gameObject.CompareTag("Enemy") && currentSkill.GetSkillType() == BaseSkill.SkillType.Damage && cubeHit.collider.GetComponent<BattleEntity>().isEntityDead() == false) // this is done so we don't heal enemies
+                if (cubeHit.collider == true)
                 {
-                    
-                    AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
-                    systemManager.NextPlayerCharacter();
-                }
-                else if (cubeHit.collider.gameObject.CompareTag("Player") && currentSkill.GetSkillType() == BaseSkill.SkillType.Heal) // this is done because we don't want player targetting friends with damaging attacks
-                {
-                    AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
-                }
-                else
-                {
-                    // nothing happens, no error return
+                    if (cubeHit.collider.gameObject.CompareTag("Enemy") && currentSkill.GetSkillType() == BaseSkill.SkillType.Damage && cubeHit.collider.GetComponent<BattleEntity>().isEntityDead() == false) // this is done so we don't heal enemies
+                    {
+
+                        AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
+                        systemManager.NextPlayerCharacter();
+                    }
+                    else if (cubeHit.collider.gameObject.CompareTag("Player") && currentSkill.GetSkillType() == BaseSkill.SkillType.Heal) // this is done because we don't want player targetting friends with damaging attacks
+                    {
+                        AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
+                    }
+                    else
+                    {
+                        // nothing happens
+                    }
                 }
             }
         }
@@ -65,11 +68,13 @@ public class BattleManager : MonoBehaviour
             Vector2 cubeRay = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D cubeHit = Physics2D.Raycast(cubeRay, Vector2.zero);
 
-            
-            if (cubeHit.collider.GetComponent<BattleEntity>() == true)
+            if (cubeHit.collider == true)
             {
-                Debug.Log(cubeHit.collider.GetComponent<BattleEntity>().GetCurrentHealth());
-                systemManager.SetHighlightedEnemy(cubeHit.collider.GetComponent<BattleEntity>());
+                if (cubeHit.collider.GetComponent<BattleEntity>() == true)
+                {
+                    Debug.Log(cubeHit.collider.GetComponent<BattleEntity>().GetCurrentHealth());
+                    systemManager.SetHighlightedEnemy(cubeHit.collider.GetComponent<BattleEntity>());
+                }
             }
             
         }
@@ -121,20 +126,26 @@ public class BattleManager : MonoBehaviour
                     {
                         foreach (var enemy in systemManager.GetEnemyList())
                         {
-                            enemy.TakeDamage(damageDealt);
+                            if (enemy.isEntityDead() == false)
+                            {
+                                enemy.TakeDamage(damageDealt, damageNumberPrefab);
+                            }
                         }
                     }
                     else if (action.character.gameObject.tag == "Enemy")
                     {
                         foreach (var player in entityList)
                         {
-                            player.TakeDamage(damageDealt);
+                            if (player.isEntityDead() == false)
+                            {
+                                player.TakeDamage(damageDealt, damageNumberPrefab);
+                            }
                         }
                     }
                 }
                 else //means it's single target
                 {
-                    action.skillTarget.TakeDamage(damageDealt);
+                    action.skillTarget.TakeDamage(damageDealt, damageNumberPrefab);
                     Debug.Log(action.skillTarget + " was hit for " + damageDealt + " damage!");
                 }
                
