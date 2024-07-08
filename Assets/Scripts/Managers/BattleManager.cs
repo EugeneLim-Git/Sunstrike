@@ -17,6 +17,7 @@ public class BattleManager : MonoBehaviour
     public IEnumerator battleCoroutine;
     public List<BattleAction> actionList;
     public GameObject damageNumberPrefab;
+    public GameObject healNumberPrefab;
 
     public void Initialise()
     {
@@ -42,19 +43,28 @@ public class BattleManager : MonoBehaviour
             {
                 if (cubeHit.collider == true)
                 {
-                    if (cubeHit.collider.gameObject.CompareTag("Enemy") && currentSkill.GetSkillType() == BaseSkill.SkillType.Damage && cubeHit.collider.GetComponent<BattleEntity>().isEntityDead() == false) // this is done so we don't heal enemies
+                    if (cubeHit.collider.GetComponent<BattleEntity>().isEntityDead() == false) // this is done so we don't heal enemies
                     {
-
-                        AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
-                        systemManager.NextPlayerCharacter();
-                    }
-                    else if (cubeHit.collider.gameObject.CompareTag("Player") && currentSkill.GetSkillType() == BaseSkill.SkillType.Heal) // this is done because we don't want player targetting friends with damaging attacks
-                    {
-                        AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
+                        if (cubeHit.collider.gameObject.CompareTag("Player")) // this is done because we don't want player targetting friends with damaging attacks
+                        {
+                            if (currentSkill.GetSkillType() == BaseSkill.SkillType.Heal || currentSkill.GetSkillType() == BaseSkill.SkillType.Buff)
+                            {
+                                AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
+                                systemManager.NextPlayerCharacter();
+                            }
+                        }
+                        else if (cubeHit.collider.gameObject.CompareTag("Enemy"))
+                        {
+                            if (currentSkill.GetSkillType() == BaseSkill.SkillType.Damage || currentSkill.GetSkillType() == BaseSkill.SkillType.Debuff)
+                            {
+                                AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
+                                systemManager.NextPlayerCharacter();
+                            }
+                        }
                     }
                     else
                     {
-                        // nothing happens
+
                     }
                 }
             }
@@ -116,74 +126,70 @@ public class BattleManager : MonoBehaviour
         action.character.OnUseSkill();
         if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
         {
-            if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
-            {
-                float damageDealt = action.skillToUse.GetAttackDamage(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+            float damageDealt = action.skillToUse.GetAttackDamage(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
 
-                if (action.skillToUse.GetTargetRange() == BaseSkill.SkillTargetRange.All)
+            if (action.skillToUse.GetTargetRange() == BaseSkill.SkillTargetRange.All)
+            {
+                if (action.character.gameObject.tag == "Player")
                 {
-                    if (action.character.gameObject.tag == "Player")
+                    foreach (var enemy in systemManager.GetEnemyList())
                     {
-                        foreach (var enemy in systemManager.GetEnemyList())
+                        if (enemy.isEntityDead() == false)
                         {
-                            if (enemy.isEntityDead() == false)
-                            {
-                                enemy.TakeDamage(damageDealt, damageNumberPrefab);
-                            }
-                        }
-                    }
-                    else if (action.character.gameObject.tag == "Enemy")
-                    {
-                        foreach (var player in entityList)
-                        {
-                            if (player.isEntityDead() == false)
-                            {
-                                player.TakeDamage(damageDealt, damageNumberPrefab);
-                            }
+                            enemy.TakeDamage(damageDealt, damageNumberPrefab);
                         }
                     }
                 }
-                else //means it's single target
+                else if (action.character.gameObject.tag == "Enemy")
                 {
-                    action.skillTarget.TakeDamage(damageDealt, damageNumberPrefab);
-                    Debug.Log(action.skillTarget + " was hit for " + damageDealt + " damage!");
+                    foreach (var player in entityList)
+                    {
+                        if (player.isEntityDead() == false)
+                        {
+                            player.TakeDamage(damageDealt, damageNumberPrefab);
+                        }
+                    }
                 }
-               
             }
-            else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
+            else //means it's single target
             {
-                float healAmount = action.skillToUse.GetHealAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
-                action.skillTarget.RestoreHealth(healAmount);
+                action.skillTarget.TakeDamage(damageDealt, damageNumberPrefab);
+                Debug.Log(action.skillTarget + " was hit for " + damageDealt + " damage!");
             }
-            else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Buff || action.skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
+
+        }
+        else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
+        {
+            float healAmount = action.skillToUse.GetHealAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+            action.skillTarget.RestoreHealth(healAmount, healNumberPrefab);
+        }
+        else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Buff || action.skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
+        {
+            Debug.Log("Debuffing!");
+            float buffTotal = action.skillToUse.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+            BaseSkill.SkillScaler statToMod = action.skillToUse.GetSkillScalerType();
+
+            if (statToMod == BaseSkill.SkillScaler.Physical)
             {
-                float buffTotal = action.skillToUse.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
-                BaseSkill.SkillScaler statToMod = action.skillToUse.GetSkillScalerType();
-
-                if (statToMod == BaseSkill.SkillScaler.Physical)
-                {
-                    action.skillTarget.AddToPhysicalStrengthMod(buffTotal);
-                }
-                else if (statToMod == BaseSkill.SkillScaler.Magical)
-                {
-                    action.skillTarget.AddToMagicalStrengthMod(buffTotal);
-                }
-                else if (statToMod == BaseSkill.SkillScaler.MagicalDefense)
-                {
-                    action.skillTarget.AddToMagicalDefenseMod(buffTotal);
-                }
-                else if (statToMod == BaseSkill.SkillScaler.PhysicalDefense)
-                {
-                    action.skillTarget.AddToPhysicalDefenseMod(buffTotal);
-                }
-                else //means the skill scales the speed mod stat
-                {
-                    action.skillTarget.AddToSpeedMod(buffTotal);
-                }
-
+                action.skillTarget.AddToPhysicalStrengthMod(buffTotal);
             }
-            
-            
+            else if (statToMod == BaseSkill.SkillScaler.Magical)
+            {
+                action.skillTarget.AddToMagicalStrengthMod(buffTotal);
+            }
+            else if (statToMod == BaseSkill.SkillScaler.MagicalDefense)
+            {
+                action.skillTarget.AddToMagicalDefenseMod(buffTotal);
+            }
+            else if (statToMod == BaseSkill.SkillScaler.PhysicalDefense)
+            {
+                action.skillTarget.AddToPhysicalDefenseMod(buffTotal);
+            }
+            else //means the skill scales the speed mod stat
+            {
+                action.skillTarget.AddToSpeedMod(buffTotal);
+            }
+
         }
 
         if (action.skillTarget.GetCurrentHealth() <= 0)
@@ -229,5 +235,10 @@ public class BattleManager : MonoBehaviour
         systemManager.ResetSelectedPlayer();
         yield break;
 
+    }
+
+    public BaseSkill GetCurrentSkill()
+    {
+        return currentSkill;
     }
 }

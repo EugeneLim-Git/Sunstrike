@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Data", menuName = "Skills/Debuff Skill", order = 1)]
-public class DebuffSkill : BaseSkill
+[CreateAssetMenu(fileName = "Data", menuName = "Skills/BuffDebuff Skill", order = 1)]
+public class BuffDebuffSkill : BaseSkill
 {
     //Damage skills should be simple: Do damage, based on a number, multiplied by the related stat scaler.
     //Physical skills use the physical strength stat. Magical skills use the magical strength stat. They then will be affected by opposing defense stats.

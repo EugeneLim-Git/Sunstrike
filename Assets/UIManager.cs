@@ -80,11 +80,11 @@ public class UIManager : MonoBehaviour
         selectedEntityHealth.text = entityHealthText;
 
         selectedEntityStats.text = (
-            "Physical Strength: " + entityHighlighted.GetBasePhysicalStrength() + " + " + entityHighlighted.GetPhysicalStrengthMod() + "\n"
-            + "Physical Defense: " + entityHighlighted.GetBasePhysicalDefense() + " + " + entityHighlighted.GetPhysicalDefenseMod() + "\n"
-            + "Magical Strength: " + entityHighlighted.GetBaseMagicalStrength() + " + " + entityHighlighted.GetMagicalStrengthMod() + "\n"
-            + "Magical Defense: " + entityHighlighted.GetBaseMagicalDefense() + " + " + entityHighlighted.GetMagicalDefenseMod() + "\n"
-            + "Speed: " + entityHighlighted.GetBaseSpeed() + " + " + entityHighlighted.GetSpeedMod()
+            "Physical Strength: " + entityHighlighted.GetBasePhysicalStrength() + " + (" + entityHighlighted.GetPhysicalStrengthMod() + ")\n"
+            + "Physical Defense: " + entityHighlighted.GetBasePhysicalDefense() + " + (" + entityHighlighted.GetPhysicalDefenseMod() + ")\n"
+            + "Magical Strength: " + entityHighlighted.GetBaseMagicalStrength() + " + (" + entityHighlighted.GetMagicalStrengthMod() + ")\n"
+            + "Magical Defense: " + entityHighlighted.GetBaseMagicalDefense() + " + (" + entityHighlighted.GetMagicalDefenseMod() + ")\n"
+            + "Speed: " + entityHighlighted.GetBaseSpeed() + " + (" + entityHighlighted.GetSpeedMod() + ")"
             );
     }
 }

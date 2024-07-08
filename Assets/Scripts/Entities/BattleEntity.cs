@@ -10,6 +10,7 @@ public abstract class BattleEntity : MonoBehaviour
     public List<BaseSkill> skillList; //stores all known skills in a list
     protected string characterName;
     [SerializeField] protected AIModule aiModule;
+    [SerializeField] protected TargettingReticle targetReticle;
 
     [Header("Combat Data")]
     protected float characterMaxHealth;
@@ -108,7 +109,7 @@ public abstract class BattleEntity : MonoBehaviour
         damagePrefab.Initialise(damageAmount);
     }
 
-    public void RestoreHealth(float healAmount)
+    public void RestoreHealth(float healAmount, GameObject healNumberPrefab)
     {
         characterCurrentHealth += healAmount;
         if (characterCurrentHealth > characterMaxHealth)
@@ -116,6 +117,16 @@ public abstract class BattleEntity : MonoBehaviour
             characterCurrentHealth = characterMaxHealth;
         }
     }
+
+    public void StartReticle()
+    {
+        targetReticle.SetToActive();
+    }
+    public void StopReticle()
+    {
+        targetReticle.SetToInactive();
+    }
+
     public float GetPhysicalStrength()
     {
         return characterPhysicalStrength + physicalStrengthMod;

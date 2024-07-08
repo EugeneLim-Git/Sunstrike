@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c6a5fab0d8779645ae482274895d216, type: 3}
-  m_Name: Data
+  m_Name: Weaken
   m_EditorClassIdentifier: 
   skillName: Weaken
-  skillDesc: 
-  skillValue: 5
+  skillDesc: A spell that physically weakens the target.
+  skillValue: -5
   typeOfSkill: 2
-  skillScalerType: 2
-  skillTargets: 0
+  skillScalerType: 0
+  skillTargets: 1
   skillTargetRange: 0
   numOfTargets: 0
   skillAnimator: {fileID: 0}
   skillSprite: {fileID: 0}
-  skillUIImage: {fileID: 0}
+  skillUIImage: {fileID: 21300000, guid: ec6a1586a5700404bb2fc87496368ab5, type: 3}

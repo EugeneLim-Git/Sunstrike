@@ -105,7 +105,16 @@ public class SystemManager : MonoBehaviour
     {
         currentGameState = gameState;
         runningCombat = false;
-        
+
+        foreach (BattleEntity entity in entityManager.characterList)
+        {
+            entity.StopReticle();
+        }
+        foreach (BattleEntity enemy in entityManager.enemyList)
+        {
+            enemy.StopReticle();
+        }
+
         if (gameState == GameState.ACTIONSELECTION)
         {
             int i = 0;
@@ -126,6 +135,46 @@ public class SystemManager : MonoBehaviour
                 Debug.Log("Player has won!");
                 string winningText = "Player won!";
                 gameText.text = winningText;
+            }
+        }
+        else if (gameState == GameState.TARGETTING)
+        {
+            if (battleManager.GetCurrentSkill().GetSkillTargets() == BaseSkill.SkillTarget.Enemy)
+            {
+                foreach (BattleEntity enemy in entityManager.enemyList)
+                {
+                    if (enemy.isEntityDead() == false)
+                    {
+                        enemy.StartReticle();
+                    }
+                }
+            }
+            else if (battleManager.GetCurrentSkill().GetSkillTargets() == BaseSkill.SkillTarget.Friendly)
+            {
+                foreach (BattleEntity entity in entityManager.characterList)
+                {
+                    if (entity.isEntityDead() == false)
+                    {
+                        entity.StartReticle();
+                    }
+                }
+            }
+            else
+            {
+                foreach(BattleEntity entity in entityManager.characterList)
+                {
+                    if (entity.isEntityDead() == false)
+                    {
+                        entity.StartReticle();
+                    }
+                }
+                foreach(BattleEntity enemy in entityManager.enemyList)
+                {
+                    if (enemy.isEntityDead() == false)
+                    {
+                        enemy.StartReticle();
+                    }
+                }
             }
         }
     }

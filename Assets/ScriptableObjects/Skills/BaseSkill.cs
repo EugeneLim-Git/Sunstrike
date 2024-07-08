@@ -74,7 +74,7 @@ public class BaseSkill : ScriptableObject
     {
         return skillTargetRange;
     }
-    public SkillTarget ReturnSkillTargets()
+    public SkillTarget GetSkillTargets()
     {
         return skillTargets;
     }
