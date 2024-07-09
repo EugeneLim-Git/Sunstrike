@@ -19,7 +19,8 @@ public class BaseSkill : ScriptableObject
         Magical,
         PhysicalDefense,
         MagicalDefense,
-        Speed
+        Speed,
+        None
     }
     public enum SkillTargetRange
     {

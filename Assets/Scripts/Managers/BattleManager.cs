@@ -217,6 +217,7 @@ public class BattleManager : MonoBehaviour
             {
                 systemManager.SetHighlightedEnemy(actionList[0].skillTarget);
                 RunAction(actionList[0]);
+                systemManager.CreateActionTab(actionList[0].character.GetEntityName(), actionList[0].skillToUse.GetSkillName());
                 Destroy(actionList[0]);
                 actionList.Remove(actionList[0]);
                 

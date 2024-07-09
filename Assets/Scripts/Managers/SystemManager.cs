@@ -208,4 +208,9 @@ public class SystemManager : MonoBehaviour
         return entityManager.selectedCharacter;
     }
 
+    public void CreateActionTab(string skillUser, string skillName)
+    {
+        uiManager.CreateActionTabElement(skillUser, skillName);
+    }
+
 }

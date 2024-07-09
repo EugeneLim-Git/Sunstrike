@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public List<SkillBattleIcon> skillBattleIconList;
     public TextMeshProUGUI selectedSkillUIText;
     public TextMeshProUGUI selectedSkillDescText;
+    public TextMeshProUGUI selectedSkillPowerText;
 
     [Header("Selected Character Data")]
     public BattleEntity selectedPlayerCharacter;
@@ -23,6 +24,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI selectedPlayerCharacterHealth;
     public TextMeshProUGUI selectedEntityHealth;
     public TextMeshProUGUI selectedEntityStats;
+
+    [Header("Misc")]
+    public RectTransform actionTabRectTransform;
+    public GameObject actionTabPrefab;
 
     // Start is called before the first frame update
     public void Initialise()
@@ -63,13 +68,16 @@ public class UIManager : MonoBehaviour
         }
         selectedSkillUIText.text = "Select a skill";
         selectedSkillDescText.gameObject.SetActive(false);
+        selectedSkillPowerText.gameObject.SetActive(false);
     }
 
     public void SetCurrentSkillText(BaseSkill currentSkill)
     {
         selectedSkillUIText.text = currentSkill.GetSkillName();
         selectedSkillDescText.gameObject.SetActive(true);
+        selectedSkillPowerText.gameObject.SetActive(true);
         selectedSkillDescText.text = currentSkill.GetSkillDescription();
+        selectedSkillPowerText.text = "Power: " + currentSkill.GetSkillValue();
     }
 
     public void SetEntityUIText(BattleEntity entityHighlighted)
@@ -86,5 +94,12 @@ public class UIManager : MonoBehaviour
             + "Magical Defense: " + entityHighlighted.GetBaseMagicalDefense() + " + (" + entityHighlighted.GetMagicalDefenseMod() + ")\n"
             + "Speed: " + entityHighlighted.GetBaseSpeed() + " + (" + entityHighlighted.GetSpeedMod() + ")"
             );
+    }
+
+    public void CreateActionTabElement(string skillUser, string skillName)
+    {
+        GameObject newActionTab = Instantiate(actionTabPrefab, actionTabRectTransform);
+
+        newActionTab.GetComponent<ActionTab>().Initialise(skillUser, skillName);
     }
 }
