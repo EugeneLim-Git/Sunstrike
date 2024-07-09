@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Basic Enemy
   m_EditorClassIdentifier: 
   characterName: Basic Enemy
-  characterDesc: A basic enemy.
+  characterDesc: A lowly cultist.
   characterBaseSprite: {fileID: 21300000, guid: 311615c95648ff44499094519c58cde5, type: 3}
   characterAnimator: {fileID: 0}
-  characterAnimController: {fileID: 0}
   baseHealth: 20
   basePhysicalStrength: 5
   basePhysicalDefense: 5

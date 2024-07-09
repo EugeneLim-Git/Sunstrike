@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8358650642806147211}
   - component: {fileID: 8358650642806147210}
+  - component: {fileID: 1025708654}
   m_Layer: 0
   m_Name: Blood Sister Sprite
   m_TagString: Untagged
@@ -84,6 +85,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1025708654
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8358650642806147208}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d3c73de469a11141852faf79498b1c2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8358650643432873363
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,8 +155,8 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: c882862a03a17b84498cce9895811422, type: 2}
   - {fileID: 11400000, guid: 57461f4d9bea5cb4fabee5f6fb2c9357, type: 2}
-  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
-  - {fileID: 11400000, guid: 57461f4d9bea5cb4fabee5f6fb2c9357, type: 2}
+  - {fileID: 11400000, guid: 02fbe9b6ba036244ba2ecef6cfd25c46, type: 2}
+  - {fileID: 11400000, guid: 52d95f2508f761a49b10027dbd2f9140, type: 2}
   aiModule: {fileID: 0}
   targetReticle: {fileID: 8358650641884288066}
   physicalStrengthMod: 0

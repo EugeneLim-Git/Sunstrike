@@ -216,8 +216,10 @@ public class BattleManager : MonoBehaviour
             else if (actionList[0].character.isEntityDead() == false)
             {
                 systemManager.SetHighlightedEnemy(actionList[0].skillTarget);
-                RunAction(actionList[0]);
                 systemManager.CreateActionTab(actionList[0].character.GetEntityName(), actionList[0].skillToUse.GetSkillName());
+                yield return new WaitForSeconds(0.5f);
+                RunAction(actionList[0]);
+                
                 Destroy(actionList[0]);
                 actionList.Remove(actionList[0]);
                 

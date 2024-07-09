@@ -98,10 +98,9 @@ public abstract class BattleEntity : MonoBehaviour
 
     public void TakeDamage(float damageAmount, GameObject damageNumberPrefab)
     {
-        damageAmount = Mathf.Round(damageAmount * 10.0f) * 0.1f;
         characterCurrentHealth -= damageAmount;
-        
-        
+        characterCurrentHealth = Mathf.Round(characterCurrentHealth * 10.0f) * 0.1f;
+
         DamageNumber damagePrefab = Instantiate(damageNumberPrefab, this.gameObject.transform).GetComponent<DamageNumber>();
        if (damagePrefab.gameObject.transform.localScale.x < 1)
         {
