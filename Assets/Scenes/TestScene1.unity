@@ -392,9 +392,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8279603984801184631, guid: ca81441b4475c6a4993cf2cc4689aa3b, type: 2}
-  m_audioClip: {fileID: 8300000, guid: d944d0b053c36bd4389236d2738b43a4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6a3d5d81d4e3abe48b4efeceaf1fa6ea, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -717,6 +717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94ca14eb96a4764183e22123b163dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseSFX1: {fileID: 8300000, guid: 6a3d5d81d4e3abe48b4efeceaf1fa6ea, type: 3}
+  mouseSFX2: {fileID: 8300000, guid: be1935c81299bb244b804a5f6ee46725, type: 3}
   uiAudioSource: {fileID: 140960260}
   sfxAudioSource: {fileID: 486797637}
   musicAudioSource: {fileID: 977333495}
