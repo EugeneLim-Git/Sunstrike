@@ -9,7 +9,6 @@ public class SystemManager : MonoBehaviour
 
     public enum GameState
     {
-        PAUSED,
         ACTIONSELECTION,
         TARGETTING,
         ENEMYDECISIONMAKING,
@@ -17,6 +16,7 @@ public class SystemManager : MonoBehaviour
     }
     [Header("Game State")]
     public GameState currentGameState;
+    public bool isGamePaused = false;
 
     [Header("Game Managers")]
     [SerializeField] private UIManager uiManager;
@@ -34,18 +34,13 @@ public class SystemManager : MonoBehaviour
 
         currentPlayerOrder = 0;
         uiManager.Initialise();
+        isGamePaused = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
-        if (currentGameState == GameState.PAUSED) //disallows all other states/inputs, as pausing should take priority
-        {
-        
-        }
-        else if (currentGameState == GameState.BATTLING) // disallows all other input as the decisions of the turn are playing
+        if (currentGameState == GameState.BATTLING) // disallows all other input as the decisions of the turn are playing
         {
             battleManager.HighlightTargetInput();
             if (runningCombat == false)
@@ -210,6 +205,11 @@ public class SystemManager : MonoBehaviour
     public void CreateActionTab(string skillUser, string skillName)
     {
         uiManager.CreateActionTabElement(skillUser, skillName);
+    }
+
+    public GameState GetGameState()
+    {
+        return currentGameState;
     }
 
 }

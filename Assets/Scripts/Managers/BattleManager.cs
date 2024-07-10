@@ -52,6 +52,10 @@ public class BattleManager : MonoBehaviour
                                 AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
                                 systemManager.NextPlayerCharacter();
                             }
+                            else
+                            {
+
+                            }
                         }
                         else if (cubeHit.collider.gameObject.CompareTag("Enemy"))
                         {
@@ -59,6 +63,10 @@ public class BattleManager : MonoBehaviour
                             {
                                 AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
                                 systemManager.NextPlayerCharacter();
+                            }
+                            else
+                            {
+
                             }
                         }
                     }
