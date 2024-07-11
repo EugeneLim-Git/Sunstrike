@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Weaken
   skillDesc: A spell that physically weakens the target.
-  skillValue: -5
+  skillValue: -2
   typeOfSkill: 2
   skillScalerType: 0
   skillTargets: 1
