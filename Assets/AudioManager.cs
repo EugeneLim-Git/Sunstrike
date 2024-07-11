@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SFXManager : MonoBehaviour
+public class AudioManager : MonoBehaviour
 {
     [Header("UI Audio Clips")]
     [SerializeField] private AudioClip mouseSFX1;
@@ -14,11 +14,21 @@ public class SFXManager : MonoBehaviour
     [SerializeField] private AudioSource sfxAudioSource;
     [SerializeField] private AudioSource musicAudioSource;
 
+    [Header("Audio Sliders")]
+    [SerializeField] private MasterVolumeSlider masterSlider;
+    [SerializeField] private UIVolumeSlider uiSlider;
+    [SerializeField] private SFXVolumeSlider sfxSlider;
+    [SerializeField] private SFXVolumeSlider musicSlider;
+
+
 
     // Start is called before the first frame update
-    void Start()
+    public void Initialise()
     {
-        
+        masterSlider.LoadVolume();
+        sfxSlider.LoadVolume();
+        uiSlider.LoadVolume();
+        musicSlider.LoadVolume();
     }
 
     // Update is called once per frame

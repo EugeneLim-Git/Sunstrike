@@ -8,6 +8,10 @@ public class UIManager : MonoBehaviour
     [Header("Managers")]
     public EntityManager entityManager;
 
+    [Header("Pause Menu")]
+    public GameObject pauseMenuUI;
+
+
     [Header("UI Control Elements")]
     public List<SkillBattleIcon> skillBattleIconList;
     public TextMeshProUGUI selectedSkillUIText;
@@ -43,6 +47,7 @@ public class UIManager : MonoBehaviour
         }
 
         selectedSkillDescText.gameObject.SetActive(false);
+        pauseMenuUI.gameObject.SetActive(false);
     }    
 
     public void ChangeSelectedCharacter(BattleEntity characterToSelect)

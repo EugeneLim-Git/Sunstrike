@@ -41,7 +41,7 @@ public class BattleManager : MonoBehaviour
 
             if (systemManager.currentGameState == SystemManager.GameState.TARGETTING)
             {
-                if (cubeHit.collider == true)
+                if (cubeHit.collider == true && currentSkill != null)
                 {
                     if (cubeHit.collider.GetComponent<BattleEntity>().isEntityDead() == false) // this is done so we don't heal enemies
                     {

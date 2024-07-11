@@ -22,6 +22,8 @@ public class SystemManager : MonoBehaviour
     [SerializeField] private UIManager uiManager;
     [SerializeField] private BattleManager battleManager;
     [SerializeField] private EntityManager entityManager;
+    [SerializeField] private AudioManager audioManager;
+
     private int currentPlayerOrder;
     private bool runningCombat = false;
 
@@ -33,6 +35,7 @@ public class SystemManager : MonoBehaviour
         battleManager.Initialise();
 
         currentPlayerOrder = 0;
+        audioManager.Initialise();
         uiManager.Initialise();
         isGamePaused = false;
     }
@@ -56,11 +59,11 @@ public class SystemManager : MonoBehaviour
             battleManager.RunAI(entityManager.enemyList, entityManager.characterList);
             SetGameState(GameState.BATTLING);
         }
-        else if (currentGameState == GameState.ACTIONSELECTION) // takes priority over targetting for obvious reasons
+        else if (currentGameState == GameState.ACTIONSELECTION && isGamePaused == false) // takes priority over targetting for obvious reasons
         {
             battleManager.HighlightTargetInput();
         }
-        else if (currentGameState == GameState.TARGETTING) // for targetting enemies or allies with a skill. lowest priority
+        else if (currentGameState == GameState.TARGETTING && isGamePaused == false) // for targetting enemies or allies with a skill. lowest priority
         {
             battleManager.SelectTargetInput();
             battleManager.HighlightTargetInput();
