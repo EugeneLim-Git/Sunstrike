@@ -90,8 +90,11 @@ public class BattleManager : MonoBehaviour
             {
                 if (cubeHit.collider.GetComponent<BattleEntity>() == true)
                 {
-                    Debug.Log(cubeHit.collider.GetComponent<BattleEntity>().GetCurrentHealth());
-                    systemManager.SetHighlightedEnemy(cubeHit.collider.GetComponent<BattleEntity>());
+                    if (cubeHit.collider.GetComponent<BattleEntity>().isEntityDead() == false)
+                    {
+                        //Debug.Log(cubeHit.collider.GetComponent<BattleEntity>().GetCurrentHealth());
+                        systemManager.SetHighlightedEnemy(cubeHit.collider.GetComponent<BattleEntity>());
+                    }
                 }
             }
             

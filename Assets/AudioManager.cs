@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private MasterVolumeSlider masterSlider;
     [SerializeField] private UIVolumeSlider uiSlider;
     [SerializeField] private SFXVolumeSlider sfxSlider;
-    [SerializeField] private SFXVolumeSlider musicSlider;
+    [SerializeField] private MusicVolumeSlider musicSlider;
 
 
 

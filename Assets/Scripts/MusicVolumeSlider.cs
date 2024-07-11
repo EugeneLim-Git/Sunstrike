@@ -18,5 +18,7 @@ public class MusicVolumeSlider : MonoBehaviour
     {
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         SetLevel(musicSlider.value);
+        Debug.Log(PlayerPrefs.GetFloat("MusicVolume"));
+
     }
 }

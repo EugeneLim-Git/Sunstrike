@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Selected Character Data")]
     public BattleEntity selectedPlayerCharacter;
-    public BattleEntity selectedEnemy;
+    public BattleEntity highlightedTarget;
 
     [Header("UI Text Elements")]
     public TextMeshProUGUI selectedPlayerCharacterName;
@@ -28,6 +28,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI selectedPlayerCharacterHealth;
     public TextMeshProUGUI selectedEntityHealth;
     public TextMeshProUGUI selectedEntityStats;
+    private Animator selectedEntityStatsAnimator;
+    private Animator selectedEntityNameTextAnimator;
+    private Animator selectedEntityHealthAnimator;
 
     [Header("Misc")]
     public RectTransform actionTabRectTransform;
@@ -38,6 +41,9 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log(entityManager.characterList[1].GetCurrentHealth());   
         ChangeSelectedCharacter(entityManager.characterList[0]);
+        selectedEntityNameTextAnimator = selectedEntityName.GetComponent<Animator>();
+        selectedEntityStatsAnimator = selectedEntityStats.GetComponent<Animator>();
+        selectedEntityHealthAnimator = selectedEntityHealth.GetComponent<Animator>();
 
         SetEntityUIText(entityManager.enemyList[0]);
 
@@ -52,13 +58,19 @@ public class UIManager : MonoBehaviour
 
     public void ChangeSelectedCharacter(BattleEntity characterToSelect)
     {
+        if (selectedPlayerCharacter != null)
+        {
+            selectedPlayerCharacter.StopHighlighting();
+        }
         selectedPlayerCharacter = characterToSelect;
+        selectedPlayerCharacter.StartHighlighting();
         SetActiveSkills();
         selectedPlayerCharacterName.text = characterToSelect.GetEntityName();
         string characterHealthText = (characterToSelect.GetCurrentHealth() + "/" + characterToSelect.GetMaxHealth());
         Debug.Log(characterToSelect.GetCurrentHealth() + "/" + characterToSelect.GetMaxHealth());
         selectedPlayerCharacterHealth.text = characterHealthText;
 
+        
     }
 
     public void SetActiveSkills()
@@ -92,6 +104,12 @@ public class UIManager : MonoBehaviour
         string entityHealthText = (entityHighlighted.GetCurrentHealth() + "/" + entityHighlighted.GetMaxHealth());
         selectedEntityHealth.text = entityHealthText;
 
+        selectedEntityNameTextAnimator.SetBool("toLoop", false);
+        selectedEntityStatsAnimator.SetBool("toLoop", false);
+        selectedEntityHealthAnimator.SetBool("toLoop", false);
+
+        highlightedTarget = entityHighlighted;
+        highlightedTarget.StartHighlighting();
         selectedEntityStats.text = (
             "Physical Strength: " + entityHighlighted.GetBasePhysicalStrength() + " + (" + entityHighlighted.GetPhysicalStrengthMod() + ")\n"
             + "Physical Defense: " + entityHighlighted.GetBasePhysicalDefense() + " + (" + entityHighlighted.GetPhysicalDefenseMod() + ")\n"
@@ -99,6 +117,14 @@ public class UIManager : MonoBehaviour
             + "Magical Defense: " + entityHighlighted.GetBaseMagicalDefense() + " + (" + entityHighlighted.GetMagicalDefenseMod() + ")\n"
             + "Speed: " + entityHighlighted.GetBaseSpeed() + " + (" + entityHighlighted.GetSpeedMod() + ")"
             );
+
+        selectedEntityNameTextAnimator.Play("SelectedAnimation");
+        selectedEntityStatsAnimator.Play("SelectedAnimation");
+        selectedEntityHealthAnimator.Play("SelectedAnimation");
+        selectedEntityNameTextAnimator.SetBool("toLoop", true);
+        selectedEntityStatsAnimator.SetBool("toLoop", true);
+        selectedEntityHealthAnimator.SetBool("toLoop", true);
+
     }
 
     public void CreateActionTabElement(string skillUser, string skillName)

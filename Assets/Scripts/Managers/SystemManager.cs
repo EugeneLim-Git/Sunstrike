@@ -6,6 +6,7 @@ using UnityEngine;
 public class SystemManager : MonoBehaviour
 {
     public TextMeshProUGUI gameText;
+    private BattleEntity currentHighlightedTarget;
 
     public enum GameState
     {
@@ -178,6 +179,20 @@ public class SystemManager : MonoBehaviour
 
     public void SetHighlightedEnemy(BattleEntity enemyToHighlight)
     {
+        if (uiManager.highlightedTarget == null)
+        {
+            uiManager.highlightedTarget = enemyToHighlight;
+            Debug.Log("highlighting for 1st time");
+        }
+        else // means that there was a previous highlighted target
+        {
+            if (uiManager.highlightedTarget != uiManager.selectedPlayerCharacter)
+            {
+                uiManager.highlightedTarget.StopHighlighting();
+                uiManager.highlightedTarget = enemyToHighlight;
+            }
+        }
+
         //Debug.Log(enemyToHighlight.GetEntityName());
         uiManager.SetEntityUIText(enemyToHighlight);
 

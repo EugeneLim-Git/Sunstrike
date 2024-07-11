@@ -9,8 +9,13 @@ public abstract class BattleEntity : MonoBehaviour
     protected BaseCharacter baseCharacterSO;
     public List<BaseSkill> skillList; //stores all known skills in a list
     protected string characterName;
+
     [SerializeField] protected AIModule aiModule;
+
+    [Header("Visual Components")]
     [SerializeField] protected TargettingReticle targetReticle;
+    [SerializeField] protected HighlightedReticle highlightReticle;
+    [SerializeField] protected Transform damageNumberSpawnPoint;
 
     [Header("Combat Data")]
     protected float characterMaxHealth;
@@ -101,7 +106,8 @@ public abstract class BattleEntity : MonoBehaviour
         characterCurrentHealth -= damageAmount;
         characterCurrentHealth = Mathf.Round(characterCurrentHealth * 10.0f) * 0.1f;
 
-        DamageNumber damagePrefab = Instantiate(damageNumberPrefab, this.gameObject.transform).GetComponent<DamageNumber>();
+        DamageNumber damagePrefab = Instantiate(damageNumberPrefab, damageNumberSpawnPoint).GetComponent<DamageNumber>();
+        
        if (damagePrefab.gameObject.transform.localScale.x < 1)
         {
             damagePrefab.gameObject.transform.localScale = new Vector3(damagePrefab.gameObject.transform.localScale.x,
@@ -117,6 +123,15 @@ public abstract class BattleEntity : MonoBehaviour
         {
             characterCurrentHealth = characterMaxHealth;
         }
+
+
+        HealNumber healPrefab = Instantiate(healNumberPrefab, damageNumberSpawnPoint).GetComponent<HealNumber>();
+        if (healNumberPrefab.gameObject.transform.localScale.x < 1)
+        {
+            healNumberPrefab.gameObject.transform.localScale = new Vector3(healNumberPrefab.gameObject.transform.localScale.x,
+                1f, healNumberPrefab.gameObject.transform.localScale.z);
+        }
+        healPrefab.Initialise(healAmount);
     }
 
     public void StartReticle()
@@ -127,7 +142,15 @@ public abstract class BattleEntity : MonoBehaviour
     {
         targetReticle.SetToInactive();
     }
+    public void StartHighlighting()
+    {
+        highlightReticle.OnTargetHighlighted();
+    }
 
+    public void StopHighlighting()
+    {
+        highlightReticle.StopHighlighting();
+    }
     public float GetPhysicalStrength()
     {
         return characterPhysicalStrength + physicalStrengthMod;

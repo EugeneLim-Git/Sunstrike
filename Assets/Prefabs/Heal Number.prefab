@@ -32,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 282971692126590958}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &282971691777811606
 Animator:
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 282971692126590959}
   - component: {fileID: 282971692126590957}
   m_Layer: 0
-  m_Name: Damage Number Text
+  m_Name: Heal Number Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
