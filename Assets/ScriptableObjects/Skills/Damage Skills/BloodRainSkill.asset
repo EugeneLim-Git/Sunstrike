@@ -19,7 +19,9 @@ MonoBehaviour:
   skillScalerType: 1
   skillTargets: 1
   skillTargetRange: 2
+  skillSpeedMod: 0
   numOfTargets: 0
   skillAnimator: {fileID: 0}
   skillSprite: {fileID: 0}
   skillUIImage: {fileID: 21300000, guid: 68ab100195e5c8942a38b7f4d126b193, type: 3}
+  skillAnimDuration: 0.5

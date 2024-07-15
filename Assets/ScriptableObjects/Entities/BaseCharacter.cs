@@ -34,6 +34,11 @@ public class BaseCharacter : ScriptableObject
         return characterName;
     }
 
+    public string GetCharacterDesc()
+    {
+        return characterDesc;
+    }
+
     public float GetBaseHealth()
     {
         return baseHealth;
@@ -75,7 +80,7 @@ public class BaseCharacter : ScriptableObject
         {
             return skillToUse.GetHealAmount(skillUser, targetOfSkill, classMultiplier, generalMultiplier);
         }   
-        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Buff)
+        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Buff || skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
         {
             return skillToUse.GetBuffAmount(skillUser, targetOfSkill, classMultiplier, generalMultiplier);
         }

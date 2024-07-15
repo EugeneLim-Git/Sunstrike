@@ -32,6 +32,7 @@ public class BaseSkill : ScriptableObject
     {
         Friendly,
         Enemy,
+        Self,
         Any,
         All
     }
@@ -44,18 +45,31 @@ public class BaseSkill : ScriptableObject
     [SerializeField] protected SkillScaler skillScalerType; //determines what stat the skill scales off of. e.g. most attacks use the Physical/Magical strength stats. Buffs can use any.
     [SerializeField] protected SkillTarget skillTargets; // determines what the skill can actually target. e.g. if it only targets allies, enemies, either/any, or all entities on the field.
     [SerializeField] protected SkillTargetRange skillTargetRange; // determines the 'range' of what it can hit. If it hits only one thing, multiple, or all entities on the field.
+    [SerializeField] protected float skillSpeedMod; // determines if the skill adds any additional speed to itself, thus making it act first before others
     [SerializeField] protected int numOfTargets; // determines how MANY targets a skill would have specifically. applies only to 'Multiple' targets.
+    [SerializeField] protected BaseSkill secondaryEffect; // if there is a secondary effect, this will store it. usually Debuffs
 
     [Header("Skill Visuals")]
     [SerializeField] protected Animator skillAnimator; //determines animations used
-    [SerializeField] protected Sprite skillSprite; // determines the sprite used in battle.
+    [SerializeField] protected GameObject skillEffect; // determines the sprite used in battle.
     [SerializeField] public Sprite skillUIImage; //determines the sprite used in the game UI.
+    [SerializeField] protected float skillAnimDuration; // determines how long the animation of the skill is
     
 
     //the following functions can be called to retrieve protected values
     public string GetSkillName()
     {
         return skillName;
+    }
+
+    public BaseSkill GetSecondaryEffect()
+    {
+        return secondaryEffect;
+    }
+
+    public float GetSkillAnimDuration()
+    {
+        return skillAnimDuration;
     }
 
     public SkillType GetSkillType()
@@ -65,6 +79,11 @@ public class BaseSkill : ScriptableObject
     public float GetSkillValue()
     {
         return skillValue;
+    }
+
+    public float GetSkillSpeedMod()
+    { 
+        return skillSpeedMod;
     }
 
     public string GetSkillDescription()
@@ -88,9 +107,9 @@ public class BaseSkill : ScriptableObject
         return numOfTargets;
     }
 
-    public Sprite GetBattleSprite()
+    public GameObject GetBattleSprite()
     {
-        return skillSprite;
+        return skillEffect;
     }
 
     public Sprite GetSkillUIImage()
@@ -119,7 +138,7 @@ public class BaseSkill : ScriptableObject
             finalDamage = 0.1f;
         }
 
-        finalDamage = Mathf.Round(finalDamage * 100.0f) * 0.1f;
+        finalDamage = Mathf.Round(finalDamage * 10.0f) * 0.1f;
 
         return finalDamage;
 

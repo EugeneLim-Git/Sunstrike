@@ -10,7 +10,7 @@ public class HealSkill : BaseSkill
         float baseHealAmount = skillValue;
         float finalHealAmount;
 
-        finalHealAmount = Mathf.Round(((baseHealAmount * genericMultiplier) * classMultiplier) * 100.0f) * 0.1f;
+        finalHealAmount = Mathf.Round((baseHealAmount * classMultiplier) * 10.0f) * 0.1f;
         return finalHealAmount;
 
     }

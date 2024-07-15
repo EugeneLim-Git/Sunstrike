@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using static System.Collections.Specialized.BitVector32;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class BattleManager : MonoBehaviour
 {
@@ -13,17 +16,18 @@ public class BattleManager : MonoBehaviour
     [Header("Battle Data")]
     public List<BattleEntity> entityList;
     public List<BattleEntity> hostileEntityList;
-    bool isActionListEmpty;
     public IEnumerator battleCoroutine;
     public List<BattleAction> actionList;
     public GameObject damageNumberPrefab;
     public GameObject healNumberPrefab;
+    private int roundsPassed;
 
     public void Initialise()
     {
         systemManager = FindObjectOfType<SystemManager>();
         hostileEntityList = systemManager.GetEnemyList();
         actionList = new List<BattleAction>();
+        roundsPassed = 1;
     }
 
     public void SetSkillToTargetWith(BaseSkill skillToUse)
@@ -72,7 +76,7 @@ public class BattleManager : MonoBehaviour
                     }
                     else
                     {
-
+                        // nothing happens
                     }
                 }
             }
@@ -101,11 +105,6 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    // To Implement:
-    // every action, add to the entity list variable
-    // after all actions are selected, sort by the speed values of the characters
-    // and then run them all again until the entity list is empty
-
     public void RunAI(List<BattleEntity> enemyList, List<BattleEntity> playerList)
     {
         foreach (BattleEntity enemy in enemyList)
@@ -117,6 +116,7 @@ public class BattleManager : MonoBehaviour
                 actionList.Add(ai.RunDecisionMaking(playerList, enemyList, enemy.skillList, enemy));
             }
         }
+        systemManager.SetGameState(SystemManager.GameState.BATTLING);
     }
 
     public void AddToActionList(BattleEntity characterToAdd, BattleEntity targetOfSkill, BaseSkill skillToAdd)
@@ -126,25 +126,25 @@ public class BattleManager : MonoBehaviour
             character = characterToAdd,
             skillTarget = targetOfSkill,
             skillToUse = skillToAdd,
-            characterSpeed = characterToAdd.GetSpeed()
+            characterSpeed = characterToAdd.GetSpeed() + skillToAdd.GetSkillSpeedMod()
         };
 
         actionList.Add(battleActionToAdd);
     }
 
-    public void RunAction(BattleAction action)
+    public IEnumerator RunAction(BattleAction action)
     {
-        action.character.OnUseSkill();
+        action.character.OnUseSkill(action.skillToUse);
+        yield return new WaitForSeconds(action.skillToUse.GetSkillAnimDuration());
         if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
         {
-            float damageDealt = action.skillToUse.GetAttackDamage(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
-
             if (action.skillToUse.GetTargetRange() == BaseSkill.SkillTargetRange.All)
             {
                 if (action.character.gameObject.tag == "Player")
                 {
                     foreach (var enemy in systemManager.GetEnemyList())
                     {
+                        float damageDealt = action.skillToUse.GetAttackDamage(action.character, enemy, action.character.GetClassMultiplier(), 1);
                         if (enemy.isEntityDead() == false)
                         {
                             enemy.TakeDamage(damageDealt, damageNumberPrefab);
@@ -155,6 +155,7 @@ public class BattleManager : MonoBehaviour
                 {
                     foreach (var player in entityList)
                     {
+                        float damageDealt = action.skillToUse.GetAttackDamage(action.character, player, action.character.GetClassMultiplier(), 1);
                         if (player.isEntityDead() == false)
                         {
                             player.TakeDamage(damageDealt, damageNumberPrefab);
@@ -164,6 +165,7 @@ public class BattleManager : MonoBehaviour
             }
             else //means it's single target
             {
+                float damageDealt = action.skillToUse.GetAttackDamage(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
                 action.skillTarget.TakeDamage(damageDealt, damageNumberPrefab);
                 Debug.Log(action.skillTarget + " was hit for " + damageDealt + " damage!");
             }
@@ -176,7 +178,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Buff || action.skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
         {
-            Debug.Log("Debuffing!");
+            //Debug.Log("Debuffing!");
             float buffTotal = action.skillToUse.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
             BaseSkill.SkillScaler statToMod = action.skillToUse.GetSkillScalerType();
 
@@ -200,13 +202,33 @@ public class BattleManager : MonoBehaviour
             {
                 action.skillTarget.AddToSpeedMod(buffTotal);
             }
-
         }
+
+        Debug.Log(action.skillToUse.GetSecondaryEffect());
+        if (action.skillToUse.GetSecondaryEffect())
+        {
+            Debug.Log("I have a second effect!");
+            BaseSkill secondEffect = action.skillToUse.GetSecondaryEffect();
+
+            if (secondEffect.GetSkillTargets() == BaseSkill.SkillTarget.Self)
+            {
+                ModifyTargetStats(secondEffect.GetSkillScalerType(), action.character, secondEffect.GetBuffAmount(action.character, action.character, action.character.GetClassMultiplier(), 1));
+            }
+            else if (secondEffect.GetSkillTargets() == BaseSkill.SkillTarget.Friendly)
+            {
+                ModifyTargetStats(secondEffect.GetSkillScalerType(), action.character, secondEffect.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1));
+            }
+            else if (secondEffect.GetSkillTargets() == BaseSkill.SkillTarget.Enemy) // targets enemies only
+            {
+                ModifyTargetStats(secondEffect.GetSkillScalerType(), action.skillTarget, secondEffect.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1));
+            }
+        }
+
 
         if (action.skillTarget.GetCurrentHealth() <= 0)
         {
             action.skillTarget.setEntityDeathStatus(true);
-            action.skillTarget.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            //action.skillTarget.GetComponentInChildren<SpriteRenderer>().enabled = false;
             //action.skillTarget.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
@@ -218,7 +240,10 @@ public class BattleManager : MonoBehaviour
 
         while (actionList.Count > 0)
         {
-            yield return new WaitForSeconds(1f);
+            if (actionList[0].character.isEntityDead() == false)
+            {
+                yield return new WaitForSeconds(1f);
+            }
             if (actionList.Count <= 0)
             {
 
@@ -229,7 +254,7 @@ public class BattleManager : MonoBehaviour
                 systemManager.SetHighlightedEnemy(actionList[0].skillTarget);
                 systemManager.CreateActionTab(actionList[0].character.GetEntityName(), actionList[0].skillToUse.GetSkillName());
                 yield return new WaitForSeconds(0.5f);
-                RunAction(actionList[0]);
+                StartCoroutine(RunAction(actionList[0]));
                 
                 Destroy(actionList[0]);
                 actionList.Remove(actionList[0]);
@@ -247,12 +272,44 @@ public class BattleManager : MonoBehaviour
         }
         systemManager.SetGameState(SystemManager.GameState.ACTIONSELECTION);
         systemManager.ResetSelectedPlayer();
+        roundsPassed++;
+        yield return new WaitForSeconds(1.0f);
+        systemManager.CreateActionTabRounds();
         yield break;
 
+    }
+
+    public int GetRoundsPassed()
+    {
+        return roundsPassed;
     }
 
     public BaseSkill GetCurrentSkill()
     {
         return currentSkill;
+    }
+
+    public void ModifyTargetStats(BaseSkill.SkillScaler statToMod, BattleEntity target, float buffTotal)
+    {
+        if (statToMod == BaseSkill.SkillScaler.Physical)
+        {
+            target.AddToPhysicalStrengthMod(buffTotal);
+        }
+        else if (statToMod == BaseSkill.SkillScaler.Magical)
+        {
+            target.AddToMagicalStrengthMod(buffTotal);
+        }
+        else if (statToMod == BaseSkill.SkillScaler.MagicalDefense)
+        {
+            target.AddToMagicalDefenseMod(buffTotal);
+        }
+        else if (statToMod == BaseSkill.SkillScaler.PhysicalDefense)
+        {
+            target.AddToPhysicalDefenseMod(buffTotal);
+        }
+        else //means the skill scales the speed mod stat
+        {
+            target.AddToSpeedMod(buffTotal);
+        }
     }
 }

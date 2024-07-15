@@ -45,7 +45,7 @@ public class AIModule : ScriptableObject
         }
         else if (enemyRole == EnemyRole.Healer)
         {
-            selectedSkill = skillList[Random.Range(0, skillList.Count - 1)];
+            selectedSkill = skillList[Random.Range(0, skillList.Count)];
             int howManyDead = 0;
             foreach (BattleEntity enemy in enemyList)
             {
@@ -58,13 +58,14 @@ public class AIModule : ScriptableObject
                     howManyDead++;
                 }
             }
-            target = aliveTargetList[Random.Range(0, aliveTargetList.Count - 1)];
+            target = aliveTargetList[Random.Range(0, aliveTargetList.Count)];
 
             return CreateBattleAction(currentEnemy, target, selectedSkill, currentEnemy.GetSpeed());
         }
         else if (enemyRole == EnemyRole.Support)
         {
-            int choice = Random.Range(0, 1);
+            int choice = Random.Range(0, 2);
+            Debug.Log(choice);
             List<BaseSkill> skillsToPickFrom = new List<BaseSkill>();
             if (choice == 0) // attacks or debuffs players
             {
@@ -75,9 +76,9 @@ public class AIModule : ScriptableObject
                         skillsToPickFrom.Add(skill);
                     }
                 }
-                selectedSkill = skillsToPickFrom[Random.Range(0, skillsToPickFrom.Count- 1)];
+                selectedSkill = skillsToPickFrom[Random.Range(0, skillsToPickFrom.Count)];
                 aliveTargetList = GetPossibleTargets(entityList);
-                target = aliveTargetList[Random.Range(0, aliveTargetList.Count - 1)];
+                target = aliveTargetList[Random.Range(0, aliveTargetList.Count)];
             }
             else // means choice = 1, heals or buffs
             {
@@ -88,16 +89,16 @@ public class AIModule : ScriptableObject
                         skillsToPickFrom.Add(skill);
                     }
                 }
-                selectedSkill = skillsToPickFrom[Random.Range(0, skillsToPickFrom.Count - 1)];
+                selectedSkill = skillsToPickFrom[Random.Range(0, skillsToPickFrom.Count)];
 
                 aliveTargetList = GetPossibleTargets(enemyList);
-                target = aliveTargetList[Random.Range(0, aliveTargetList.Count - 1)];
+                target = aliveTargetList[Random.Range(0, aliveTargetList.Count)];
             }
             return CreateBattleAction(currentEnemy, target, selectedSkill, currentEnemy.GetSpeed());
         }
         else // means this is a 'leader'
         {
-            selectedSkill = skillList[Random.Range(0, skillList.Count - 1)];
+            selectedSkill = skillList[Random.Range(0, skillList.Count)];
             foreach (BattleEntity entity in entityList)
             {
                 if (entity.isEntityDead() == false)
@@ -105,7 +106,7 @@ public class AIModule : ScriptableObject
                     aliveTargetList.Add(entity);
                 }
             }
-            target = aliveTargetList[Random.Range(0, aliveTargetList.Count - 1)];
+            target = aliveTargetList[Random.Range(0, aliveTargetList.Count)];
 
             return CreateBattleAction(currentEnemy, target, selectedSkill, currentEnemy.GetSpeed());
         }
@@ -118,9 +119,8 @@ public class AIModule : ScriptableObject
             character = currentEnemy,
             skillTarget = target,
             skillToUse = skill,
-            characterSpeed = enemySpeed
+            characterSpeed = enemySpeed + skill.GetSkillSpeedMod()
         };
-
         return battleActionToAdd;
     }
 

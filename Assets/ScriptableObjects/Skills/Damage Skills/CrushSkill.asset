@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9441930a7de0ba5479f969335b4a2468, type: 3}
+  m_Name: CrushSkill
+  m_EditorClassIdentifier: 
+  skillName: Crush
+  skillDesc: A brutal crush with a bludgeon.
+  skillValue: 10
+  typeOfSkill: 0
+  skillScalerType: 0
+  skillTargets: 1
+  skillTargetRange: 0
+  skillSpeedMod: 0
+  numOfTargets: 0
+  skillAnimator: {fileID: 0}
+  skillSprite: {fileID: 0}
+  skillUIImage: {fileID: 0}
+  skillAnimDuration: 0.5

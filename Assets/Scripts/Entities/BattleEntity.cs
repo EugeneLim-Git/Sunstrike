@@ -16,9 +16,11 @@ public abstract class BattleEntity : MonoBehaviour
     [SerializeField] protected TargettingReticle targetReticle;
     [SerializeField] protected HighlightedReticle highlightReticle;
     [SerializeField] protected Transform damageNumberSpawnPoint;
+    [SerializeField] protected Animator entityAnimator;
 
     [Header("Combat Data")]
     protected float characterMaxHealth;
+    protected string characterDesc;
     protected float characterCurrentHealth;
     protected float characterPhysicalStrength;
     protected float characterPhysicalDefense;
@@ -44,6 +46,7 @@ public abstract class BattleEntity : MonoBehaviour
     public virtual void Initialise()
     {
         characterName = baseCharacterSO.GetCharacterName();
+        characterDesc = baseCharacterSO.GetCharacterDesc();
         characterMaxHealth = baseCharacterSO.GetBaseHealth();
         characterCurrentHealth = characterMaxHealth;
         characterPhysicalStrength = baseCharacterSO.GetBasePhysicalStrength();
@@ -71,6 +74,11 @@ public abstract class BattleEntity : MonoBehaviour
         return characterName;
     }
 
+    public string GetEntityDescription()
+    {
+        return characterDesc;
+    }
+
     public bool isEntityDead()
     {
         return isDead;
@@ -86,9 +94,15 @@ public abstract class BattleEntity : MonoBehaviour
         baseCharacterSO.UseSkill(skillToUse, this, targetOfSkill, 1);
     }
 
-    public virtual void OnUseSkill()
+    public virtual void OnUseSkill(BaseSkill skillUsed)
     {
-        return;
+        entityAnimator.Play("Attack");
+    }
+
+    public virtual void ResetToIdleAnim()
+    {
+        entityAnimator.SetBool("toAttack", false);
+        entityAnimator.SetBool("wasHit", false);
     }
 
     public float GetMaxHealth()
@@ -109,11 +123,23 @@ public abstract class BattleEntity : MonoBehaviour
         DamageNumber damagePrefab = Instantiate(damageNumberPrefab, damageNumberSpawnPoint).GetComponent<DamageNumber>();
         
        if (damagePrefab.gameObject.transform.localScale.x < 1)
-        {
+       {
             damagePrefab.gameObject.transform.localScale = new Vector3(damagePrefab.gameObject.transform.localScale.x,
                 1f, damagePrefab.gameObject.transform.localScale.z);
+       }
+       damagePrefab.Initialise(damageAmount);
+        
+        if (characterCurrentHealth <= 0)
+        {
+            SpriteRenderer deadCharacter = GetComponentInChildren<SpriteRenderer>();
+            //deadCharacter.enabled = false;
+            isDead = true;
+            entityAnimator.Play("Dead");
         }
-        damagePrefab.Initialise(damageAmount);
+        else
+        {
+            //entityAnimator.SetBool("wasHit", true);
+        }
     }
 
     public void RestoreHealth(float healAmount, GameObject healNumberPrefab)

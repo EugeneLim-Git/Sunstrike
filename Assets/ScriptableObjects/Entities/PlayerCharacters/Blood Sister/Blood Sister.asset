@@ -17,10 +17,10 @@ MonoBehaviour:
   characterBaseSprite: {fileID: -1697742350, guid: 06d1b62e79ea4844d95a2ee17e601f36, type: 3}
   characterAnimator: {fileID: 0}
   baseHealth: 50
-  basePhysicalStrength: 1
+  basePhysicalStrength: 3
   basePhysicalDefense: 10
-  baseMagicalStrength: 5
+  baseMagicalStrength: 8
   baseMagicalDefense: 20
-  baseSpeed: 10
+  baseSpeed: 8
   classMultiplier: 1
   sacrificeMultiplier: 1.2

@@ -27,5 +27,8 @@ public class BasicEnemyBattleEntity : BattleEntity
     //    bloodSisterSO.UseSkill(skillToUse, this, targetOfSkill, 1);
     //}
 
-    
+    public override void OnUseSkill(BaseSkill skillUsed)
+    {
+        entityAnimator.Play("Attack");
+    }
 }

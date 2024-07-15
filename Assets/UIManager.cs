@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
     [Header("Misc")]
     public RectTransform actionTabRectTransform;
     public GameObject actionTabPrefab;
+    public Animator skillBackgroundImage;
 
     // Start is called before the first frame update
     public void Initialise()
@@ -86,6 +87,7 @@ public class UIManager : MonoBehaviour
         selectedSkillUIText.text = "Select a skill";
         selectedSkillDescText.gameObject.SetActive(false);
         selectedSkillPowerText.gameObject.SetActive(false);
+        skillBackgroundImage.Play("Highlight");
     }
 
     public void SetCurrentSkillText(BaseSkill currentSkill)
@@ -124,7 +126,6 @@ public class UIManager : MonoBehaviour
         selectedEntityNameTextAnimator.SetBool("toLoop", true);
         selectedEntityStatsAnimator.SetBool("toLoop", true);
         selectedEntityHealthAnimator.SetBool("toLoop", true);
-
     }
 
     public void CreateActionTabElement(string skillUser, string skillName)

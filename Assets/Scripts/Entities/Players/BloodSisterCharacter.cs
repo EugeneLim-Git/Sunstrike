@@ -28,7 +28,7 @@ public class BloodSisterCharacter : BattleEntity
     //    bloodSisterSO.UseSkill(skillToUse, this, targetOfSkill, 1);
     //}
 
-    public override void OnUseSkill()
+    public override void OnUseSkill(BaseSkill skillUsed)
     {
         if (characterCurrentHealth > characterMaxHealth / 10)
         {
@@ -39,6 +39,10 @@ public class BloodSisterCharacter : BattleEntity
             characterCurrentHealth = 1;
         }
 
+        if (skillUsed.GetSkillType() == BaseSkill.SkillType.Damage)
+        {
+            entityAnimator.Play("BSAttack");
+        }
 
     }
 }

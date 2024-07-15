@@ -55,10 +55,7 @@ public class SystemManager : MonoBehaviour
         }
         else if (currentGameState == GameState.ENEMYDECISIONMAKING) // disallows players from making any inputs
         {
-            //for debug and demo, enemies will not do anything right now
-            Debug.Log(entityManager.enemyList);
-            battleManager.RunAI(entityManager.enemyList, entityManager.characterList);
-            SetGameState(GameState.BATTLING);
+
         }
         else if (currentGameState == GameState.ACTIONSELECTION && isGamePaused == false) // takes priority over targetting for obvious reasons
         {
@@ -76,6 +73,11 @@ public class SystemManager : MonoBehaviour
         Debug.Log("Setting current skill to " + skillToSetTo.GetSkillName());
         battleManager.SetSkillToTargetWith(skillToSetTo);
         uiManager.SetCurrentSkillText(skillToSetTo);
+    }
+
+    public void CreateActionTabRounds()
+    {
+        uiManager.CreateActionTabElement("Round", "" + battleManager.GetRoundsPassed());
     }
 
     public void NextPlayerCharacter()
@@ -134,6 +136,8 @@ public class SystemManager : MonoBehaviour
                 string winningText = "Player won!";
                 gameText.text = winningText;
             }
+
+
         }
         else if (gameState == GameState.TARGETTING)
         {
@@ -174,6 +178,10 @@ public class SystemManager : MonoBehaviour
                     }
                 }
             }
+        }
+        else if (gameState == GameState.ENEMYDECISIONMAKING)
+        {
+            battleManager.RunAI(entityManager.enemyList, entityManager.characterList);
         }
     }
 
