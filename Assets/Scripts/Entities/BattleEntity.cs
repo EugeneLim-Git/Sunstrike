@@ -88,10 +88,29 @@ public abstract class BattleEntity : MonoBehaviour
     {
         isDead = booleanToSetTo;
     }
-
-    public void ExecuteCommand(BaseSkill skillToUse, BattleEntity targetOfSkill)
+    public virtual float UseSkill(BaseSkill skillToUse, BattleEntity skillUser, BattleEntity targetOfSkill, float generalMultiplier)
     {
-        baseCharacterSO.UseSkill(skillToUse, this, targetOfSkill, 1);
+        if (skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
+        {
+            return skillToUse.GetAttackDamage(skillUser, targetOfSkill, characterClassMultiplier, generalMultiplier);
+        }
+        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
+        {
+            return skillToUse.GetHealAmount(skillUser, targetOfSkill, characterClassMultiplier, generalMultiplier);
+        }
+        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Buff)
+        {
+            return skillToUse.GetBuffAmount(skillUser, targetOfSkill, characterClassMultiplier, generalMultiplier);
+        }
+        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
+        {
+            return skillToUse.GetBuffAmount(skillUser, targetOfSkill, characterClassMultiplier, generalMultiplier);
+
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public virtual void OnUseSkill(BaseSkill skillUsed)

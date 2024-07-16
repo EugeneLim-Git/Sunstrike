@@ -26,4 +26,4 @@ MonoBehaviour:
   skillAnimator: {fileID: 0}
   skillEffect: {fileID: 0}
   skillUIImage: {fileID: 0}
-  skillAnimDuration: 0.5
+  skillAnimDuration: 0.8

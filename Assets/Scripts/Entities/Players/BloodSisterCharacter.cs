@@ -28,6 +28,31 @@ public class BloodSisterCharacter : BattleEntity
     //    bloodSisterSO.UseSkill(skillToUse, this, targetOfSkill, 1);
     //}
 
+    public override float UseSkill(BaseSkill skillToUse, BattleEntity skillUser, BattleEntity targetOfSkill, float generalMultiplier)
+    {
+        if (skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
+        {
+            return skillToUse.GetAttackDamage(skillUser, targetOfSkill, characterClassMultiplier, generalMultiplier);
+        }
+        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
+        {
+            return skillToUse.GetHealAmount(skillUser, targetOfSkill, characterClassMultiplier, generalMultiplier);
+        }
+        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Buff)
+        {
+            return skillToUse.GetBuffAmount(skillUser, targetOfSkill, characterClassMultiplier, generalMultiplier);
+        }
+        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
+        {
+            return skillToUse.GetBuffAmount(skillUser, targetOfSkill, characterClassMultiplier, generalMultiplier);
+
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     public override void OnUseSkill(BaseSkill skillUsed)
     {
         if (characterCurrentHealth > characterMaxHealth / 10)
@@ -41,7 +66,7 @@ public class BloodSisterCharacter : BattleEntity
 
         if (skillUsed.GetSkillType() == BaseSkill.SkillType.Damage)
         {
-            entityAnimator.Play("BSAttack");
+            entityAnimator.Play("Attack");
         }
 
     }

@@ -144,7 +144,7 @@ public class BattleManager : MonoBehaviour
                 {
                     foreach (var enemy in systemManager.GetEnemyList())
                     {
-                        float damageDealt = action.skillToUse.GetAttackDamage(action.character, enemy, action.character.GetClassMultiplier(), 1);
+                        float damageDealt = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
                         if (enemy.isEntityDead() == false)
                         {
                             enemy.TakeDamage(damageDealt, damageNumberPrefab);
@@ -155,7 +155,7 @@ public class BattleManager : MonoBehaviour
                 {
                     foreach (var player in entityList)
                     {
-                        float damageDealt = action.skillToUse.GetAttackDamage(action.character, player, action.character.GetClassMultiplier(), 1);
+                        float damageDealt = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
                         if (player.isEntityDead() == false)
                         {
                             player.TakeDamage(damageDealt, damageNumberPrefab);
@@ -165,7 +165,7 @@ public class BattleManager : MonoBehaviour
             }
             else //means it's single target
             {
-                float damageDealt = action.skillToUse.GetAttackDamage(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+                float damageDealt = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
                 action.skillTarget.TakeDamage(damageDealt, damageNumberPrefab);
                 Debug.Log(action.skillTarget + " was hit for " + damageDealt + " damage!");
             }
@@ -173,13 +173,14 @@ public class BattleManager : MonoBehaviour
         }
         else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
         {
-            float healAmount = action.skillToUse.GetHealAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+            float healAmount = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
             action.skillTarget.RestoreHealth(healAmount, healNumberPrefab);
         }
         else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Buff || action.skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
         {
             //Debug.Log("Debuffing!");
-            float buffTotal = action.skillToUse.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+            //float buffTotal = action.skillToUse.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1);
+            float buffTotal = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
             BaseSkill.SkillScaler statToMod = action.skillToUse.GetSkillScalerType();
 
             if (statToMod == BaseSkill.SkillScaler.Physical)
@@ -231,12 +232,14 @@ public class BattleManager : MonoBehaviour
             //action.skillTarget.GetComponentInChildren<SpriteRenderer>().enabled = false;
             //action.skillTarget.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
+
+        systemManager.SetHighlightedEnemy(actionList[0].skillTarget);
     }
 
 
     public IEnumerator RunCombat()
     {
-        actionList = actionList.OrderByDescending(action => action.characterSpeed).ToList();
+        actionList = actionList.OrderByDescending(action => action.character.GetSpeed()).ToList();
 
         while (actionList.Count > 0)
         {
@@ -255,7 +258,8 @@ public class BattleManager : MonoBehaviour
                 systemManager.CreateActionTab(actionList[0].character.GetEntityName(), actionList[0].skillToUse.GetSkillName());
                 yield return new WaitForSeconds(0.5f);
                 StartCoroutine(RunAction(actionList[0]));
-                
+                yield return new WaitForSeconds(0.5f);
+
                 Destroy(actionList[0]);
                 actionList.Remove(actionList[0]);
                 

@@ -2802,6 +2802,7 @@ Transform:
   - {fileID: 2891192547487118000}
   - {fileID: 2891192546722838104}
   - {fileID: 397202868659990278}
+  - {fileID: 1531525845}
   m_Father: {fileID: 1954191681}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2982,6 +2983,75 @@ Transform:
   m_Father: {fileID: 54542782}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1531525844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 1359186794}
+    m_Modifications:
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.358326
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.59132624
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.2196267
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873363, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: m_Name
+      value: Sunstone Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358650643432873364, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+      propertyPath: skillList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 02fbe9b6ba036244ba2ecef6cfd25c46, type: 2}
+    m_RemovedComponents:
+    - {fileID: 8358650643432873364, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+--- !u!4 &1531525845 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8358650643432873362, guid: d1d3659aaf0e7c4429bf4920d3c1828b, type: 3}
+  m_PrefabInstance: {fileID: 1531525844}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1543224811
 GameObject:
   m_ObjectHideFlags: 0

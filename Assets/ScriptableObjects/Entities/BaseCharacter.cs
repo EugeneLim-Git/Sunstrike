@@ -69,24 +69,5 @@ public class BaseCharacter : ScriptableObject
         return classMultiplier;
     }
 
-    public virtual float UseSkill(BaseSkill skillToUse, BattleEntity skillUser, BattleEntity targetOfSkill, float generalMultiplier)
-    {
-        
-        if (skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
-        {
-            return skillToUse.GetAttackDamage(skillUser, targetOfSkill, classMultiplier, generalMultiplier);
-        }
-        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
-        {
-            return skillToUse.GetHealAmount(skillUser, targetOfSkill, classMultiplier, generalMultiplier);
-        }   
-        else if (skillToUse.GetSkillType() == BaseSkill.SkillType.Buff || skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
-        {
-            return skillToUse.GetBuffAmount(skillUser, targetOfSkill, classMultiplier, generalMultiplier);
-        }
-        else
-        {
-            return 0;
-        }
-    }    
+    
 }
