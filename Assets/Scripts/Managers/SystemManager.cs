@@ -98,6 +98,11 @@ public class SystemManager : MonoBehaviour
             ChangeSelectedPlayerCharacter(entityManager.characterList[currentPlayerOrder]);
             SetGameState(GameState.ACTIONSELECTION);
         }
+        else
+        {
+            Debug.Log("Running Enemy AI!");
+            SetGameState(GameState.ENEMYDECISIONMAKING);
+        }
 
     }
 
@@ -131,10 +136,7 @@ public class SystemManager : MonoBehaviour
             Debug.Log("entityManager.enemyList.Count");
             if (deadAmount >= entityManager.enemyList.Count)
             {
-                // players have won
-                Debug.Log("Player has won!");
-                string winningText = "Player won!";
-                gameText.text = winningText;
+                entityManager.GetNewEnemyList();
             }
 
 

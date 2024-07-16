@@ -16,10 +16,10 @@ MonoBehaviour:
   characterDesc: A large, brutish cultist with an imposing presence.
   characterBaseSprite: {fileID: 0}
   characterAnimator: {fileID: 0}
-  baseHealth: 50
+  baseHealth: 60
   basePhysicalStrength: 20
-  basePhysicalDefense: 20
+  basePhysicalDefense: 18
   baseMagicalStrength: 1
-  baseMagicalDefense: 20
+  baseMagicalDefense: 16
   baseSpeed: 3
   classMultiplier: 1

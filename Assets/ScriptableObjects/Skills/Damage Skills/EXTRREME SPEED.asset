@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EXTRREME SPEED
   m_EditorClassIdentifier: 
   skillName: EXTREME SPEED
-  skillDesc: I GO FAST
+  skillDesc: I GO FAST (TESTING ATTACK)
   skillValue: 80
   typeOfSkill: 0
   skillScalerType: 0
@@ -21,6 +21,7 @@ MonoBehaviour:
   skillTargetRange: 0
   skillSpeedMod: 100
   numOfTargets: 0
+  secondaryEffect: {fileID: 0}
   skillAnimator: {fileID: 0}
   skillEffect: {fileID: 0}
   skillUIImage: {fileID: 0}

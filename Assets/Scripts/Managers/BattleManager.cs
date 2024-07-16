@@ -239,10 +239,11 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator RunCombat()
     {
-        actionList = actionList.OrderByDescending(action => action.character.GetSpeed()).ToList();
+        
 
         while (actionList.Count > 0)
         {
+            actionList = actionList.OrderByDescending(action => action.character.GetSpeed() + action.skillToUse.GetSkillSpeedMod()).ToList();
             if (actionList[0].character.isEntityDead() == false)
             {
                 yield return new WaitForSeconds(1f);
@@ -274,11 +275,13 @@ public class BattleManager : MonoBehaviour
             }
             
         }
+
+        yield return new WaitForSeconds(1.0f);
+        roundsPassed++;
+        systemManager.CreateActionTabRounds();
+        yield return new WaitForSeconds(1.0f);
         systemManager.SetGameState(SystemManager.GameState.ACTIONSELECTION);
         systemManager.ResetSelectedPlayer();
-        roundsPassed++;
-        yield return new WaitForSeconds(1.0f);
-        systemManager.CreateActionTabRounds();
         yield break;
 
     }

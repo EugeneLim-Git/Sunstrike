@@ -21,6 +21,7 @@ MonoBehaviour:
   skillTargetRange: 0
   skillSpeedMod: 0
   numOfTargets: 1
+  secondaryEffect: {fileID: 0}
   skillAnimator: {fileID: 0}
   skillEffect: {fileID: 0}
   skillUIImage: {fileID: 21300000, guid: 3b9738defbe94ea45b32b28a725a31bc, type: 3}

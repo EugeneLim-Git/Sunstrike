@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
         selectedEntityStatsAnimator = selectedEntityStats.GetComponent<Animator>();
         selectedEntityHealthAnimator = selectedEntityHealth.GetComponent<Animator>();
 
-        SetEntityUIText(entityManager.enemyList[0]);
+        SetEntityUIText(entityManager.enemyList1[0].GetComponent<BattleEntity>());
 
         foreach (var entity in skillBattleIconList)
         {
@@ -111,6 +111,7 @@ public class UIManager : MonoBehaviour
         selectedEntityHealthAnimator.SetBool("toLoop", false);
 
         highlightedTarget = entityHighlighted;
+        Debug.Log(highlightedTarget);
         highlightedTarget.StartHighlighting();
         selectedEntityStats.text = (
             "Physical Strength: " + entityHighlighted.GetBasePhysicalStrength() + " + (" + entityHighlighted.GetPhysicalStrengthMod() + ")\n"

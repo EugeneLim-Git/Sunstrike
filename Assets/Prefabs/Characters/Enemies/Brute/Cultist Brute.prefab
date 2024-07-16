@@ -107,6 +107,7 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   - {fileID: 11400000, guid: 328bece041626e5439e76f0170c42a26, type: 2}
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   aiModule: {fileID: 11400000, guid: bddd45fd055253e49bab58d08be72953, type: 2}
   targetReticle: {fileID: 5666881836362284636}
   highlightReticle: {fileID: 1123459636512828012}

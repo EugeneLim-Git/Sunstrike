@@ -12,6 +12,9 @@ public class EntityManager : MonoBehaviour
     public List<Transform> enemyPositions;
     public BattleEntity selectedCharacter;
 
+    public List<GameObject> enemyList1, enemyList2, enemyList3;
+    private int encounterNumber;
+
     public void Initialise()
     {
         int iteration = 0;
@@ -24,24 +27,53 @@ public class EntityManager : MonoBehaviour
             iteration++;
         }
         iteration = 0;
-        foreach (var enemy in enemyList) 
+        
+        foreach (var enemy in enemyList1) 
         {
+            GameObject enemyToAdd = Instantiate(enemy);
+            enemyList.Add(enemyToAdd.GetComponent<BattleEntity>());
             Debug.Log(enemyList[iteration]); //for debugging purposes to see who is in the list
             enemyList[iteration].transform.position = enemyPositions[iteration].transform.position;
             enemyList[iteration].transform.localScale = enemyPositions[iteration].transform.localScale;
-            enemy.Initialise();
+            enemy.GetComponent<BattleEntity>().Initialise();
             iteration++;
         }
         selectedCharacter = characterList[0];
+        encounterNumber = 1;
     }
 
-    public void GetEnemyList(List<BattleEntity> enemyListToSet)
+    public void GetNewEnemyList()
     {
-        int i = 0;   
-        foreach(var enemy in enemyList)
+        foreach (var enemy in enemyList)
         {
-            enemyListToSet[i] = enemy;
-            i++;
+            Destroy(enemy.gameObject);
+        }
+        enemyList = new();
+        encounterNumber++;
+        if (encounterNumber == 2)
+        {
+            int i = 0;
+            foreach (var enemy in enemyList2)
+            {
+                Debug.Log(enemy.GetComponent<BattleEntity>());
+                GameObject enemyToAdd = Instantiate(enemy, this.transform);
+                enemyToAdd.transform.position = enemyPositions[i].transform.position;
+                enemyList.Add(enemyToAdd.GetComponent<BattleEntity>());
+                i++;
+            }
+            
+        }
+        else if (encounterNumber >= 3)
+        {
+            int i = 0;
+            foreach (var enemy in enemyList3)
+            {
+                Debug.Log(enemy.GetComponent<BattleEntity>());
+                GameObject enemyToAdd = Instantiate(enemy, this.transform);
+                enemyToAdd.transform.position = enemyPositions[i].transform.position;
+                enemyList.Add(enemyToAdd.GetComponent<BattleEntity>());
+                i++;
+            }
         }
     }
 
