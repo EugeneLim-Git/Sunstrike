@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9441930a7de0ba5479f969335b4a2468, type: 3}
-  m_Name: Heavy Slash
+  m_Name: Cripple
   m_EditorClassIdentifier: 
-  skillName: Heavy Slash
-  skillDesc: An attack with a large wind-up that lowers defense, but causing the
-    user to act slower than usual.
-  skillValue: 12
+  skillName: Cripple
+  skillDesc: The user attacks the target's legs or movement opion, dealing damage
+    and lowering their speed.
+  skillValue: 3
   typeOfSkill: 0
   skillScalerType: 0
   skillTargets: 1
   skillTargetRange: 0
-  skillSpeedMod: -3
+  skillSpeedMod: 0
   numOfTargets: 0
-  secondaryEffect: {fileID: 11400000, guid: d351ed2436ebde547855451e889984ca, type: 2}
+  secondaryEffect: {fileID: 11400000, guid: dea3fab7bb9dcd440aaa3e342d931712, type: 2}
   skillAnimator: {fileID: 0}
   skillEffect: {fileID: 0}
-  skillUIImage: {fileID: 21300000, guid: 4e777e6f222c4d24e9d22d1855b61dd1, type: 3}
+  skillUIImage: {fileID: 21300000, guid: 7bf8810af4fef154a8c512de9dd6ffca, type: 3}
   skillAnimDuration: 0.5

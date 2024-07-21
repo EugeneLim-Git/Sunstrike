@@ -279,7 +279,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         roundsPassed++;
         systemManager.CreateActionTabRounds();
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         systemManager.SetGameState(SystemManager.GameState.ACTIONSELECTION);
         systemManager.ResetSelectedPlayer();
         yield break;

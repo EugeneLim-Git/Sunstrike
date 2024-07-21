@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Sun Knight
   characterDesc: A knight of the Sunstone order, they specialize in protecting their
     allies and being the protective spearhead of their team.
-  characterBaseSprite: {fileID: 0}
+  characterBaseSprite: {fileID: 1353799725, guid: d7bc25e339b065f428176cab354b2bc0, type: 3}
   characterAnimator: {fileID: 0}
   baseHealth: 60
   basePhysicalStrength: 10

@@ -136,7 +136,14 @@ public class SystemManager : MonoBehaviour
             Debug.Log("entityManager.enemyList.Count");
             if (deadAmount >= entityManager.enemyList.Count)
             {
+                if (entityManager.encounterNumber >= 3)
+                {
+                    gameText.text = "Player has won! End of Combat Beta.";
+                }
                 entityManager.GetNewEnemyList();
+                ResetHighlightedEntity();
+                //SetHighlightedEnemy(entityManager.enemyList[0]);
+
             }
 
 
@@ -212,6 +219,11 @@ public class SystemManager : MonoBehaviour
     {
         currentPlayerOrder = 0;
         ChangeSelectedPlayerCharacter(entityManager.characterList[0]);
+    }
+
+    public void ResetHighlightedEntity()
+    {
+        uiManager.highlightedTarget = entityManager.enemyList[0];
     }
 
     public void ChangeSelectedPlayerCharacter(BattleEntity selectedPlayer)

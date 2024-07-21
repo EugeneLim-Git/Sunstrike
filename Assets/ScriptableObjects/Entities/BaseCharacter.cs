@@ -34,6 +34,11 @@ public class BaseCharacter : ScriptableObject
         return characterName;
     }
 
+    public Sprite GetCharacterSprite()
+    {
+        return characterBaseSprite;
+    }
+
     public string GetCharacterDesc()
     {
         return characterDesc;

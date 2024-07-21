@@ -5,6 +5,8 @@ using UnityEngine.TextCore.Text;
 
 public class EntityManager : MonoBehaviour
 {
+    public SystemManager systemManager;
+
     [Header("Combat Data")]
     public List<BattleEntity> characterList;
     public List<Transform> playerPositions;
@@ -13,7 +15,7 @@ public class EntityManager : MonoBehaviour
     public BattleEntity selectedCharacter;
 
     public List<GameObject> enemyList1, enemyList2, enemyList3;
-    private int encounterNumber;
+    public int encounterNumber;
 
     public void Initialise()
     {
@@ -31,6 +33,7 @@ public class EntityManager : MonoBehaviour
         foreach (var enemy in enemyList1) 
         {
             GameObject enemyToAdd = Instantiate(enemy);
+            enemyToAdd.GetComponent<BattleEntity>().Initialise();
             enemyList.Add(enemyToAdd.GetComponent<BattleEntity>());
             Debug.Log(enemyList[iteration]); //for debugging purposes to see who is in the list
             enemyList[iteration].transform.position = enemyPositions[iteration].transform.position;
@@ -58,6 +61,7 @@ public class EntityManager : MonoBehaviour
                 Debug.Log(enemy.GetComponent<BattleEntity>());
                 GameObject enemyToAdd = Instantiate(enemy, this.transform);
                 enemyToAdd.transform.position = enemyPositions[i].transform.position;
+                enemyToAdd.GetComponent<BattleEntity>().Initialise();
                 enemyList.Add(enemyToAdd.GetComponent<BattleEntity>());
                 i++;
             }
@@ -71,10 +75,14 @@ public class EntityManager : MonoBehaviour
                 Debug.Log(enemy.GetComponent<BattleEntity>());
                 GameObject enemyToAdd = Instantiate(enemy, this.transform);
                 enemyToAdd.transform.position = enemyPositions[i].transform.position;
+                enemyToAdd.GetComponent<BattleEntity>().Initialise();
                 enemyList.Add(enemyToAdd.GetComponent<BattleEntity>());
                 i++;
             }
         }
+
+        systemManager.SetHighlightedEnemy(enemyList[0]);
+        Debug.Log("First character: " + enemyList[0]);
     }
 
 }
