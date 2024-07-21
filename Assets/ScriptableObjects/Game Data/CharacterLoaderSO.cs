@@ -10,16 +10,6 @@ public class CharacterLoaderSO : ScriptableObject
     [SerializeField] private BaseCharacter characterBase;
     [SerializeField] private List<BaseSkill> selectableSkillList;
 
-    private void Start()
-    {
-
-    }
-
-    private void LoadCharacters()
-    {
-        
-    }
-
     public BaseCharacter GetCharacterBase()
     {
         return characterBase;

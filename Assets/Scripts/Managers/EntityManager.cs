@@ -67,7 +67,7 @@ public class EntityManager : MonoBehaviour
             }
             
         }
-        else if (encounterNumber >= 3)
+        else if (encounterNumber == 3)
         {
             int i = 0;
             foreach (var enemy in enemyList3)
@@ -81,8 +81,11 @@ public class EntityManager : MonoBehaviour
             }
         }
 
-        systemManager.SetHighlightedEnemy(enemyList[0]);
-        Debug.Log("First character: " + enemyList[0]);
+        if (encounterNumber < 4)
+        {
+            systemManager.SetHighlightedEnemy(enemyList[0]);
+            Debug.Log("First character: " + enemyList[0]);
+        }
     }
 
 }

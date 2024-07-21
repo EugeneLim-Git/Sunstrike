@@ -13,7 +13,8 @@ public class SystemManager : MonoBehaviour
         ACTIONSELECTION,
         TARGETTING,
         ENEMYDECISIONMAKING,
-        BATTLING
+        BATTLING,
+        PLAYERWON
     }
     [Header("Game State")]
     public GameState currentGameState;
@@ -65,6 +66,10 @@ public class SystemManager : MonoBehaviour
         {
             battleManager.SelectTargetInput();
             battleManager.HighlightTargetInput();
+        }
+        else if (currentGameState == GameState.PLAYERWON)
+        {
+
         }
     }
 
@@ -139,6 +144,7 @@ public class SystemManager : MonoBehaviour
                 if (entityManager.encounterNumber >= 3)
                 {
                     gameText.text = "Player has won! End of Combat Beta.";
+                    SetGameState(GameState.PLAYERWON);
                 }
                 entityManager.GetNewEnemyList();
                 ResetHighlightedEntity();
