@@ -9,6 +9,7 @@ public class CharacterLoaderSO : ScriptableObject
     [SerializeField] private GameObject CharacterPrefab;
     [SerializeField] private BaseCharacter characterBase;
     [SerializeField] private List<BaseSkill> selectableSkillList;
+    [SerializeField] 
 
     public BaseCharacter GetCharacterBase()
     {
