@@ -8,8 +8,8 @@ public class CharacterLoaderSO : ScriptableObject
 {
     [SerializeField] private GameObject CharacterPrefab;
     [SerializeField] private BaseCharacter characterBase;
-    [SerializeField] private List<BaseSkill> selectableSkillList;
-    [SerializeField] 
+    [SerializeField] public List<BaseSkill> selectableSkillList;
+    [SerializeField] public List<BaseSkill> selectedSkillList;
 
     public BaseCharacter GetCharacterBase()
     {
@@ -20,5 +20,18 @@ public class CharacterLoaderSO : ScriptableObject
     {
         //used to set the character storage skilllist's skill by getting it from the loaderSO;
         return selectableSkillList[listValue];
+    }
+
+    public void AddSkillToBattleList(BaseSkill skillToAdd)
+    {
+        if (selectedSkillList.Count < 4)
+        {
+            selectedSkillList.Add(skillToAdd);
+        }
+        else
+        {
+            selectedSkillList.Remove(selectedSkillList[0]);
+            selectedSkillList.Add(skillToAdd);
+        }
     }
 }

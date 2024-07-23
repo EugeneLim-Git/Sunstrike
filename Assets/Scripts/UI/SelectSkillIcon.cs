@@ -5,6 +5,7 @@ using UnityEngine;
 public class SelectSkillIcon : MonoBehaviour
 {
     private BaseSkill storedSkill;
+    
 
     public void ChangeStoredSkill(BaseSkill skillToChangeTo)
     {
