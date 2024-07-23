@@ -86,6 +86,10 @@ public class EntityManager : MonoBehaviour
             systemManager.SetHighlightedEnemy(enemyList[0]);
             Debug.Log("First character: " + enemyList[0]);
         }
+        else
+        {
+
+        }
     }
 
 }

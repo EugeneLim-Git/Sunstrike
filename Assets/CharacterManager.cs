@@ -35,6 +35,12 @@ public class CharacterManager : MonoBehaviour
             "4. Select a Character" + "\n");
 
         currentPartySlot = 0;
+
+        characterSkillListOne = new List<BaseSkill> ();
+        characterSkillListTwo = new List<BaseSkill>();
+        characterSkillListThree = new List<BaseSkill>();
+        characterSkillListFour = new List<BaseSkill>();
+
         characterSkillList.Add(characterSkillListOne);
         characterSkillList.Add(characterSkillListTwo);
         characterSkillList.Add(characterSkillListThree);
@@ -46,9 +52,32 @@ public class CharacterManager : MonoBehaviour
         selectedCharacterList[currentPartySlot] = charToLoad;
     }
 
+    public void OnSkillSelected(BaseSkill skillToAdd)
+    {
+        int i = 0;
+        bool skillAlreadyThere = false;
+        foreach(BaseSkill skill in characterSkillList[currentPartySlot])
+        {
+            if (skill == skillToAdd)
+            {
+                characterSkillList[currentPartySlot].Remove(skill);
+                skillAlreadyThere = true;
+            }
+            else
+            {
+                i++;
+            }
+        }
+
+        if (skillAlreadyThere == false)
+        {
+            AddSkillToCharList(skillToAdd);
+        }
+    }
+
     public void AddSkillToCharList(BaseSkill skillToAdd)
     {
-        if (chWaracterSkillList[currentPartySlot].Count < 4)
+        if (characterSkillList[currentPartySlot].Count < 4)
         {
             characterSkillList[currentPartySlot].Add(skillToAdd);
         }

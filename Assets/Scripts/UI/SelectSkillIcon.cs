@@ -13,6 +13,6 @@ public class SelectSkillIcon : MonoBehaviour
 
     public void OnSelectSkill(CharacterManager manager)
     {
-        manager.AddSkillToCharList(storedSkill);
+        manager.OnSkillSelected(storedSkill);
     }
 }
