@@ -88,7 +88,7 @@ public class EntityManager : MonoBehaviour
         }
         else
         {
-
+            // let system manager know the set of encounters is over and that it needs to do the roguelike system NOW
         }
     }
 

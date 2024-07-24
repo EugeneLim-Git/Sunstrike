@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class CharacterManager : MonoBehaviour
 {
     public static CharacterManager instance;
-    [SerializeField] private TextMeshProUGUI partyMemberNames;
     [SerializeField] private List<CharacterLoaderSO> selectedCharacterList;
     private List<BaseSkill> characterSkillListOne, characterSkillListTwo, characterSkillListThree, characterSkillListFour;
     public List<SelectSkillIcon> selectedSkillsButtons;
@@ -28,10 +27,6 @@ public class CharacterManager : MonoBehaviour
         {
             selectedCharacterList.Add(null);
         }
-        partyMemberNames.text = ("1. Select a Character" + "\n" +
-            "2. Select a Character" + "\n" +
-            "3. Select a Character" + "\n" +
-            "4. Select a Character" + "\n");
 
         currentPartySlot = 0;
 
