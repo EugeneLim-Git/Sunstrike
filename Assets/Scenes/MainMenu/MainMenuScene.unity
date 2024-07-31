@@ -6686,7 +6686,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2014118098}
+      - m_Target: {fileID: 2055464923}
         m_TargetAssemblyTypeName: CharacterLoadButton, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1

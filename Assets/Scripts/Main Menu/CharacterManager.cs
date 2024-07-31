@@ -67,14 +67,29 @@ public class CharacterManager : MonoBehaviour
         }
         else if (selectedCharacterList.Count != 0) // if there are other members, check if the character already exists, if yes, remove
         {
+
+            CharacterLoaderSO characterToRemove = null;
             foreach (var character in selectedCharacterList)
             {
                 if (character == charToLoad)
                 {
-                    selectedCharacterList.Remove(character);
+                    characterToRemove = character;
                 }
             }
-            selectedCharacterList.Add(charToLoad);
+
+            if (characterToRemove != null && selectedCharacterList.Count == 1)
+            {
+                selectedCharacterList.Remove(characterToRemove);
+            }
+            else if (charToLoad == characterToRemove) // means something has to be removed, and this conditions means that
+            {
+                selectedCharacterList.Remove(characterToRemove);
+            }
+            else if (characterToRemove == null)
+            {
+                selectedCharacterList.Add(charToLoad);
+            }
+
         }
         else // if count is 0, simply add character
         {
