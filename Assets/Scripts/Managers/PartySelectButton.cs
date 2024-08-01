@@ -6,7 +6,7 @@ using UnityEngine;
 public class PartySelectButton : MonoBehaviour
 {
     [SerializeField] private int partyPosition;
-    [SerializeField] private TextMeshProUGUI buttonText;
+    [SerializeField] public TextMeshProUGUI buttonText;
 
     private void Start()
     {

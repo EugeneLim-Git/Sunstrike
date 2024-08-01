@@ -10,6 +10,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private List<CharacterLoaderSO> selectedCharacterList;
     private List<BaseSkill> characterSkillListOne, characterSkillListTwo, characterSkillListThree, characterSkillListFour;
     public List<SelectSkillIcon> selectedSkillsButtons;
+    public List<PartySelectButton> selectedPartyButtons;
     private int currentPartySlot;
 
     public void Awake()
@@ -81,11 +82,11 @@ public class CharacterManager : MonoBehaviour
             {
                 selectedCharacterList.Remove(characterToRemove);
             }
-            else if (charToLoad == characterToRemove) // means something has to be removed, and this conditions means that
+            else if (charToLoad == characterToRemove)
             {
                 selectedCharacterList.Remove(characterToRemove);
             }
-            else if (characterToRemove == null)
+            else if (characterToRemove == null) // if character was not found in list already
             {
                 selectedCharacterList.Add(charToLoad);
             }
@@ -106,13 +107,47 @@ public class CharacterManager : MonoBehaviour
             }
             position++;
         }
-        
+
+        RefreshPartyNameList();
     }
 
     public void SetSelectedCharacter(int positionToChangeTo)
     {
         currentPartySlot = positionToChangeTo;
+        selectedPartyButtons[positionToChangeTo].buttonText.text = selectedCharacterList[positionToChangeTo].GetCharacterBase().GetCharacterName();
         Debug.Log("Selected Character: " + selectedCharacterList[currentPartySlot].name);
+    }
+
+    public void RefreshPartyNameList()
+    {
+        if (selectedCharacterList.Count > 0)
+        {
+            int i = 0;
+
+            while (i < selectedCharacterList.Count)
+            {
+                selectedPartyButtons[i].buttonText.text = selectedCharacterList[i].GetCharacterBase().GetCharacterName();
+                i++;
+            }
+
+            if (selectedCharacterList.Count < 4)
+            {
+                Debug.Log("Character listless than 4!");
+                while (i < 4)
+                {
+                    selectedPartyButtons[i].buttonText.text = "Select Character";
+                    i++;
+
+                }
+            }
+        }
+        else
+        {
+            foreach (var button in selectedPartyButtons)
+            {
+                button.buttonText.text = "Select Character";
+            }
+        }
     }
 
     public void OnSkillSelected(BaseSkill skillToAdd)
