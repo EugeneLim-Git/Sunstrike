@@ -213,15 +213,15 @@ public class BattleManager : MonoBehaviour
 
             if (secondEffect.GetSkillTargets() == BaseSkill.SkillTarget.Self)
             {
-                ModifyTargetStats(secondEffect.GetSkillScalerType(), action.character, secondEffect.GetBuffAmount(action.character, action.character, action.character.GetClassMultiplier(), 1));
+                ModifyTargetStats(secondEffect.GetSkillScalerType(), action.character, action.character.UseSkill(secondEffect, action.character, action.character, 1));
             }
             else if (secondEffect.GetSkillTargets() == BaseSkill.SkillTarget.Friendly)
             {
-                ModifyTargetStats(secondEffect.GetSkillScalerType(), action.character, secondEffect.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1));
+                ModifyTargetStats(secondEffect.GetSkillScalerType(), action.character, action.character.UseSkill(secondEffect, action.character, action.skillTarget, 1));
             }
             else if (secondEffect.GetSkillTargets() == BaseSkill.SkillTarget.Enemy) // targets enemies only
             {
-                ModifyTargetStats(secondEffect.GetSkillScalerType(), action.skillTarget, secondEffect.GetBuffAmount(action.character, action.skillTarget, action.character.GetClassMultiplier(), 1));
+                ModifyTargetStats(secondEffect.GetSkillScalerType(), action.skillTarget, action.character.UseSkill(secondEffect, action.character, action.skillTarget, 1));
             }
         }
 
