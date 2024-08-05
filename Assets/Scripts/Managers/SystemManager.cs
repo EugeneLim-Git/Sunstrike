@@ -150,7 +150,7 @@ public class SystemManager : MonoBehaviour
                     gameText.text = "Player has won! End of Combat Beta.";
                     SetGameState(GameState.PLAYERWON);
                 }
-                entityManager.GetNewEnemyList();
+                entityManager.SetEnemyEncounter();
                 ResetHighlightedEntity();
                 //SetHighlightedEnemy(entityManager.enemyList[0]);
 

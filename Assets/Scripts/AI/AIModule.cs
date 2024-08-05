@@ -24,7 +24,7 @@ public class AIModule : ScriptableObject
     [SerializeField] protected EnemyRole enemyRole;
     [SerializeField] protected EnemyType enemyType;
 
-    public BattleAction RunDecisionMaking(List<BattleEntity> entityList, List<BattleEntity> enemyList, List<BaseSkill> skillList, BattleEntity currentEnemy)
+    public virtual BattleAction RunDecisionMaking(List<BattleEntity> entityList, List<BattleEntity> enemyList, List<BaseSkill> skillList, BattleEntity currentEnemy)
     {
         // depending on role, use list and skills appropriately and target people
         // for the purpose of this 'generic AI Module', simply pick at random based on skills

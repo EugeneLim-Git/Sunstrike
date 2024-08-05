@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c43b6985f623b124284b3bd2215f72d0, type: 3}
-  m_Name: Blood Bank
+  m_Name: Blood Restoration
   m_EditorClassIdentifier: 
   skillName: Blood Restoration
   skillDesc: The user heals themself, restoring a large amount of health. large amount
@@ -26,4 +26,4 @@ MonoBehaviour:
   skillAnimator: {fileID: 0}
   skillEffect: {fileID: 0}
   skillUIImage: {fileID: 21300000, guid: 14d3528f114d5d542bca2504c308be36, type: 3}
-  skillAnimDuration: 0
+  skillAnimDuration: 0.5

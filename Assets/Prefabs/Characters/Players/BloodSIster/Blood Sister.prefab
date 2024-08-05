@@ -185,11 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f5e359a706829459d3ceaed5489edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillList:
-  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
-  - {fileID: 11400000, guid: 57461f4d9bea5cb4fabee5f6fb2c9357, type: 2}
-  - {fileID: 11400000, guid: c882862a03a17b84498cce9895811422, type: 2}
-  - {fileID: 11400000, guid: 26260cd07e52cad4dbd59ffae5a342e3, type: 2}
+  skillList: []
   aiModule: {fileID: 0}
   targetReticle: {fileID: 8358650641884288066}
   highlightReticle: {fileID: 496969802}

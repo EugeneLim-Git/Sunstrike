@@ -15,12 +15,12 @@ MonoBehaviour:
   skillName: Sucker Punch
   skillDesc: A quick strike that allows the user to act faster than usual, but is
     lower in damage.
-  skillValue: 5
+  skillValue: 4
   typeOfSkill: 0
   skillScalerType: 0
   skillTargets: 1
   skillTargetRange: 0
-  skillSpeedMod: 10
+  skillSpeedMod: 3
   numOfTargets: 0
   secondaryEffect: {fileID: 0}
   skillAnimator: {fileID: 0}

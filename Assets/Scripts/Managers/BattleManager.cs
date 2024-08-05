@@ -181,7 +181,7 @@ public class BattleManager : MonoBehaviour
         {
             if (action.skillToUse.GetTargetRange() == BaseSkill.SkillTargetRange.All)
             {
-                if (action.character.gameObject.tag == "Player")
+                if (action.character.gameObject.tag == "Player") // distinguished who is using it and who should be healed 
                 {
                     foreach (var enemy in systemManager.GetEntityList())
                     {
@@ -204,7 +204,7 @@ public class BattleManager : MonoBehaviour
                     }
                 }
             }
-            else
+            else // means single target heal
             {
                 float healAmount = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
                 action.skillTarget.RestoreHealth(healAmount, healNumberPrefab);

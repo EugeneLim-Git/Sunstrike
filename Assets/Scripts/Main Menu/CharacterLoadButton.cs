@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterLoadButton : MonoBehaviour
 {
-    [SerializeField] private CharacterLoaderSO characterStored;
+    [SerializeField] public CharacterLoaderSO characterStored;
     private CharacterManager cManager;
+    public Image background;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        background.enabled = false;
     }
 
     // Update is called once per frame
@@ -22,6 +24,9 @@ public class CharacterLoadButton : MonoBehaviour
     public void OnClick()
     {
         cManager = FindObjectOfType<CharacterManager>();
-        cManager.OnCharacterSelected(characterStored);
+        if (characterStored != null)
+        {
+            cManager.OnCharacterSelected(characterStored);
+        }
     }
 }

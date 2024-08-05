@@ -9,13 +9,14 @@ public class CharacterManager : MonoBehaviour
     public static CharacterManager instance;
     [SerializeField] public List<CharacterLoaderSO> selectedCharacterList;
     private List<BaseSkill> characterSkillListOne, characterSkillListTwo, characterSkillListThree, characterSkillListFour;
-    private NewRunManager runManager;
+    public NewRunManager runManager;
     public List<SelectSkillIcon> selectedSkillsButtons;
     public List<PartySelectButton> selectedPartyButtons;
     public int currentPartySlot;
 
     public void Initialise()
     {
+        
         if (instance == null)
         {
             instance = this;
@@ -34,7 +35,7 @@ public class CharacterManager : MonoBehaviour
 
         selectedCharacterList = new List<CharacterLoaderSO>();
 
-        
+        runManager = FindObjectOfType<NewRunManager>();
     }
 
     public void RenewButtons()
@@ -61,6 +62,10 @@ public class CharacterManager : MonoBehaviour
             {
                 selectedCharacterList.Remove(selectedCharacterList[0]);
                 selectedCharacterList.Add(charToLoad);
+            }
+            else
+            {
+                selectedCharacterList.Remove(charToLoad);
             }
 
             
@@ -118,8 +123,9 @@ public class CharacterManager : MonoBehaviour
             }
             position++;
         }
-
+        
         RefreshPartyNameList();
+
     }
 
     public void SetSelectedCharacter(int positionToChangeTo)
@@ -160,6 +166,7 @@ public class CharacterManager : MonoBehaviour
                 button.buttonText.text = "Select Character";
             }
         }
+       runManager.RefreshCharacterButtons(selectedCharacterList);
     }
 
     public void OnSkillSelected(BaseSkill skillToAdd, SelectSkillIcon button)

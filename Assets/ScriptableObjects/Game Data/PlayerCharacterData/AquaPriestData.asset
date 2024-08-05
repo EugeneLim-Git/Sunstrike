@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2cbdc5008a99043927939c9120f8b1, type: 3}
+  m_Name: AquaPriestData
+  m_EditorClassIdentifier: 
+  CharacterPrefab: {fileID: 7779278268021126648, guid: 89666b5b2a833cb458acc196509c679e, type: 3}
+  characterBase: {fileID: 11400000, guid: e5ea78e5ab8c7a946b92f80c1efe3fa3, type: 2}
+  selectableSkillList:
+  - {fileID: 11400000, guid: 26260cd07e52cad4dbd59ffae5a342e3, type: 2}
+  - {fileID: 11400000, guid: 02fbe9b6ba036244ba2ecef6cfd25c46, type: 2}
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
+  - {fileID: 11400000, guid: 52d95f2508f761a49b10027dbd2f9140, type: 2}
+  - {fileID: 11400000, guid: 7b32e9a0cc1f09c4fa26291780b607d6, type: 2}
+  - {fileID: 11400000, guid: 0049a44a5a6459f44b49b89d4176336c, type: 2}
+  selectedSkillList: []

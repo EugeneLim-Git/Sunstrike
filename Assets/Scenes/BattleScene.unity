@@ -8072,6 +8072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0f52d4320446d41b0aec14c1f9f2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayText: {fileID: 0}
 --- !u!1 &1707229330
 GameObject:
   m_ObjectHideFlags: 0
@@ -9339,17 +9340,15 @@ MonoBehaviour:
   - {fileID: 20470050}
   - {fileID: 1862345160}
   selectedCharacter: {fileID: 0}
-  enemyList1:
-  - {fileID: 7094060791702186825, guid: 6423aa4af7843874aa5d1db3dd5f6693, type: 3}
-  enemyList2:
-  - {fileID: 7094060791702186825, guid: 6423aa4af7843874aa5d1db3dd5f6693, type: 3}
-  - {fileID: 2891192548506724450, guid: 665928710dcff8e4288a61103597059e, type: 3}
-  - {fileID: 2891192548506724450, guid: 665928710dcff8e4288a61103597059e, type: 3}
-  enemyList3:
-  - {fileID: 7094060791702186825, guid: 6423aa4af7843874aa5d1db3dd5f6693, type: 3}
-  - {fileID: 7094060791702186825, guid: 6423aa4af7843874aa5d1db3dd5f6693, type: 3}
-  - {fileID: 2891192548506724450, guid: 665928710dcff8e4288a61103597059e, type: 3}
-  - {fileID: 4430964595786745136, guid: ff6651ca7bbe1dd4997473e9e4dd4288, type: 3}
+  commonEncounterData:
+  - {fileID: 11400000, guid: dc8c96d071c33b044989ee5cccaf499e, type: 2}
+  - {fileID: 11400000, guid: 0a3a91e6d9362f1449fc627988bc14ed, type: 2}
+  - {fileID: 11400000, guid: 5b3a461f8d1521b40823bf10840c6381, type: 2}
+  - {fileID: 11400000, guid: 699e1726c7f4d16449f4105e0eaa2ac4, type: 2}
+  - {fileID: 11400000, guid: c68f44c310b6dd44fac7f9beb5a5e62f, type: 2}
+  bossEncounterData:
+  - {fileID: 11400000, guid: a028c3c7e42d8bb44a5d5ec4af338929, type: 2}
+  - {fileID: 11400000, guid: b2851bbb44b9b2347a11102d2a1a2552, type: 2}
   encounterNumber: 0
 --- !u!4 &1954191681
 Transform:

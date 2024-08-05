@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class NewRunManager : MonoBehaviour
 {
     public List<SelectSkillIcon> skillButtons;
+    public List<CharacterLoadButton> characterLoadButtons;
     public List<PartySelectButton> PartyButtons;
     public DescriptionText descText;
 
@@ -29,6 +31,27 @@ public class NewRunManager : MonoBehaviour
         manager.Initialise();
         manager.RenewButtons();
 
+    }
+
+    public void RefreshCharacterButtons(List<CharacterLoaderSO> characterList)
+    {
+        foreach (var button in characterLoadButtons)
+        {
+            button.background.enabled = false;
+        }
+
+
+        foreach (var character in characterList)
+        {
+            foreach (var button in characterLoadButtons)
+            {
+                if (button.characterStored == character)
+                {
+                    Debug.Log("found character");
+                    button.background.enabled = true;
+                }
+            }
+        }
     }
 
 }

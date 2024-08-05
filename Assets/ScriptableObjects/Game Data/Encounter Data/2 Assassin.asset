@@ -12,3 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb7d10ac87f82a4bbc5f9e188124bfb, type: 3}
   m_Name: 2 Assassin
   m_EditorClassIdentifier: 
+  encounterList:
+  - {fileID: 7094060791702186825, guid: 6423aa4af7843874aa5d1db3dd5f6693, type: 3}
+  - {fileID: 7094060791702186825, guid: 6423aa4af7843874aa5d1db3dd5f6693, type: 3}

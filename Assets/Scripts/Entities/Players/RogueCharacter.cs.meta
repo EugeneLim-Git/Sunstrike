@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: cc4013bcec9f1b44f857370bcafc8e22
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - aiModule: {instanceID: 0}
+  - targetReticle: {instanceID: 0}
+  - highlightReticle: {instanceID: 0}
+  - damageNumberSpawnPoint: {instanceID: 0}
+  - entityAnimator: {instanceID: 0}
+  - rogueSO: {fileID: 11400000, guid: 732ace73df7f9b7499528a8a73e4d1b8, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -46,4 +46,9 @@ public class ChangeSceneScript : MonoBehaviour
             FindObjectOfType<DescriptionText>().ChangeText("One of your party members does not have four skills equipped, or you have no party members.");
         }
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

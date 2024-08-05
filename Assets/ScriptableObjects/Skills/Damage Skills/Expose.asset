@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Expose
   skillDesc: Attacks a weak spot in the target's armour, lowering their Physical
-    Defense by 3.
+    Defense.
   skillValue: 3
   typeOfSkill: 0
   skillScalerType: 2
-  skillTargets: 0
+  skillTargets: 1
   skillTargetRange: 0
   skillSpeedMod: 0
   numOfTargets: 0
   secondaryEffect: {fileID: 11400000, guid: d351ed2436ebde547855451e889984ca, type: 2}
   skillAnimator: {fileID: 0}
   skillEffect: {fileID: 0}
-  skillUIImage: {fileID: 21300000, guid: ec4f90d8fef381b4888656826d583418, type: 3}
+  skillUIImage: {fileID: 21300000, guid: 0c0438a1169f04e449cada2593571401, type: 3}
   skillAnimDuration: 0.8
