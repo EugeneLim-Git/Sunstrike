@@ -16,12 +16,25 @@ public class DamageSkill : BaseSkill
 
         if (skillScalerType == SkillScaler.Physical)
         {
-            finalDamage = skillPower * (attacker.GetPhysicalStrength() / defender.GetPhysicalDefense());
+            float defense = defender.GetPhysicalDefense();
+            float magicDefense = defender.GetMagicalDefense();
+            if (defense < 1)
+            {
+                defense = 1;
+            }
+            finalDamage = skillPower * (attacker.GetPhysicalStrength() / defense);
             //Debug.Log(skillPower, attacker.GetPhysicalStrength(), defender.GetPhysicalDefense());
         }
         else
         {
-            finalDamage = skillPower * (attacker.GetMagicalStrength() / defender.GetMagicalDefense());
+            float magicDefense = defender.GetMagicalDefense();
+            if (magicDefense < 1)
+            {
+                magicDefense = 1;
+            }
+
+
+            finalDamage = skillPower * (attacker.GetMagicalStrength() / magicDefense);
 
         }
 

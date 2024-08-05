@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: SunstoneKnight
   m_EditorClassIdentifier: 
   characterName: Sun Knight
-  characterDesc: A knight of the Sunstone order, they specialize in protecting their
-    allies and being the protective spearhead of their team.
+  characterDesc: A knight of the Sunstone Order, they specialize in empowering the
+    team.
   characterBaseSprite: {fileID: 1353799725, guid: d7bc25e339b065f428176cab354b2bc0, type: 3}
   characterAnimator: {fileID: 0}
-  baseHealth: 60
+  baseHealth: 80
   basePhysicalStrength: 10
-  basePhysicalDefense: 10
+  basePhysicalDefense: 15
   baseMagicalStrength: 1
-  baseMagicalDefense: 10
+  baseMagicalDefense: 12
   baseSpeed: 4
   classMultiplier: 1
   buffMultiplier: 1.2

@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     public void Initialise()
     {
-        Debug.Log(entityManager.characterList[1].GetCurrentHealth());   
+        Debug.Log(entityManager.characterList[0].GetCurrentHealth());   
         ChangeSelectedCharacter(entityManager.characterList[0]);
         selectedEntityNameTextAnimator = selectedEntityName.GetComponent<Animator>();
         selectedEntityStatsAnimator = selectedEntityStats.GetComponent<Animator>();

@@ -10,7 +10,7 @@ public class CharacterLoadButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cManager = FindObjectOfType<CharacterManager>();
+        
     }
 
     // Update is called once per frame
@@ -21,6 +21,7 @@ public class CharacterLoadButton : MonoBehaviour
 
     public void OnClick()
     {
+        cManager = FindObjectOfType<CharacterManager>();
         cManager.OnCharacterSelected(characterStored);
     }
 }

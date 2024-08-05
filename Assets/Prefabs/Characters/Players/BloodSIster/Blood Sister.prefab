@@ -164,14 +164,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8358650643432873363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.358326, y: -0.59132624, z: -2.2196267}
+  m_LocalPosition: {x: -2.25, y: -0.34000015, z: -3.9365268}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1206620435117840950}
   - {fileID: 8358650642806147211}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8358650643432873364
 MonoBehaviour:
@@ -186,15 +186,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillList:
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
+  - {fileID: 11400000, guid: 57461f4d9bea5cb4fabee5f6fb2c9357, type: 2}
   - {fileID: 11400000, guid: c882862a03a17b84498cce9895811422, type: 2}
   - {fileID: 11400000, guid: 26260cd07e52cad4dbd59ffae5a342e3, type: 2}
-  - {fileID: 11400000, guid: 02fbe9b6ba036244ba2ecef6cfd25c46, type: 2}
-  - {fileID: 11400000, guid: 52d95f2508f761a49b10027dbd2f9140, type: 2}
   aiModule: {fileID: 0}
   targetReticle: {fileID: 8358650641884288066}
   highlightReticle: {fileID: 496969802}
   damageNumberSpawnPoint: {fileID: 1206620435117840950}
   entityAnimator: {fileID: 1025708654}
+  characterCurrentHealth: 62
+  isDead: 0
   physicalStrengthMod: 0
   physicalDefenseMod: 0
   magicalStrengthMod: 0
@@ -388,6 +390,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 293278323106372703, guid: 1143dc5ba11a4764fa87ee726b4a91b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 293278323510223990, guid: 1143dc5ba11a4764fa87ee726b4a91b9, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

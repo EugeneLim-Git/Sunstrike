@@ -21,13 +21,13 @@ public abstract class BattleEntity : MonoBehaviour
     [Header("Combat Data")]
     protected float characterMaxHealth;
     protected string characterDesc;
-    protected float characterCurrentHealth;
+    [SerializeField] protected float characterCurrentHealth;
     protected float characterPhysicalStrength;
     protected float characterPhysicalDefense;
     protected float characterMagicalStrength;
     protected float characterMagicalDefense;
     protected float characterSpeed;
-    protected bool isDead = false;
+    [SerializeField] protected bool isDead = false;
     protected float characterClassMultiplier;
 
     [Header("Stat Modifiers")]
@@ -307,9 +307,9 @@ public abstract class BattleEntity : MonoBehaviour
     }
     public void AddToSpeedMod(float valueToAdd)
     {
-        float newModValue = magicalDefenseMod + valueToAdd;
+        float newModValue = speedMod + valueToAdd;
 
-        magicalDefenseMod = newModValue;
+        speedMod = newModValue;
     }
 
 }

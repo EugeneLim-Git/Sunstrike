@@ -9,16 +9,30 @@ public class EntityManager : MonoBehaviour
 
     [Header("Combat Data")]
     public List<BattleEntity> characterList;
+    private List<GameObject> playerGameObjectList;
     public List<Transform> playerPositions;
     public List<BattleEntity> enemyList;
     public List<Transform> enemyPositions;
     public BattleEntity selectedCharacter;
 
     public List<GameObject> enemyList1, enemyList2, enemyList3;
+
     public int encounterNumber;
 
     public void Initialise()
     {
+        playerGameObjectList = systemManager.characterManager.ReturnCharacterPrefabs();
+
+        int i = 0;
+        foreach (var character in playerGameObjectList)
+        {
+            GameObject guyToAdd = Instantiate(character);
+            
+            guyToAdd.GetComponent<BattleEntity>().skillList = systemManager.characterManager.selectedCharacterList[i].selectedSkillList;
+            characterList.Add(guyToAdd.GetComponent<BattleEntity>());
+            i++;
+        }
+
         int iteration = 0;
         Debug.Log(characterList[0]);
         foreach (var character in characterList) 
@@ -43,6 +57,11 @@ public class EntityManager : MonoBehaviour
         }
         selectedCharacter = characterList[0];
         encounterNumber = 1;
+    }
+    
+    public List<BattleEntity> GetEntityList()
+    {
+        return characterList;
     }
 
     public void GetNewEnemyList()

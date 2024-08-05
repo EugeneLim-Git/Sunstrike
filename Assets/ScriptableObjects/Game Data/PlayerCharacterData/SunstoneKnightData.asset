@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2cbdc5008a99043927939c9120f8b1, type: 3}
+  m_Name: SunstoneKnightData
+  m_EditorClassIdentifier: 
+  CharacterPrefab: {fileID: 6879402389586326573, guid: a554338ae4a8b9941a49fb9fb9a78be2, type: 3}
+  characterBase: {fileID: 11400000, guid: 60ff497389b72674f8b26193adeeca7b, type: 2}
+  selectableSkillList:
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
+  - {fileID: 11400000, guid: 52d95f2508f761a49b10027dbd2f9140, type: 2}
+  - {fileID: 11400000, guid: 02fbe9b6ba036244ba2ecef6cfd25c46, type: 2}
+  - {fileID: 11400000, guid: 52abc2de0a4bca041b4fed71dd32b7bb, type: 2}
+  - {fileID: 11400000, guid: f59d27ffa42b1b347af5011953ef023c, type: 2}
+  - {fileID: 11400000, guid: 7dd6c6d0193793f4cb89a2d9f4608ba5, type: 2}
+  selectedSkillList: []

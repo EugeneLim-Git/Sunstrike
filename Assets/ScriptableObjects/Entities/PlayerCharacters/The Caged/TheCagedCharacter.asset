@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6370f453b5964246a1826b23c936d02, type: 3}
+  m_Name: TheCagedCharacter
+  m_EditorClassIdentifier: 
+  characterName: The Caged
+  characterDesc: 'A slow but powerful amalgam who cripples the enemy with debuffs.  '
+  characterBaseSprite: {fileID: -1398391323, guid: 2206baa1eb4e8d1408b5232f1bb7339a, type: 3}
+  characterAnimator: {fileID: 0}
+  baseHealth: 85
+  basePhysicalStrength: 10
+  basePhysicalDefense: 10
+  baseMagicalStrength: 1
+  baseMagicalDefense: 10
+  baseSpeed: 3
+  classMultiplier: 1
+  cagedDebuffMultiplier: 1.5

@@ -133,14 +133,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6879402389586326573}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.57, y: 1.07, z: -2.2196267}
+  m_LocalPosition: {x: -1, y: -0.34000015, z: -3.9365268}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4339691699858125704}
   - {fileID: 6879402388459954485}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2788495746559143961
 BoxCollider2D:
@@ -181,15 +181,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillList:
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
   - {fileID: 11400000, guid: 02fbe9b6ba036244ba2ecef6cfd25c46, type: 2}
   - {fileID: 11400000, guid: 52d95f2508f761a49b10027dbd2f9140, type: 2}
   - {fileID: 11400000, guid: 52abc2de0a4bca041b4fed71dd32b7bb, type: 2}
-  - {fileID: 11400000, guid: f59d27ffa42b1b347af5011953ef023c, type: 2}
   aiModule: {fileID: 0}
   targetReticle: {fileID: 6879402389115682300}
   highlightReticle: {fileID: 3208648154944831988}
   damageNumberSpawnPoint: {fileID: 4339691699858125704}
   entityAnimator: {fileID: 3208648154397227984}
+  characterCurrentHealth: 80
+  isDead: 0
   physicalStrengthMod: 0
   physicalDefenseMod: 0
   magicalStrengthMod: 0
@@ -392,6 +394,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 293278323106372703, guid: 1143dc5ba11a4764fa87ee726b4a91b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 293278323510223990, guid: 1143dc5ba11a4764fa87ee726b4a91b9, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

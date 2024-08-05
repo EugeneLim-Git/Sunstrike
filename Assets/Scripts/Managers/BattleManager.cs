@@ -25,6 +25,7 @@ public class BattleManager : MonoBehaviour
     public void Initialise()
     {
         systemManager = FindObjectOfType<SystemManager>();
+        entityList = systemManager.GetEntityList();
         hostileEntityList = systemManager.GetEnemyList();
         actionList = new List<BattleAction>();
         roundsPassed = 1;
@@ -51,14 +52,18 @@ public class BattleManager : MonoBehaviour
                     {
                         if (cubeHit.collider.gameObject.CompareTag("Player")) // this is done because we don't want player targetting friends with damaging attacks
                         {
-                            if (currentSkill.GetSkillType() == BaseSkill.SkillType.Heal || currentSkill.GetSkillType() == BaseSkill.SkillType.Buff)
+                            if (currentSkill.GetSkillTargets() != BaseSkill.SkillTarget.Self)
+                            {
+                                if (currentSkill.GetSkillType() == BaseSkill.SkillType.Heal || currentSkill.GetSkillType() == BaseSkill.SkillType.Buff)
+                                {
+                                    AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
+                                    systemManager.NextPlayerCharacter();
+                                }
+                            }
+                            else // means the skill target is self, and the skill isn't a damaging attack
                             {
                                 AddToActionList(systemManager.GetCurrentSelectedCharacter(), cubeHit.collider.GetComponent<BattleEntity>(), currentSkill);
                                 systemManager.NextPlayerCharacter();
-                            }
-                            else
-                            {
-
                             }
                         }
                         else if (cubeHit.collider.gameObject.CompareTag("Enemy"))
@@ -135,6 +140,7 @@ public class BattleManager : MonoBehaviour
     public IEnumerator RunAction(BattleAction action)
     {
         action.character.OnUseSkill(action.skillToUse);
+        
         yield return new WaitForSeconds(action.skillToUse.GetSkillAnimDuration());
         if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Damage)
         {
@@ -144,7 +150,7 @@ public class BattleManager : MonoBehaviour
                 {
                     foreach (var enemy in systemManager.GetEnemyList())
                     {
-                        float damageDealt = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
+                        float damageDealt = action.character.UseSkill(action.skillToUse, action.character, enemy, 1);
                         if (enemy.isEntityDead() == false)
                         {
                             enemy.TakeDamage(damageDealt, damageNumberPrefab);
@@ -155,7 +161,7 @@ public class BattleManager : MonoBehaviour
                 {
                     foreach (var player in entityList)
                     {
-                        float damageDealt = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
+                        float damageDealt = action.character.UseSkill(action.skillToUse, action.character, player, 1);
                         if (player.isEntityDead() == false)
                         {
                             player.TakeDamage(damageDealt, damageNumberPrefab);
@@ -173,8 +179,36 @@ public class BattleManager : MonoBehaviour
         }
         else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Heal)
         {
-            float healAmount = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
-            action.skillTarget.RestoreHealth(healAmount, healNumberPrefab);
+            if (action.skillToUse.GetTargetRange() == BaseSkill.SkillTargetRange.All)
+            {
+                if (action.character.gameObject.tag == "Player")
+                {
+                    foreach (var enemy in systemManager.GetEntityList())
+                    {
+                        float healAmount = action.character.UseSkill(action.skillToUse, action.character, enemy, 1);
+                        if (enemy.isEntityDead() == false)
+                        {
+                            enemy.RestoreHealth(healAmount, healNumberPrefab);
+                        }
+                    }
+                }
+                else if (action.character.gameObject.tag == "Enemy")
+                {
+                    foreach (var enemy in systemManager.GetEnemyList())
+                    {
+                        float healAmount = action.character.UseSkill(action.skillToUse, action.character, enemy, 1);
+                        if (enemy.isEntityDead() == false)
+                        {
+                            enemy.RestoreHealth(healAmount, healNumberPrefab);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                float healAmount = action.character.UseSkill(action.skillToUse, action.character, action.skillTarget, 1);
+                action.skillTarget.RestoreHealth(healAmount, healNumberPrefab);
+            }
         }
         else if (action.skillToUse.GetSkillType() == BaseSkill.SkillType.Buff || action.skillToUse.GetSkillType() == BaseSkill.SkillType.Debuff)
         {
@@ -199,7 +233,7 @@ public class BattleManager : MonoBehaviour
             {
                 action.skillTarget.AddToPhysicalDefenseMod(buffTotal);
             }
-            else //means the skill scales the speed mod stat
+            else if (statToMod == BaseSkill.SkillScaler.Speed)
             {
                 action.skillTarget.AddToSpeedMod(buffTotal);
             }
@@ -233,17 +267,27 @@ public class BattleManager : MonoBehaviour
             //action.skillTarget.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
 
-        systemManager.SetHighlightedEnemy(actionList[0].skillTarget);
     }
 
 
     public IEnumerator RunCombat()
     {
-        
+        foreach(BattleEntity entity in entityList)
+        {
+            entity.StopHighlighting();
+        }
+
+        BattleEntity HighlightedTarget = null;
 
         while (actionList.Count > 0)
         {
             actionList = actionList.OrderByDescending(action => action.character.GetSpeed() + action.skillToUse.GetSkillSpeedMod()).ToList();
+
+            if (HighlightedTarget != null)
+            {
+                HighlightedTarget.StopHighlighting();
+            }
+
             if (actionList[0].character.isEntityDead() == false)
             {
                 yield return new WaitForSeconds(1f);
@@ -256,16 +300,21 @@ public class BattleManager : MonoBehaviour
             else if (actionList[0].character.isEntityDead() == false)
             {
                 systemManager.SetHighlightedEnemy(actionList[0].skillTarget);
+                actionList[0].character.StartHighlighting();
                 systemManager.CreateActionTab(actionList[0].character.GetEntityName(), actionList[0].skillToUse.GetSkillName());
-                yield return new WaitForSeconds(0.5f);
-                StartCoroutine(RunAction(actionList[0]));
+
                 yield return new WaitForSeconds(0.5f);
 
+                StartCoroutine(RunAction(actionList[0]));
+
+                yield return new WaitForSeconds(1.0f);
+
+                HighlightedTarget = actionList[0].character;
                 Destroy(actionList[0]);
                 actionList.Remove(actionList[0]);
-                
                 Debug.Log(actionList.Count);
-
+                
+                
             }
             else
             {

@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Blood Sister
   m_EditorClassIdentifier: 
   characterName: Blood Sister
-  characterDesc: A cleric of the Sisterhood of blood.
+  characterDesc: A cleric of the Sisterhood of Blood, they sacrifice HP to boost
+    their skills.
   characterBaseSprite: {fileID: -1697742350, guid: 06d1b62e79ea4844d95a2ee17e601f36, type: 3}
   characterAnimator: {fileID: 0}
-  baseHealth: 50
+  baseHealth: 80
   basePhysicalStrength: 3
-  basePhysicalDefense: 10
+  basePhysicalDefense: 8
   baseMagicalStrength: 8
   baseMagicalDefense: 20
   baseSpeed: 8

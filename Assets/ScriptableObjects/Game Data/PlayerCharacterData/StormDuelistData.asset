@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b2cbdc5008a99043927939c9120f8b1, type: 3}
+  m_Name: StormDuelistData
+  m_EditorClassIdentifier: 
+  CharacterPrefab: {fileID: 5633714486503318348, guid: 95ed56079e1c22b44bfa6ca500d42a11, type: 3}
+  characterBase: {fileID: 11400000, guid: bcc7208005b086f4b80da48e432554e7, type: 2}
+  selectableSkillList:
+  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
+  - {fileID: 11400000, guid: 253ae0d663068704bbdbabd9761186f7, type: 2}
+  - {fileID: 11400000, guid: 8c70fbf0593e66344997e1a91e462b31, type: 2}
+  - {fileID: 11400000, guid: 465d2159dcb3e3c47a2df7e2d28b1fff, type: 2}
+  - {fileID: 11400000, guid: f59d27ffa42b1b347af5011953ef023c, type: 2}
+  - {fileID: 11400000, guid: 9a4610fd2735332498a9b4c562b8811b, type: 2}
+  selectedSkillList: []

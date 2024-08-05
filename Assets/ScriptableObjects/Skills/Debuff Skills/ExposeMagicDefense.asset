@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c6a5fab0d8779645ae482274895d216, type: 3}
+  m_Name: ExposeMagicDefense
+  m_EditorClassIdentifier: 
+  skillName: Magic Defense Expose
+  skillDesc: Lowers Magical Defense.
+  skillValue: -3
+  typeOfSkill: 2
+  skillScalerType: 3
+  skillTargets: 1
+  skillTargetRange: 0
+  skillSpeedMod: 0
+  numOfTargets: 0
+  secondaryEffect: {fileID: 0}
+  skillAnimator: {fileID: 0}
+  skillEffect: {fileID: 0}
+  skillUIImage: {fileID: 0}
+  skillAnimDuration: 0

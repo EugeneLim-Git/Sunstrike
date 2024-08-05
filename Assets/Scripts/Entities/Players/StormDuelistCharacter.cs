@@ -46,4 +46,16 @@ public class StormDuelistCharacter : BattleEntity
             return 0;
         }
     }
+
+    public override void OnUseSkill(BaseSkill skillUsed)
+    {
+        if (skillUsed.GetSkillValue() >= 10)
+        {
+            entityAnimator.Play("AttackSpecial");
+        }
+        else
+        {
+            entityAnimator.Play("Attack");
+        }
+    }
 }

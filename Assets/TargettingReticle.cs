@@ -17,6 +17,7 @@ public class TargettingReticle : MonoBehaviour
 
     public void SetToActive()
     {
+        Debug.Log("setting reticle to active");
         reticle.enabled = true;
         reticleAnimator.enabled = true;
         reticleAnimator.Play("TargetAnimStart");
@@ -25,7 +26,6 @@ public class TargettingReticle : MonoBehaviour
 
     public void SetToInactive()
     {
-        
         reticle.enabled = false;
         reticleAnimator.enabled = false;
     }

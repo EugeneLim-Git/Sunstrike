@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -25,6 +26,7 @@ public class SystemManager : MonoBehaviour
     [SerializeField] private BattleManager battleManager;
     [SerializeField] private EntityManager entityManager;
     [SerializeField] private AudioManager audioManager;
+    public CharacterManager characterManager;
 
     private int currentPlayerOrder;
     private bool runningCombat = false;
@@ -32,7 +34,7 @@ public class SystemManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        characterManager = FindObjectOfType<CharacterManager>();   
         entityManager.Initialise();
         battleManager.Initialise();
 
@@ -40,6 +42,8 @@ public class SystemManager : MonoBehaviour
         audioManager.Initialise();
         uiManager.Initialise();
         isGamePaused = false;
+
+
     }
 
     // Update is called once per frame
@@ -172,9 +176,14 @@ public class SystemManager : MonoBehaviour
                 {
                     if (entity.isEntityDead() == false)
                     {
+                        Debug.Log("Hii");
                         entity.StartReticle();
                     }
                 }
+            }
+            else if (battleManager.GetCurrentSkill().GetSkillTargets() == BaseSkill.SkillTarget.Self)
+            {
+                entityManager.selectedCharacter.StartReticle();
             }
             else
             {
@@ -221,10 +230,33 @@ public class SystemManager : MonoBehaviour
 
     }
 
+    public List<BattleEntity> GetEntityList()
+    {
+        return entityManager.GetEntityList();
+    }
     public void ResetSelectedPlayer()
     {
         currentPlayerOrder = 0;
-        ChangeSelectedPlayerCharacter(entityManager.characterList[0]);
+        int i = 0;
+
+        while (i < entityManager.characterList.Count)
+        {
+            if (entityManager.characterList[i].isEntityDead() == false)
+            {
+                ChangeSelectedPlayerCharacter(entityManager.characterList[i]);
+                
+                break;
+            }
+            currentPlayerOrder++;
+            i++;
+        }
+
+        if (i == entityManager.characterList.Count)
+        {
+            //PLAYERS HAVE LOST
+            //activate lose screen
+            Debug.Log("Lost!");
+        }
     }
 
     public void ResetHighlightedEntity()

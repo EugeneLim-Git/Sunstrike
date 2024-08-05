@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9441930a7de0ba5479f969335b4a2468, type: 3}
+  m_Name: VexingBreak
+  m_EditorClassIdentifier: 
+  skillName: Vexing Break
+  skillDesc: An attack with evil energy that lower the target's Magical Defense.
+  skillValue: 8
+  typeOfSkill: 0
+  skillScalerType: 0
+  skillTargets: 1
+  skillTargetRange: 0
+  skillSpeedMod: 0
+  numOfTargets: 0
+  secondaryEffect: {fileID: 11400000, guid: e4e7923a74a622c449aa8b0c288c9fa9, type: 2}
+  skillAnimator: {fileID: 0}
+  skillEffect: {fileID: 0}
+  skillUIImage: {fileID: 21300000, guid: 50a8b19105a45464da696b81a131d3d4, type: 3}
+  skillAnimDuration: 0.5
