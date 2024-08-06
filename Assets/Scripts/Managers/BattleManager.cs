@@ -267,6 +267,9 @@ public class BattleManager : MonoBehaviour
             //action.skillTarget.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
 
+        systemManager.SetHighlightedEnemy(action.skillTarget);
+
+        systemManager.PlayBattleAudioClip(action.skillToUse);
     }
 
 
@@ -310,6 +313,12 @@ public class BattleManager : MonoBehaviour
                 yield return new WaitForSeconds(1.0f);
 
                 HighlightedTarget = actionList[0].character;
+
+                if (actionList.Count != 1)
+                {
+                    actionList[0].skillTarget.StopHighlighting();
+                }
+
                 Destroy(actionList[0]);
                 actionList.Remove(actionList[0]);
                 Debug.Log(actionList.Count);
@@ -322,6 +331,7 @@ public class BattleManager : MonoBehaviour
                 actionList.Remove(actionList[0]);
                 Debug.Log(actionList.Count);
             }
+
             
         }
 

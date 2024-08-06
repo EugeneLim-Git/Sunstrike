@@ -303,8 +303,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94ca14eb96a4764183e22123b163dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
   mouseSFX1: {fileID: 8300000, guid: 6a3d5d81d4e3abe48b4efeceaf1fa6ea, type: 3}
   mouseSFX2: {fileID: 8300000, guid: be1935c81299bb244b804a5f6ee46725, type: 3}
+  damageSFXClip: {fileID: 8300000, guid: cb11856e8dff18a4ea2a2c7888cb373a, type: 3}
+  healSFXClip: {fileID: 8300000, guid: bf68913f9aeddd446a30f625622edb7d, type: 3}
+  buffSFXClip: {fileID: 8300000, guid: a5e69f14d37202c44a8a0c185ca16a74, type: 3}
+  debuffSFXClip: {fileID: 8300000, guid: c891d271f6afad941898fafd11f74938, type: 3}
   uiAudioSource: {fileID: 8286273261316827384}
   sfxAudioSource: {fileID: 8286273261541424057}
   musicAudioSource: {fileID: 8286273261084173835}
@@ -355,7 +360,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 4644804020192348637, guid: ca81441b4475c6a4993cf2cc4689aa3b, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

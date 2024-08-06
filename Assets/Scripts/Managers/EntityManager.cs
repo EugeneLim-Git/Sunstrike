@@ -60,26 +60,39 @@ public class EntityManager : MonoBehaviour
     public void SetEnemyEncounter()
     {
         encounterNumber++;
-        if (encounterNumber != 3 && encounterNumber != 6) //use common encounter Data
+        if (encounterNumber < 7)
         {
-            EncounterData newEnemyList = commonEncounterData[Random.Range(0, commonEncounterData.Count)];
+            if (encounterNumber != 3 && encounterNumber != 6) //use common encounter Data
+            {
+                EncounterData newEnemyList = commonEncounterData[Random.Range(0, commonEncounterData.Count)];
 
-            InitialiseEnemyEncounter(newEnemyList);
+                InitialiseEnemyEncounter(newEnemyList);
+            }
+            else if (encounterNumber == 3) //cultist boss
+            {
+                EncounterData newEnemyList = bossEncounterData[0];
+                InitialiseEnemyEncounter(newEnemyList);
+            }
+            else if (encounterNumber == 6) // spider boss
+            {
+                EncounterData newEnemyList = bossEncounterData[1];
+                InitialiseEnemyEncounter(newEnemyList);
+            }
         }
-        else if (encounterNumber == 3) //cultist boss
+        else
         {
-            EncounterData newEnemyList = bossEncounterData[0];
-            InitialiseEnemyEncounter(newEnemyList);
-        }
-        else if (encounterNumber == 6) // spider boss
-        {
-            EncounterData newEnemyList = bossEncounterData[1];
-            InitialiseEnemyEncounter(newEnemyList);
+            systemManager.PlayerHasWon();
         }
     }
 
     public void InitialiseEnemyEncounter(EncounterData listToLoad)
     {
+        foreach (var enemy in enemyList)
+        {
+            Destroy(enemy.gameObject);
+        }
+
+
         enemyList.Clear();
         int i = 0;
         foreach (var enemy in listToLoad.encounterList)

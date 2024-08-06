@@ -31,7 +31,7 @@ public class SpiderAIModule : AIModule
                 aliveTargetList = GetPossibleTargets(entityList);
                 target = aliveTargetList[Random.Range(0, aliveTargetList.Count)];
             }
-            else // means debuff
+            else // means buffs friends
             {
                 aliveTargetList = GetPossibleTargets(enemyList);
                 target = aliveTargetList[Random.Range(0, aliveTargetList.Count)];

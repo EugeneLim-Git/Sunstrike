@@ -15,7 +15,7 @@ MonoBehaviour:
   CharacterPrefab: {fileID: 5633714486503318348, guid: 95ed56079e1c22b44bfa6ca500d42a11, type: 3}
   characterBase: {fileID: 11400000, guid: bcc7208005b086f4b80da48e432554e7, type: 2}
   selectableSkillList:
-  - {fileID: 11400000, guid: 0c16c5be07d146c4e81df686255f1af9, type: 2}
+  - {fileID: 11400000, guid: 494981c805f85a7448eec2385a9d9878, type: 2}
   - {fileID: 11400000, guid: 253ae0d663068704bbdbabd9761186f7, type: 2}
   - {fileID: 11400000, guid: 8c70fbf0593e66344997e1a91e462b31, type: 2}
   - {fileID: 11400000, guid: 465d2159dcb3e3c47a2df7e2d28b1fff, type: 2}

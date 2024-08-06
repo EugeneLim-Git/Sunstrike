@@ -241,7 +241,7 @@ public abstract class BattleEntity : MonoBehaviour
     }
     public float GetBaseMagicalStrength()
     {
-        return characterMagicalStrength + magicalStrengthMod;
+        return characterMagicalStrength;
     }
     public float GetBaseMagicalDefense()
     {
@@ -281,34 +281,36 @@ public abstract class BattleEntity : MonoBehaviour
     public void AddToPhysicalStrengthMod(float valueToAdd)
     {
         float newModValue = physicalStrengthMod + valueToAdd;
-
+        newModValue = Mathf.Round(newModValue * 10.0f) * 0.1f;
         physicalStrengthMod = newModValue;
     }
 
     public void AddToPhysicalDefenseMod(float valueToAdd)
     {
         float newModValue = physicalDefenseMod + valueToAdd;
+        newModValue = Mathf.Round(newModValue * 10.0f) * 0.1f;
 
         physicalDefenseMod = newModValue;
     }
 
     public void AddToMagicalStrengthMod(float valueToAdd)
     {
-        float newModValue = physicalStrengthMod + valueToAdd;
+        float newModValue = magicalStrengthMod + valueToAdd;
+        newModValue = Mathf.Round(newModValue * 10.0f) * 0.1f;
 
-        physicalStrengthMod = newModValue; ;
+        magicalStrengthMod = newModValue;
     }
 
     public void AddToMagicalDefenseMod(float valueToAdd)
     {
         float newModValue = magicalDefenseMod + valueToAdd;
-
+        newModValue = Mathf.Round(newModValue * 10.0f) * 0.1f;
         magicalDefenseMod = newModValue;
     }
     public void AddToSpeedMod(float valueToAdd)
     {
         float newModValue = speedMod + valueToAdd;
-
+        newModValue = Mathf.Round(newModValue * 10.0f) * 0.1f;
         speedMod = newModValue;
     }
 

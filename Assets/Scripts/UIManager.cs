@@ -8,8 +8,11 @@ public class UIManager : MonoBehaviour
     [Header("Managers")]
     public EntityManager entityManager;
 
-    [Header("Pause Menu")]
+    [Header("Menus")]
     public GameObject pauseMenuUI;
+    public GameObject winMenuUI;
+    public TextMeshProUGUI winMenuText;
+    public GameObject loseMenuUI;
 
 
     [Header("UI Control Elements")]
@@ -55,6 +58,9 @@ public class UIManager : MonoBehaviour
 
         selectedSkillDescText.gameObject.SetActive(false);
         pauseMenuUI.gameObject.SetActive(false);
+
+        winMenuUI.gameObject.SetActive(false);
+        loseMenuUI.gameObject.SetActive(false);
     }    
 
     public void ChangeSelectedCharacter(BattleEntity characterToSelect)
@@ -133,5 +139,16 @@ public class UIManager : MonoBehaviour
         GameObject newActionTab = Instantiate(actionTabPrefab, actionTabRectTransform);
 
         newActionTab.GetComponent<ActionTab>().Initialise(skillUser, skillName);
+    }
+
+    public void PlayerHasWon(int numberOfRounds)
+    {
+        winMenuUI.gameObject.SetActive(true);
+        winMenuText.text = "Congrats! You made it to the end after " + numberOfRounds + " rounds!";
+    }
+
+    public void PlayerHasLost()
+    {
+        loseMenuUI.gameObject.SetActive(true);
     }
 }

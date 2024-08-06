@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ChargeUpSkill
   m_EditorClassIdentifier: 
   skillName: Charge Up
-  skillDesc: The user charges their weapon, increasing their Physical Power.
+  skillDesc: The user charges their weapon, increasing their Magical Strength.
   skillValue: 5
   typeOfSkill: 1
-  skillScalerType: 0
+  skillScalerType: 1
   skillTargets: 2
   skillTargetRange: 0
   skillSpeedMod: 0

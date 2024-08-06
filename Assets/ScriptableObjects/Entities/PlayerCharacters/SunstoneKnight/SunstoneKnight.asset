@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SunstoneKnight
   m_EditorClassIdentifier: 
   characterName: Sun Knight
-  characterDesc: A knight of the Sunstone Order, they specialize in empowering the
-    team.
+  characterDesc: A knight of the Sunstone Order, they specialize in empowering and
+    protecting the team.
   characterBaseSprite: {fileID: 1353799725, guid: d7bc25e339b065f428176cab354b2bc0, type: 3}
   characterAnimator: {fileID: 0}
   baseHealth: 80

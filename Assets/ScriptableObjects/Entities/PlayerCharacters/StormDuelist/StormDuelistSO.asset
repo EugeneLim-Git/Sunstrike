@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: StormDuelistSO
   m_EditorClassIdentifier: 
   characterName: Storm Duelist
-  characterDesc: A frail and weak fighter, they use buffs to make themselves the
-    strongest.
+  characterDesc: A frail fighter, they use buffs to empower themselves greatly.
   characterBaseSprite: {fileID: -1053866402, guid: 70f82a62832eddd41895a9e8ab9bf14f, type: 3}
   characterAnimator: {fileID: 0}
   baseHealth: 45
-  basePhysicalStrength: 8
+  basePhysicalStrength: 5
   basePhysicalDefense: 10
-  baseMagicalStrength: 2
+  baseMagicalStrength: 8
   baseMagicalDefense: 10
   baseSpeed: 7
   classMultiplier: 1

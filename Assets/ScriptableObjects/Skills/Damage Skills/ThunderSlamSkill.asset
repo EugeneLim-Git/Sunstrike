@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Thunder Slam
   skillDesc: The user slams their weapon into the ground, damage all enemies, but
-    lowering their Physical Attack.
+    lowering their Magical Strength.
   skillValue: 10
   typeOfSkill: 0
   skillScalerType: 0
@@ -22,7 +22,7 @@ MonoBehaviour:
   skillTargetRange: 2
   skillSpeedMod: 0
   numOfTargets: 0
-  secondaryEffect: {fileID: 11400000, guid: 932f5698debaa3b4d83145b600ed73c0, type: 2}
+  secondaryEffect: {fileID: 11400000, guid: f0b860643579b26488217b83a7d58e7c, type: 2}
   skillAnimator: {fileID: 0}
   skillEffect: {fileID: 0}
   skillUIImage: {fileID: 21300000, guid: 2eff2799af4b917419336f3f9d4f64ee, type: 3}

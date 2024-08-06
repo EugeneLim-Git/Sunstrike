@@ -11,8 +11,11 @@ public class ChangeSceneScript : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        charManager = FindObjectOfType<CharacterManager>();
-        Destroy(charManager.gameObject);
+        if (charManager != null)
+        {
+            charManager = FindObjectOfType<CharacterManager>();
+            Destroy(charManager.gameObject);
+        }
 
         SceneManager.LoadScene("MainMenuScene");
     }

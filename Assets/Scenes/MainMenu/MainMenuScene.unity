@@ -273,7 +273,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &56178703
 RectTransform:
   m_ObjectHideFlags: 0
@@ -381,15 +381,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 32
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -9421,7 +9421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1675405240}
   m_Layer: 5
-  m_Name: Pause Menu Parent
+  m_Name: Settings Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10919,6 +10919,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8286273261461635823, guid: 5f227313e637c5349a338f51829a8558, type: 3}
+      propertyPath: uiSlider
+      value: 
+      objectReference: {fileID: 2129022324}
+    - target: {fileID: 8286273261461635823, guid: 5f227313e637c5349a338f51829a8558, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1675405239}
+    - target: {fileID: 8286273261461635823, guid: 5f227313e637c5349a338f51829a8558, type: 3}
+      propertyPath: sfxSlider
+      value: 
+      objectReference: {fileID: 1723354271}
+    - target: {fileID: 8286273261461635823, guid: 5f227313e637c5349a338f51829a8558, type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 265525986}
+    - target: {fileID: 8286273261461635823, guid: 5f227313e637c5349a338f51829a8558, type: 3}
+      propertyPath: masterSlider
+      value: 
+      objectReference: {fileID: 557456100}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f227313e637c5349a338f51829a8558, type: 3}
@@ -12292,4 +12312,16 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1723354271}
+        m_TargetAssemblyTypeName: SFXVolumeSlider, Assembly-CSharp
+        m_MethodName: SetLevel
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

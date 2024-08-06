@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    [Header("UI")]
+    public GameObject pauseMenu;
+
     [Header("UI Audio Clips")]
     [SerializeField] private AudioClip mouseSFX1;
     [SerializeField] private AudioClip mouseSFX2;
 
+    [Header("Battle Audio Clips")]
+    [SerializeField] private AudioClip damageSFXClip;
+    [SerializeField] private AudioClip healSFXClip;
+    [SerializeField] private AudioClip buffSFXClip;
+    [SerializeField] private AudioClip debuffSFXClip;
 
     [Header("Audio Sources")]
     [SerializeField] private AudioSource uiAudioSource;
@@ -29,6 +37,8 @@ public class AudioManager : MonoBehaviour
         sfxSlider.LoadVolume();
         uiSlider.LoadVolume();
         musicSlider.LoadVolume();
+
+        pauseMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,4 +53,26 @@ public class AudioManager : MonoBehaviour
             uiAudioSource.PlayOneShot(mouseSFX2);
         }
     }
+
+    public void PlaySkillSFX(BaseSkill.SkillType skillType)
+    {
+        if (skillType == BaseSkill.SkillType.Damage)
+        {
+            sfxAudioSource.clip = damageSFXClip;
+            sfxAudioSource.Play();
+        }
+        else if (skillType == BaseSkill.SkillType.Buff)
+        {
+            sfxAudioSource.PlayOneShot(buffSFXClip);
+        }
+        else if (skillType == BaseSkill.SkillType.Debuff)
+        {
+            sfxAudioSource.PlayOneShot(debuffSFXClip);
+        }
+        else if (skillType == BaseSkill.SkillType.Heal)
+        {
+            sfxAudioSource.PlayOneShot(healSFXClip);
+        }
+    }
+
 }

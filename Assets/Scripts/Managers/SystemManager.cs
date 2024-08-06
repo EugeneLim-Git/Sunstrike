@@ -15,7 +15,8 @@ public class SystemManager : MonoBehaviour
         TARGETTING,
         ENEMYDECISIONMAKING,
         BATTLING,
-        PLAYERWON
+        PLAYERWON,
+        PLAYERLOST
     }
     [Header("Game State")]
     public GameState currentGameState;
@@ -142,20 +143,28 @@ public class SystemManager : MonoBehaviour
                 }
                 i++;
             }
-            Debug.Log("entityManager.enemyList.Count");
-            if (deadAmount >= entityManager.enemyList.Count)
-            {
-                if (entityManager.encounterNumber >= 3)
-                {
-                    gameText.text = "Player has won! End of Combat Beta.";
-                    SetGameState(GameState.PLAYERWON);
-                }
-                entityManager.SetEnemyEncounter();
-                ResetHighlightedEntity();
-                //SetHighlightedEnemy(entityManager.enemyList[0]);
 
+            int j = 0;
+            int playersDead = 0;
+            foreach (var player in entityManager.characterList)
+            {
+                if (entityManager.characterList[j].isEntityDead())
+                {
+                    playersDead++;
+                }
+                j++;
             }
 
+
+            if (deadAmount >= entityManager.enemyList.Count)
+            {
+                    entityManager.SetEnemyEncounter();
+                    ResetHighlightedEntity();
+            }
+            else if (playersDead >= entityManager.characterList.Count)
+            {
+                PlayerHasLost();
+            }
 
         }
         else if (gameState == GameState.TARGETTING)
@@ -257,6 +266,21 @@ public class SystemManager : MonoBehaviour
             //activate lose screen
             Debug.Log("Lost!");
         }
+    }
+
+    public void PlayerHasWon()
+    {
+        uiManager.PlayerHasWon(battleManager.GetRoundsPassed());
+    }
+
+    public void PlayerHasLost()
+    {
+        uiManager.PlayerHasLost();
+    }
+
+    public void PlayBattleAudioClip(BaseSkill skillToReference)
+    {
+        audioManager.PlaySkillSFX(skillToReference.GetSkillType());
     }
 
     public void ResetHighlightedEntity()
